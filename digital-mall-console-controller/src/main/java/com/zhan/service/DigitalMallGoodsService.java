@@ -30,4 +30,26 @@ public class DigitalMallGoodsService {
                 "&introduce=" + digitalMallGoods.getIntroduce() +
                 "&desUrl=" + digitalMallGoods.getDesUrl(), DigitalMallGoods.class);
     }
+
+    public void deleteGoods(int id){
+        restTemplate.getForObject("http://console-service/deleteGoods?id=" + id, void.class);
+    }
+
+    public DigitalMallGoods getGoodsById(int id){
+        return restTemplate.getForObject("http://console-service/getGoodsById?id=" + id, DigitalMallGoods.class);
+    }
+
+    public void updateGoods(DigitalMallGoods goods){
+        restTemplate.getForObject("http://console-service/updateGoods" +
+                "?id=" + goods.getId() +
+                "&name=" + goods.getName() +
+                "&categoryId=" + goods.getCategoryId() +
+                "&brandId=" + goods.getBrandId() +
+                "&imageUrl=" + goods.getImageUrl() +
+                "&introduce=" + goods.getIntroduce() +
+                "&desUrl=" + goods.getDesUrl() +
+                "&saleNum=" + goods.getSaleNum() +
+                "&isShow=" + goods.getIsShow() +
+                "&isDelete=" + goods.getIsDelete() , void.class);
+    }
 }

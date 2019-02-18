@@ -79,7 +79,7 @@
               </label>
               <div class="layui-input-inline" style="margin-top: 10px">
                   <input type="hidden" name="imageUrl" id="imageUrl"/>
-                  <input type="file" multiple name="files" class="input-file" onchange="upload()">
+                  <input type="file" multiple name="goodsFile" class="input-file" onchange="upload()">
                   </span>
               </div>
               <div class="layui-form-item" id="images" style="height: 100px; margin-left: 70px">
@@ -99,10 +99,10 @@
                 </label>
                 <div class="layui-input-inline" style="margin-top: 10px">
                     <input type="hidden" name="desUrl" id="desUrl"/>
-                    <input type="file" multiple name="file" class="input-file" onchange="desUpload()">
+                    <input type="file" multiple name="desFile" class="input-file" onchange="desUpload()">
                     </span>
                 </div>
-                <div class="layui-form-item" id="desImage" style="height: 100px; margin-left: 70px">
+                <div class="layui-form-item" id="desImage" style="height: 100px; margin-left: 100px">
                 </div>
             </div>
           <div class="layui-form-item">
@@ -165,6 +165,7 @@
             $('#addGoods').attr("action","upload").ajaxSubmit(function(data){
                 $('#imageUrl').val(data);
                 $('#addGoods').attr("action","addGoods");
+                document.getElementById("images").innerHTML = "";
                 for(var i=0; i<data.length; i++){
                     var img = document.createElement("img");
                     img.src = data[i];
@@ -179,6 +180,7 @@
             $('#addGoods').attr("action","desUpload").ajaxSubmit(function(data){
                 $('#desUrl').val(data);
                 $('#addGoods').attr("action","addGoods");
+                document.getElementById("desImage").innerHTML = "";
                 for(var i=0; i<data.length; i++) {
                     var img = document.createElement("img");
                     img.src = data[i];

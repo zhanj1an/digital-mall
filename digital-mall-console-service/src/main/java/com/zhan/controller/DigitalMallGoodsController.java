@@ -27,4 +27,19 @@ public class DigitalMallGoodsController {
     public void addGoods(DigitalMallGoods digitalMallGoods){
         digitalMallGoodsService.addGoods(digitalMallGoods);
     }
+
+    @RequestMapping("/deleteGoods")
+    public void deleteGoods(int id){
+        digitalMallGoodsService.deleteGoods(id);
+    }
+
+    @RequestMapping("/getGoodsById")
+    public DigitalMallGoods getGoodsById(int id){
+        return digitalMallGoodsService.getGoodsById(id);
+    }
+
+    @RequestMapping("/updateGoods")
+    public void updateGoods(DigitalMallGoods goods){
+        digitalMallGoodsService.updateGoods(goods);
+    }
 }

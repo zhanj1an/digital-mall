@@ -39,4 +39,24 @@ public class DigitalMallGoodsServiceImpl implements DigitalMallGoodsService {
         digitalMallGoods.setUpdateTime(System.currentTimeMillis() + "");
         digitalMallGoodsMapper.insert(digitalMallGoods);
     }
+
+    @Override
+    public void deleteGoods(int id) {
+        DigitalMallGoods goods = digitalMallGoodsMapper.selectByPrimaryKey(id);
+        goods.setIsDelete(1);
+        digitalMallGoodsMapper.updateByPrimaryKey(goods);
+    }
+
+    @Override
+    public DigitalMallGoods getGoodsById(int id) {
+        return digitalMallGoodsMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public void updateGoods(DigitalMallGoods goods) {
+        goods.setUpdateTime(System.currentTimeMillis() + "");
+        digitalMallGoodsMapper.updateByPrimaryKey(goods);
+    }
+
+
 }

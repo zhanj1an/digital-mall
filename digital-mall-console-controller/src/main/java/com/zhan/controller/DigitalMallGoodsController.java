@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -74,10 +75,10 @@ public class DigitalMallGoodsController {
 
     @ResponseBody
     @RequestMapping("/upload")
-    public List<String> upload(MultipartFile[] files){
+    public List<String> upload(MultipartFile[] goodsFile){
         List<String> imageList = new ArrayList<>();
         String path = "/Users/oker/project/digital-mall/digital-mall-console-controller/src/main/resources/static/upload";
-        for(MultipartFile file : files) {
+        for(MultipartFile file : goodsFile) {
             try {
                 file.transferTo(new File(path + File.separator+ file.getOriginalFilename()));
             } catch (Exception e) {
@@ -90,10 +91,10 @@ public class DigitalMallGoodsController {
 
     @ResponseBody
     @RequestMapping("/desUpload")
-    public List<String> desUpload(MultipartFile[] file){
+    public List<String> desUpload(MultipartFile[] desFile){
         List<String> desImageList = new ArrayList<>();
         String path = "/Users/oker/project/digital-mall/digital-mall-console-controller/src/main/resources/static/upload";
-        for(MultipartFile f : file) {
+        for(MultipartFile f : desFile) {
             try {
                 f.transferTo(new File(path + File.separator+ f.getOriginalFilename()));
             } catch (Exception e) {
@@ -107,7 +108,24 @@ public class DigitalMallGoodsController {
     @ResponseBody
     @RequestMapping("/deleteGoods")
     public int deleteGoods(String id){
-        System.out.println(id);
+        digitalMallGoodsService.deleteGoods(Integer.parseInt(id));
         return 1;
+    }
+
+    @RequestMapping("/toUpdateGoodsView")
+    public String toUpdateGoodsView(String id, Model model){
+        DigitalMallGoods goods = digitalMallGoodsService.getGoodsById(Integer.parseInt(id));
+        model.addAttribute("goodsImgList", Arrays.asList(goods.getImageUrl().split(",")));
+        model.addAttribute("desImgList", Arrays.asList(goods.getDesUrl().split(",")));
+        model.addAttribute("goods", goods);
+        model.addAttribute("brandList", digitalMallBrandService.getBrandList());
+        model.addAttribute("categoryList", digitalMallCategoryService.getCategoryList());
+        return "goods-edit";
+    }
+
+    @RequestMapping("/updateGoods")
+    public String updateGoods(DigitalMallGoods digitalMallGoods){
+        digitalMallGoodsService.updateGoods(digitalMallGoods);
+        return "redirect:getGoodsList";
     }
 }
