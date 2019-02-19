@@ -1,6 +1,7 @@
 package com.zhan.controller;
 
 import com.zhan.model.DigitalMallGoods;
+import com.zhan.model.DigitalMallSku;
 import com.zhan.service.DigitalMallBrandService;
 import com.zhan.service.DigitalMallCategoryBrandService;
 import com.zhan.service.DigitalMallCategoryService;
@@ -128,4 +129,25 @@ public class DigitalMallGoodsController {
         digitalMallGoodsService.updateGoods(digitalMallGoods);
         return "redirect:getGoodsList";
     }
+
+    @RequestMapping("/toAddGoodsSkuView")
+    public String toAddGoodsSkuView(String id, Model model){
+        model.addAttribute("goods", digitalMallGoodsService.getGoodsById(Integer.parseInt(id)));
+        return "sku-add";
+    }
+
+    @RequestMapping("/addSku")
+    public String addSku(String attrName, String [] attrValue, String[] price, String[] stock, String id, String name){
+        List<DigitalMallSku> skuList = new ArrayList<>();
+        for (int i = 0; i < attrValue.length; i++) {
+            DigitalMallSku sku = new DigitalMallSku(Integer.parseInt(id), name, attrValue[i], Double.parseDouble(price[i]),
+                    Integer.parseInt(stock[i]), System.currentTimeMillis() + "");
+            skuList.add(sku);
+            System.out.println(sku.toString());
+        }
+        System.out.println(attrName);
+        return "redirect:getGoodsList";
+    }
+
+
 }

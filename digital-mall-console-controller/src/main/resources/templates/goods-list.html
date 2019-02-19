@@ -81,10 +81,13 @@
             <td><span th:if="${goods.isShow == 1}" th:text="是"></span><span th:if="${goods.isShow == 0}" th:text="否"></span></td>
             <td><span th:if="${goods.isDelete == 1}" th:text="是"></span><span th:if="${goods.isDelete == 0}" th:text="否"></span></td>
             <td class="td-manage">
-              <a title="编辑" th:name="${goods.id}" onclick="x_admin_show('编辑商品','./toUpdateGoodsView?id=' + this.name,900,600)" href="javascript:;">
+              <a title="编辑" th:name="${goods.id}" onclick="x_admin_show('编辑商品','./toUpdateGoodsView?id=' + this.name,900,600)" href="javascript:void(0);">
                 <i class="layui-icon">&#xe642;</i>
               </a>
-              <a title="删除" th:id="${goods.id}"  onclick="deleteGoods(this.id)" >
+              <a title="库存添加" th:name="${goods.id}" onclick="x_admin_show('添加库存','./toAddGoodsSkuView?id=' + this.name,900,600)" href="javascript:void(0);">
+                <i class="layui-icon">&#xe63c;</i>
+              </a>
+              <a title="删除" th:name="${goods.id}"  onclick="deleteGoods(this.name)" href="javascript:void(0);">
                 <i class="layui-icon">&#xe640;</i>
               </a>
             </td>
