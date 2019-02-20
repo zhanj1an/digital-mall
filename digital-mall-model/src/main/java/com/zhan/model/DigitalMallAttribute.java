@@ -1,5 +1,8 @@
 package com.zhan.model;
 
+import lombok.Data;
+
+@Data
 public class DigitalMallAttribute {
     private Integer id;
 
@@ -39,5 +42,14 @@ public class DigitalMallAttribute {
 
     public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime == null ? null : updateTime.trim();
+    }
+
+    public DigitalMallAttribute(String name, Integer goodsId, String updateTime) {
+        this.name = name;
+        this.goodsId = goodsId;
+        this.updateTime = updateTime;
+    }
+
+    public DigitalMallAttribute() {
     }
 }

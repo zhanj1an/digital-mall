@@ -7,7 +7,7 @@
 /*sku选择样式*/
 li{list-style: none;margin-right:10px;}
 li label{cursor: pointer;}
-li{float: left;line-height: 30px;}
+li{float: left;line-height: 40px;}
 .clear{
 	clear: both;
 }

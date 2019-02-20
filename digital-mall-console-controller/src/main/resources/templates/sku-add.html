@@ -29,7 +29,6 @@
   
   <body>
     <div class="x-body">
-        <form method="post" action="/addSku">
           <div class="layui-form-item">
               <label for="name" class="layui-form-label">
                   <span class="x-red">*</span>商品名
@@ -37,7 +36,6 @@
               <div class="layui-input-inline" style="margin-top: 10px">
                   <input type="text" id="name" name="name" required="" lay-verify="required"
                   autocomplete="off" class="layui-input" th:value="${goods.name}" readonly="readonly">
-                  <input type="hidden" name="id" th:value="${goods.id}">
               </div>
           </div>
 
@@ -80,10 +78,13 @@
           </div>
 
             <div class="clear"></div>
-            <button class="cloneSku">添加自定义sku属性</button>
+            <button class="cloneSku" style="background-color: #029688;width: 80px;height: 36px; color: #ffffff;border-color: #029688">属性添加</button>
 
-            <!--sku模板,用于克隆,生成自定义sku-->
-            <div id="skuCloneModel" style="display: none;">
+        <form method="post" action="/addSku">
+            <input type="hidden" name="id" th:value="${goods.id}">
+            <input type="hidden" name="name" th:value="${goods.name}">
+        <!--sku模板,用于克隆,生成自定义sku-->
+            <div id="skuCloneModel" style="display: none;margin-left: 54px">
                 <div class="clear"></div>
                 <ul class="SKU_TYPE">
                     <li is_required='0' propid='' sku-type-name="">
@@ -96,7 +97,7 @@
                         <input type="checkbox" class="model_sku_val" propvalid='' value="" />
                         <input type="text" class="cusSkuValInput" />
                     </li>
-                    <button class="cloneSkuVal">添加自定义属性值</button>
+                    <button class="cloneSkuVal" style="background-color: #029688;width: 100px;height: 36px; color: #ffffff;border-color: #029688">属性值添加</button>
                 </ul>
                 <div class="clear"></div>
             </div>
@@ -108,15 +109,10 @@
             </li>
             <div class="clear"></div>
             <div id="skuTable"></div>
-
-
-
           <div class="layui-form-item">
               <label class="layui-form-label">
               </label>
-              <input type="submit" class="layui-btn" lay-filter="addSku">
-                  增加
-              </input>
+              <input type="submit" class="layui-btn" lay-filter="addSku" style="margin-top: 20px" value="增加"/>
           </div>
       </form>
     </div>
