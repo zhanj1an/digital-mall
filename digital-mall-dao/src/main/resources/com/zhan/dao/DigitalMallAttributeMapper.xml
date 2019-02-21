@@ -20,7 +20,7 @@
     delete from digital_mall_attribute
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.zhan.model.DigitalMallAttribute" >
+  <insert id="insert" parameterType="com.zhan.model.DigitalMallAttribute" useGeneratedKeys="true" keyProperty="id">
     insert into digital_mall_attribute (id, name, goods_id, 
       update_time)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{goodsId,jdbcType=INTEGER}, 

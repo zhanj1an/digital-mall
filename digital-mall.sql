@@ -165,7 +165,7 @@ CREATE TABLE `digital_mall_sku` (
   `attribute` varchar(100) NOT NULL COMMENT '属性',
   `price` double(10,2) NOT NULL COMMENT '价格',
   `stock` int(10) NOT NULL COMMENT '库存',
-  `update_time` varchar(10) NOT NULL,
+  `update_time` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

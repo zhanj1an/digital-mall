@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/css/font.css">
     <link rel="stylesheet" href="/css/xadmin.css">
     <link rel="stylesheet" href="/css/sku_style.css" />
+    <link rel="stylesheet" href="./css/modules/layui.css">
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="/js/xadmin.js"></script>
@@ -112,7 +113,9 @@
           <div class="layui-form-item">
               <label class="layui-form-label">
               </label>
-              <input type="submit" class="layui-btn" lay-filter="addSku" style="margin-top: 20px" value="增加"/>
+              <button class="layui-btn" lay-filter="addSku" style="margin-top: 20px" >
+              添加库存
+              </button>
           </div>
       </form>
     </div>
@@ -140,18 +143,19 @@
             }
           });
 
-          // //监听提交
-          // form.on('submit(addSku)', function(data){
-          //   $('#addSku').ajaxSubmit(data);
-          //   layer.alert("增加成功", {icon: 6},function () {
-          //       // 获得frame索引
-          //       var index = parent.layer.getFrameIndex(window.name);
-          //       //关闭当前frame
-          //       parent.layer.close(index);
-          //       parent.location.reload();
-          //   });
-          //   return false;
-          // });
+          //监听提交
+          form.on('submit(add)', function(data){
+            $('#addSku').ajaxSubmit(data);
+            layer.alert("增加成功", {icon: 6},function () {
+                // 获得frame索引
+                var index = parent.layer.getFrameIndex(window.name);
+                //关闭当前frame
+                console.log(index);
+                parent.layer.close(index);
+                parent.location.reload();
+            });
+            return false;
+          });
         });
 
     </script>

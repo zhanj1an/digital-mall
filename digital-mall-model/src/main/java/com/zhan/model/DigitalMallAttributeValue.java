@@ -1,5 +1,10 @@
 package com.zhan.model;
 
+import lombok.Data;
+
+import java.util.Objects;
+
+@Data
 public class DigitalMallAttributeValue {
     private Integer id;
 
@@ -49,5 +54,31 @@ public class DigitalMallAttributeValue {
 
     public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime == null ? null : updateTime.trim();
+    }
+
+    public DigitalMallAttributeValue(String attrValue, Integer attrId, Integer goodsId, String updateTime) {
+        this.attrValue = attrValue;
+        this.attrId = attrId;
+        this.goodsId = goodsId;
+        this.updateTime = updateTime;
+    }
+
+    public DigitalMallAttributeValue() {
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DigitalMallAttributeValue that = (DigitalMallAttributeValue) o;
+        return attrValue.equals(that.attrValue) &&
+                attrId.equals(that.attrId) &&
+                goodsId.equals(that.goodsId) &&
+                updateTime.equals(that.updateTime);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(attrValue, attrId, goodsId, updateTime);
     }
 }

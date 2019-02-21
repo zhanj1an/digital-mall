@@ -1,7 +1,9 @@
 package com.zhan.dao;
 
 import com.zhan.model.DigitalMallAttribute;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface DigitalMallAttributeMapper {
     int deleteByPrimaryKey(Integer id);
 
