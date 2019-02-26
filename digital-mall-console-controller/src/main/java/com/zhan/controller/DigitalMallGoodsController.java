@@ -1,12 +1,11 @@
 package com.zhan.controller;
 
-import com.zhan.model.DigitalMallAttribute;
 import com.zhan.model.DigitalMallGoods;
-import com.zhan.model.DigitalMallSku;
 import com.zhan.service.DigitalMallBrandService;
 import com.zhan.service.DigitalMallCategoryBrandService;
 import com.zhan.service.DigitalMallCategoryService;
 import com.zhan.service.DigitalMallGoodsService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Slf4j
 @Controller
 public class DigitalMallGoodsController {
 
@@ -70,8 +70,11 @@ public class DigitalMallGoodsController {
         if(otherBrand != null && !"".equals(otherBrand)){
             goods.setBrandId(digitalMallBrandService.insert(otherBrand));
         }
+        log.error("add goods info{}", goods.toString());
         digitalMallGoodsService.addGoods(goods);
-        digitalMallCategoryBrandService.insert(goods.getCategoryId(), goods.getBrandId());
+        if(digitalMallCategoryBrandService.insert(goods.getCategoryId(), goods.getBrandId()) != 1){
+            log.error("CategoryBrand insert fail");
+        }
         return "redirect:getGoodsList";
     }
 
@@ -110,8 +113,7 @@ public class DigitalMallGoodsController {
     @ResponseBody
     @RequestMapping("/deleteGoods")
     public int deleteGoods(String id){
-        digitalMallGoodsService.deleteGoods(Integer.parseInt(id));
-        return 1;
+        return digitalMallGoodsService.deleteGoods(Integer.parseInt(id));
     }
 
     @RequestMapping("/toUpdateGoodsView")
@@ -137,4 +139,15 @@ public class DigitalMallGoodsController {
         return "sku-add";
     }
 
+    @ResponseBody
+    @RequestMapping("/showGoods")
+    public int showGoods(String id){
+        return digitalMallGoodsService.showGoods(Integer.parseInt(id));
+    }
+
+    @ResponseBody
+    @RequestMapping("/hideGoods")
+    public int hideGoods(String id){
+        return digitalMallGoodsService.hideGoods(Integer.parseInt(id));
+    }
 }

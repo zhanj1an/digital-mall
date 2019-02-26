@@ -8,6 +8,7 @@ import com.zhan.service.DigitalMallAttributeValueService;
 import com.zhan.service.DigitalMallSkuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.HashSet;
@@ -42,7 +43,7 @@ public class DigitalMallSkuController {
         //便利拼接sku信息
         for (int i = 0; i < attrValue.length; i++) {
             DigitalMallSku sku = new DigitalMallSku(goodsId, name, attrValue[i], Double.parseDouble(price[i]),
-                    Integer.parseInt(stock[i]), updateTime);
+                    Integer.parseInt(stock[i]), 0, updateTime);
             digitalMallSkuService.insert(sku);
         }
 
@@ -61,7 +62,12 @@ public class DigitalMallSkuController {
                 }
             }
         }
-
         return "redirect:getGoodsList";
+    }
+
+    @RequestMapping("/getSkuList")
+    public String getSkuList(Model model){
+        model.addAttribute("skuList", digitalMallSkuService.getSkuList());
+        return "sku-list";
     }
 }

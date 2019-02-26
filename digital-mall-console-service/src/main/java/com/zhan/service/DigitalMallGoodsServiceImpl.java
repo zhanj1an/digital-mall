@@ -41,10 +41,10 @@ public class DigitalMallGoodsServiceImpl implements DigitalMallGoodsService {
     }
 
     @Override
-    public void deleteGoods(int id) {
+    public Integer deleteGoods(int id) {
         DigitalMallGoods goods = digitalMallGoodsMapper.selectByPrimaryKey(id);
         goods.setIsDelete(1);
-        digitalMallGoodsMapper.updateByPrimaryKey(goods);
+        return digitalMallGoodsMapper.updateByPrimaryKey(goods);
     }
 
     @Override
@@ -56,6 +56,20 @@ public class DigitalMallGoodsServiceImpl implements DigitalMallGoodsService {
     public void updateGoods(DigitalMallGoods goods) {
         goods.setUpdateTime(System.currentTimeMillis() + "");
         digitalMallGoodsMapper.updateByPrimaryKey(goods);
+    }
+
+    @Override
+    public Integer showGoods(int id) {
+        DigitalMallGoods goods = digitalMallGoodsMapper.selectByPrimaryKey(id);
+        goods.setIsShow(1);
+        return digitalMallGoodsMapper.updateByPrimaryKey(goods);
+    }
+
+    @Override
+    public Integer hideGoods(int id) {
+        DigitalMallGoods goods = digitalMallGoodsMapper.selectByPrimaryKey(id);
+        goods.setIsShow(0);
+        return digitalMallGoodsMapper.updateByPrimaryKey(goods);
     }
 
 

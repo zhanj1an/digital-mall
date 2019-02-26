@@ -10,9 +10,13 @@ public interface DigitalMallGoodsService {
 
     void addGoods(DigitalMallGoods digitalMallGoods);
 
-    void deleteGoods(int id);
+    Integer deleteGoods(int id);
 
     DigitalMallGoods getGoodsById(int id);
 
     void updateGoods(DigitalMallGoods goods);
+
+    Integer showGoods(int id);
+
+    Integer hideGoods(int id);
 }

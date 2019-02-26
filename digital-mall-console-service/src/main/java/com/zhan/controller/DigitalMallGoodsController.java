@@ -29,8 +29,8 @@ public class DigitalMallGoodsController {
     }
 
     @RequestMapping("/deleteGoods")
-    public void deleteGoods(int id){
-        digitalMallGoodsService.deleteGoods(id);
+    public Integer deleteGoods(int id){
+        return digitalMallGoodsService.deleteGoods(id);
     }
 
     @RequestMapping("/getGoodsById")
@@ -41,5 +41,15 @@ public class DigitalMallGoodsController {
     @RequestMapping("/updateGoods")
     public void updateGoods(DigitalMallGoods goods){
         digitalMallGoodsService.updateGoods(goods);
+    }
+
+    @RequestMapping("/showGoods")
+    public Integer showGoods(int id){
+        return digitalMallGoodsService.showGoods(id);
+    }
+
+    @RequestMapping("/hideGoods")
+    public Integer hideGoods(int id){
+        return digitalMallGoodsService.hideGoods(id);
     }
 }

@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
+
 @Service("skuService")
 public class DigitalMallSkuService {
 
@@ -23,5 +25,10 @@ public class DigitalMallSkuService {
                 "&price=" + sku.getPrice() +
                 "&stock=" + sku.getStock() +
                 "&updateTime=" + sku.getUpdateTime(), void.class);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<DigitalMallSku> getSkuList(){
+        return restTemplate.getForObject("http://console-service/getSkuList", List.class);
     }
 }

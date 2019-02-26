@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html>
   
   <head>
@@ -77,34 +78,29 @@
             <th>
               <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
             </th>
-            <th>订单编号</th>
-            <th>收货人</th>
-            <th>总金额</th>
-            <th>应付金额</th>
-            <th>订单状态</th>
-            <th>支付状态</th>
-            <th>发货状态</th>
-            <th>支付方式</th>
-            <th>配送方式</th>
-            <th>下单时间</th>
+            <th>库存ID</th>
+            <th>商品名称</th>
+            <th>属性列表</th>
+            <th>价格</th>
+            <th>库存</th>
+            <th>删除状态</th>
             <th >操作</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody th:each="sku:${skuList}">
           <tr>
             <td>
               <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
             </td>
-            <td>2017009171822298053</td>
-            <td>老王:18925139194</td>
-            <td>7829.10</td>
-            <td>7854.10</td>
-            <td>待确认</td>
-            <td>未支付</td>
-            <td>未发货</td>
-            <td>其他方式</td>
-            <td>申通物流</td>
-            <td>2017-08-17 18:22</td>
+            <td th:text="${sku.id}"></td>
+            <td th:text="${sku.goodsName}"></td>
+            <td th:text="${sku.attribute}"></td>
+            <td th:text="${sku.price}"></td>
+            <td th:text="${sku.stock}"></td>
+            <td>
+              <span th:if="${sku.isDelete == 0}" class="layui-btn layui-btn-normal layui-btn-mini">已启用</span>
+              <span th:if="${sku.isDelete == 1}" class="layui-btn layui-btn-danger layui-btn-mini">已删除</span>
+            </td>
             <td class="td-manage">
               <a title="查看"  onclick="x_admin_show('编辑','order-view.html')" href="javascript:;">
                 <i class="layui-icon">&#xe63c;</i>

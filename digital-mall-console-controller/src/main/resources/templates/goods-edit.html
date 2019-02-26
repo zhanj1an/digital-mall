@@ -85,7 +85,6 @@
             <div class="layui-input-inline" style="margin-top: 10px">
                 <input type="hidden" name="imageUrl" id="imageUrl" th:value="${goods.imageUrl}"/>
                 <input type="file" multiple name="goodsFile" class="input-file" onchange="upload()">
-                </span>
             </div>
             <div class="layui-form-item" id="images" style="height: 100px; margin-left: 70px">
                 <img style="height: 100px; width: 100px" th:each="img:${goodsImgList}" th:src="${img}" onclick="viewBigImage(this.src)">
@@ -106,7 +105,6 @@
             <div class="layui-input-inline" style="margin-top: 10px">
                 <input type="hidden" name="desUrl" id="desUrl" th:value="${goods.desUrl}"/>
                 <input type="file" multiple name="desFile" class="input-file" onchange="desUpload()">
-                </span>
             </div>
             <div class="layui-form-item" id="desImage" style="height: 100px; margin-left: 100px">
                 <img style="height: 100px; width: 100px" th:each="img:${desImgList}" th:src="${img}" onclick="viewBigImage(this.src)">

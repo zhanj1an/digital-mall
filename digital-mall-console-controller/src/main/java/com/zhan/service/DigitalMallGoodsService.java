@@ -31,8 +31,16 @@ public class DigitalMallGoodsService {
                 "&desUrl=" + digitalMallGoods.getDesUrl(), DigitalMallGoods.class);
     }
 
-    public void deleteGoods(int id){
-        restTemplate.getForObject("http://console-service/deleteGoods?id=" + id, void.class);
+    public Integer deleteGoods(int id){
+        return restTemplate.getForObject("http://console-service/deleteGoods?id=" + id, Integer.class);
+    }
+
+    public Integer showGoods(int id){
+        return restTemplate.getForObject("http://console-service/showGoods?id=" + id, Integer.class);
+    }
+
+    public Integer hideGoods(int id){
+        return restTemplate.getForObject("http://console-service/hideGoods?id=" + id, Integer.class);
     }
 
     public DigitalMallGoods getGoodsById(int id){

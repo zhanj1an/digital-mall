@@ -1,8 +1,10 @@
 package com.zhan.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class DigitalMallSku {
     private Integer id;
 
@@ -16,73 +18,17 @@ public class DigitalMallSku {
 
     private Integer stock;
 
+    private Integer isDelete;
+
     private String updateTime;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getGoodsId() {
-        return goodsId;
-    }
-
-    public void setGoodsId(Integer goodsId) {
-        this.goodsId = goodsId;
-    }
-
-    public String getGoodsName() {
-        return goodsName;
-    }
-
-    public void setGoodsName(String goodsName) {
-        this.goodsName = goodsName == null ? null : goodsName.trim();
-    }
-
-    public String getAttribute() {
-        return attribute;
-    }
-
-    public void setAttribute(String attribute) {
-        this.attribute = attribute == null ? null : attribute.trim();
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    public Integer getStock() {
-        return stock;
-    }
-
-    public void setStock(Integer stock) {
-        this.stock = stock;
-    }
-
-    public String getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(String updateTime) {
-        this.updateTime = updateTime == null ? null : updateTime.trim();
-    }
-
-    public DigitalMallSku() {
-    }
-
-    public DigitalMallSku(Integer goodsId, String goodsName, String attribute, Double price, Integer stock, String updateTime) {
+    public DigitalMallSku(Integer goodsId, String goodsName, String attribute, Double price, Integer stock, Integer isDelete, String updateTime) {
         this.goodsId = goodsId;
         this.goodsName = goodsName;
         this.attribute = attribute;
         this.price = price;
         this.stock = stock;
+        this.isDelete = isDelete;
         this.updateTime = updateTime;
     }
 }
