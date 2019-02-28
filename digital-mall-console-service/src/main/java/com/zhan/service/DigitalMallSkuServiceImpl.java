@@ -26,4 +26,17 @@ public class DigitalMallSkuServiceImpl implements DigitalMallSkuService {
     public List<DigitalMallSku> selectAll() {
         return digitalMallSkuMapper.selectAll();
     }
+
+    @Override
+    public void updateSku(int id, int stock) {
+        DigitalMallSku sku = digitalMallSkuMapper.selectByPrimaryKey(id);
+        sku.setStock(stock);
+        System.out.println(sku.toString());
+        digitalMallSkuMapper.updateByPrimaryKey(sku);
+    }
+
+    @Override
+    public DigitalMallSku selectSkuById(int id) {
+        return digitalMallSkuMapper.selectByPrimaryKey(id);
+    }
 }

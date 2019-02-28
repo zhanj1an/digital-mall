@@ -70,4 +70,18 @@ public class DigitalMallSkuController {
         model.addAttribute("skuList", digitalMallSkuService.getSkuList());
         return "sku-list";
     }
+
+    @RequestMapping("/toUpdateView")
+    public String toUpdateView(String id, Model model){
+        model.addAttribute("sku", digitalMallSkuService.selectSkuById(Integer.parseInt(id)));
+        return "sku-edit";
+    }
+
+    @RequestMapping("/updateSku")
+    public String updateSku(String id, String stock){
+        System.out.println(id);
+        System.out.println(stock);
+        digitalMallSkuService.updateSku(Integer.parseInt(id), Integer.parseInt(stock));
+        return "redirect:getSkuList";
+    }
 }

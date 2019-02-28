@@ -9,4 +9,8 @@ public interface DigitalMallSkuService {
     void insert(DigitalMallSku sku);
 
     List<DigitalMallSku> selectAll();
+
+    void updateSku(int id, int stock);
+
+    DigitalMallSku selectSkuById(int id);
 }

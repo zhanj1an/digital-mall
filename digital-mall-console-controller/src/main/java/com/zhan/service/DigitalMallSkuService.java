@@ -31,4 +31,12 @@ public class DigitalMallSkuService {
     public List<DigitalMallSku> getSkuList(){
         return restTemplate.getForObject("http://console-service/getSkuList", List.class);
     }
+
+    public void updateSku(int id, int stock){
+        restTemplate.getForObject("http://console-service/updateSku?id=" + id + "&stock=" + stock, void.class);
+    }
+
+    public DigitalMallSku selectSkuById(int id){
+        return restTemplate.getForObject("http://console-service/selectSkuById?id=" + id, DigitalMallSku.class);
+    }
 }

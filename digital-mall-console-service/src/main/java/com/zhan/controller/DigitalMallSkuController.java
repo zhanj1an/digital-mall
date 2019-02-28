@@ -27,4 +27,14 @@ public class DigitalMallSkuController {
     public List<DigitalMallSku> selectAll(){
         return digitalMallSkuService.selectAll();
     }
+
+    @RequestMapping("updateSku")
+    public void updateSku(int id, int stock){
+        digitalMallSkuService.updateSku(id, stock);
+    }
+
+    @RequestMapping("selectSkuById")
+    public DigitalMallSku selectSkuById(int id){
+        return digitalMallSkuService.selectSkuById(id);
+    }
 }
