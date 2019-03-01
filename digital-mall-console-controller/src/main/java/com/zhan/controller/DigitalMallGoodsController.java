@@ -47,8 +47,12 @@ public class DigitalMallGoodsController {
     }
 
     @RequestMapping("/getGoodsList")
-    public String getDigitalMallGoodsList(Model model){
-        model.addAttribute("goodsList", digitalMallGoodsService.getGoodsList());
+    public String getDigitalMallGoodsList(String goodsName, Model model){
+        if(goodsName == null || "".equals(goodsName)) {
+            model.addAttribute("goodsList", digitalMallGoodsService.getGoodsList());
+        }else{
+            System.out.println(goodsName);
+        }
         model.addAttribute("brandList", digitalMallBrandService.getBrandList());
         model.addAttribute("categoryList", digitalMallCategoryService.getCategoryList());
         return "goods-list";
