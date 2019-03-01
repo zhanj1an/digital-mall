@@ -60,4 +60,12 @@ public class DigitalMallGoodsService {
                 "&isShow=" + goods.getIsShow() +
                 "&isDelete=" + goods.getIsDelete() , void.class);
     }
+
+    @SuppressWarnings("unchecked")
+    public List<DigitalMallGoods> selectGoodsByCriteria(String name, String brandId, String categoryId){
+        return restTemplate.getForObject("http://console-service/selectGoodsByCriteria" +
+                "?name=" + name +
+                "&categoryId=" + categoryId +
+                "&brandId=" + brandId, List.class);
+    }
 }

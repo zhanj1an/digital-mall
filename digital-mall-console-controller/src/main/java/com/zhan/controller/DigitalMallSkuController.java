@@ -40,7 +40,7 @@ public class DigitalMallSkuController {
 
         HashSet<DigitalMallAttributeValue> set = new HashSet<>();
 
-        //便利拼接sku信息
+        //遍历拼接sku信息
         for (int i = 0; i < attrValue.length; i++) {
             DigitalMallSku sku = new DigitalMallSku(goodsId, name, attrValue[i], Double.parseDouble(price[i]),
                     Integer.parseInt(stock[i]), 0, updateTime);
@@ -48,7 +48,7 @@ public class DigitalMallSkuController {
         }
 
         String[] attrNames = attrName.split(",");
-        //便利生成商品属性信息
+        //遍历生成商品属性信息
         for (int i = 0; i < attrNames.length; i++) {
             DigitalMallAttribute attr = new DigitalMallAttribute(attrNames[i], goodsId, updateTime);
             int attrId = digitalMallAttributeService.insert(attr);

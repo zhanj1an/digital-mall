@@ -19,4 +19,6 @@ public interface DigitalMallGoodsService {
     Integer showGoods(int id);
 
     Integer hideGoods(int id);
+
+    List<DigitalMallGoods> selectGoodsByCriteria(DigitalMallGoods goods);
 }

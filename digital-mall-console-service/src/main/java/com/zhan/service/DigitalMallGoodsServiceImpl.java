@@ -21,13 +21,13 @@ public class DigitalMallGoodsServiceImpl implements DigitalMallGoodsService {
     @Override
     public List<DigitalMallGoods> getGoodsList() {
         List<DigitalMallGoods> goodsList = digitalMallGoodsMapper.selectAll();
-        for(DigitalMallGoods d : goodsList){
-            d.setImageUrlList(Arrays.asList(d.getImageUrl().split(",")));
-            d.setImageUrl(d.getImageUrlList().get(0));
+        goodsList.forEach(goods ->{
+            goods.setImageUrlList(Arrays.asList(goods.getImageUrl().split(",")));
+            goods.setImageUrl(goods.getImageUrlList().get(0));
 
-            d.setDesUrlList(Arrays.asList(d.getDesUrl().split(",")));
-            d.setDesUrl(d.getDesUrlList().get(0));
-        }
+            goods.setDesUrlList(Arrays.asList(goods.getDesUrl().split(",")));
+            goods.setDesUrl(goods.getDesUrlList().get(0));
+        });
         return goodsList;
     }
 
@@ -72,5 +72,16 @@ public class DigitalMallGoodsServiceImpl implements DigitalMallGoodsService {
         return digitalMallGoodsMapper.updateByPrimaryKey(goods);
     }
 
+    @Override
+    public List<DigitalMallGoods> selectGoodsByCriteria(DigitalMallGoods digitalMallGoods) {
+        List<DigitalMallGoods> goodsList = digitalMallGoodsMapper.selectGoodsByCriteria(digitalMallGoods);
+        goodsList.forEach(goods ->{
+            goods.setImageUrlList(Arrays.asList(goods.getImageUrl().split(",")));
+            goods.setImageUrl(goods.getImageUrlList().get(0));
 
+            goods.setDesUrlList(Arrays.asList(goods.getDesUrl().split(",")));
+            goods.setDesUrl(goods.getDesUrlList().get(0));
+        });
+        return goodsList;
+    }
 }

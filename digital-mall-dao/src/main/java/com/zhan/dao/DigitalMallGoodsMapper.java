@@ -20,4 +20,6 @@ public interface DigitalMallGoodsMapper {
     int updateByPrimaryKey(DigitalMallGoods record);
 
     List<DigitalMallGoods> selectAll();
+
+    List<DigitalMallGoods> selectGoodsByCriteria(DigitalMallGoods goods);
 }

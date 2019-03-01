@@ -52,4 +52,9 @@ public class DigitalMallGoodsController {
     public Integer hideGoods(int id){
         return digitalMallGoodsService.hideGoods(id);
     }
+
+    @RequestMapping("selectGoodsByCriteria")
+    public List<DigitalMallGoods> selectGoodsByCriteria(DigitalMallGoods goods){
+        return digitalMallGoodsService.selectGoodsByCriteria(goods);
+    }
 }
