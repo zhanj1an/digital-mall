@@ -1,5 +1,6 @@
 package com.zhan.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.zhan.model.DigitalMallGoods;
 import com.zhan.service.DigitalMallGoodsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +55,7 @@ public class DigitalMallGoodsController {
     }
 
     @RequestMapping("selectGoodsByCriteria")
-    public List<DigitalMallGoods> selectGoodsByCriteria(String name, String brandId, String categoryId){
-        return digitalMallGoodsService.selectGoodsByCriteria(name, brandId, categoryId);
+    public PageInfo<DigitalMallGoods> selectGoodsByCriteria(String name, String brandId, String categoryId, int pageNum, int pageSize){
+        return digitalMallGoodsService.selectGoodsByCriteria(name, brandId, categoryId, pageNum, pageSize);
     }
 }

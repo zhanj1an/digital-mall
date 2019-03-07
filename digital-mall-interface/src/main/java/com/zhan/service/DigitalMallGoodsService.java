@@ -1,5 +1,6 @@
 package com.zhan.service;
 
+import com.github.pagehelper.PageInfo;
 import com.zhan.model.DigitalMallGoods;
 
 import java.util.List;
@@ -20,5 +21,5 @@ public interface DigitalMallGoodsService {
 
     Integer hideGoods(int id);
 
-    List<DigitalMallGoods> selectGoodsByCriteria(String name, String brandId, String categoryId);
+    PageInfo<DigitalMallGoods> selectGoodsByCriteria(String name, String brandId, String categoryId, int pageNum, int pageSize);
 }

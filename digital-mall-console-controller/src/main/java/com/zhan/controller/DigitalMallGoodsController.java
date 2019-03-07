@@ -1,5 +1,6 @@
 package com.zhan.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.zhan.model.DigitalMallGoods;
 import com.zhan.service.DigitalMallBrandService;
 import com.zhan.service.DigitalMallCategoryBrandService;
@@ -48,7 +49,7 @@ public class DigitalMallGoodsController {
 
     @RequestMapping("/getGoodsList")
     public String getDigitalMallGoodsList(Model model, DigitalMallGoods goods){
-        model.addAttribute("goodsList", digitalMallGoodsService.selectGoodsByCriteria(goods));
+        model.addAttribute("pageInfo", digitalMallGoodsService.selectGoodsByCriteria(goods));
         model.addAttribute("name", goods.getName());
         model.addAttribute("brandId", goods.getBrandId());
         model.addAttribute("categoryId", goods.getCategoryId());

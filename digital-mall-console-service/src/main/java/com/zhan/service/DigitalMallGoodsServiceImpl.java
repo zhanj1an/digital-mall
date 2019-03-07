@@ -1,5 +1,7 @@
 package com.zhan.service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.zhan.dao.DigitalMallGoodsMapper;
 import com.zhan.model.DigitalMallGoods;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,7 +75,7 @@ public class DigitalMallGoodsServiceImpl implements DigitalMallGoodsService {
     }
 
     @Override
-    public List<DigitalMallGoods> selectGoodsByCriteria(String name, String brandId, String categoryId) {
+    public PageInfo<DigitalMallGoods> selectGoodsByCriteria(String name, String brandId, String categoryId, int pageNum, int pageSize) {
         DigitalMallGoods digitalMallGoods = new DigitalMallGoods();
         if(name != null && !"".equals(name) && !"null".equals(name)){
             digitalMallGoods.setName(name);
@@ -84,14 +86,16 @@ public class DigitalMallGoodsServiceImpl implements DigitalMallGoodsService {
         if(categoryId != null && !"".equals(categoryId) && !"null".equals(categoryId)){
             digitalMallGoods.setCategoryId(Integer.parseInt(categoryId));
         }
+        PageHelper.startPage(pageNum, pageSize);
         List<DigitalMallGoods> goodsList = digitalMallGoodsMapper.selectGoodsByCriteria(digitalMallGoods);
-        goodsList.forEach(goods ->{
+        PageInfo<DigitalMallGoods> pageInfo = new PageInfo<>(goodsList);
+        pageInfo.getList().forEach(goods ->{
             goods.setImageUrlList(Arrays.asList(goods.getImageUrl().split(",")));
             goods.setImageUrl(goods.getImageUrlList().get(0));
 
             goods.setDesUrlList(Arrays.asList(goods.getDesUrl().split(",")));
             goods.setDesUrl(goods.getDesUrlList().get(0));
         });
-        return goodsList;
+        return pageInfo;
     }
 }

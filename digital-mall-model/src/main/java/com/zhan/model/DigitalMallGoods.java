@@ -32,6 +32,10 @@ public class DigitalMallGoods {
 
     private String updateTime;
 
+    private Integer pageNum = 1;
+
+    private Integer pageSize = 10;
+
     public Integer getId() {
         return id;
     }

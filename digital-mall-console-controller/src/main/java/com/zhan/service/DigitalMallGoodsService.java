@@ -1,5 +1,6 @@
 package com.zhan.service;
 
+import com.github.pagehelper.PageInfo;
 import com.zhan.model.DigitalMallGoods;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,10 +63,12 @@ public class DigitalMallGoodsService {
     }
 
     @SuppressWarnings("unchecked")
-    public List<DigitalMallGoods> selectGoodsByCriteria(DigitalMallGoods goods){
+    public PageInfo<DigitalMallGoods> selectGoodsByCriteria(DigitalMallGoods goods){
         return restTemplate.getForObject("http://console-service/selectGoodsByCriteria" +
                 "?name=" + goods.getName() +
                 "&categoryId=" + goods.getCategoryId() +
-                "&brandId=" + goods.getBrandId(), List.class);
+                "&brandId=" + goods.getBrandId() +
+                "&pageNum=" + goods.getPageNum() +
+                "&pageSize=" + goods.getPageSize(), PageInfo.class);
     }
 }
