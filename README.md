@@ -2,14 +2,10 @@
 
 springBoot + springCloud + mybatis + mysql + druid + thymeleaf + redis
 
+
 ## 简介
 
 前后端分离的分布式数码商场系统
-
-## 预览
-
-
-
 
 
 ## 待完成
