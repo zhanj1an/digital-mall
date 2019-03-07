@@ -73,7 +73,17 @@ public class DigitalMallGoodsServiceImpl implements DigitalMallGoodsService {
     }
 
     @Override
-    public List<DigitalMallGoods> selectGoodsByCriteria(DigitalMallGoods digitalMallGoods) {
+    public List<DigitalMallGoods> selectGoodsByCriteria(String name, String brandId, String categoryId) {
+        DigitalMallGoods digitalMallGoods = new DigitalMallGoods();
+        if(name != null && !"".equals(name) && !"null".equals(name)){
+            digitalMallGoods.setName(name);
+        }
+        if(brandId != null && !"".equals(brandId) && !"null".equals(brandId)){
+            digitalMallGoods.setBrandId(Integer.parseInt(brandId));
+        }
+        if(categoryId != null && !"".equals(categoryId) && !"null".equals(categoryId)){
+            digitalMallGoods.setCategoryId(Integer.parseInt(categoryId));
+        }
         List<DigitalMallGoods> goodsList = digitalMallGoodsMapper.selectGoodsByCriteria(digitalMallGoods);
         goodsList.forEach(goods ->{
             goods.setImageUrlList(Arrays.asList(goods.getImageUrl().split(",")));

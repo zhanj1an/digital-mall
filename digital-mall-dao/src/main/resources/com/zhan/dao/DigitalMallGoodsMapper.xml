@@ -35,13 +35,13 @@
     from digital_mall_goods
     <where>
       <if test="categoryId != null and categoryId != ''">
-        category_id = #{categoryId,jdbcType=INTEGER}
+        and category_id = #{categoryId,jdbcType=INTEGER}
       </if>
       <if test="brandId != null and brandId != ''">
-        brand_id = #{brandId,jdbcType=INTEGER}
+        and brand_id = #{brandId,jdbcType=INTEGER}
       </if>
       <if test="name != null and name != ''">
-        name LIKE "%"#{name,jdbcType=VARCHAR}"%"
+        and name LIKE "%"#{name,jdbcType=VARCHAR}"%"
       </if>
     </where>
   </select>

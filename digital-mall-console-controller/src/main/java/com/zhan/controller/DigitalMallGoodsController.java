@@ -47,32 +47,25 @@ public class DigitalMallGoodsController {
     }
 
     @RequestMapping("/getGoodsList")
-    public String getDigitalMallGoodsList(Model model, String queryName, String queryBrandId, String queryCategoryId){
-        if(queryName == null && queryBrandId == null && queryCategoryId == null) {
-            model.addAttribute("goodsList", digitalMallGoodsService.getGoodsList());
-        }else{
-            model.addAttribute("goodsList", digitalMallGoodsService.selectGoodsByCriteria(queryName, queryBrandId, queryCategoryId));
-        }
-        model.addAttribute("queryName", queryName);
-        model.addAttribute("queryBrandId", queryBrandId);
-        model.addAttribute("queryCategoryId", queryCategoryId);
+    public String getDigitalMallGoodsList(Model model, DigitalMallGoods goods){
+        model.addAttribute("goodsList", digitalMallGoodsService.selectGoodsByCriteria(goods));
+        model.addAttribute("name", goods.getName());
+        model.addAttribute("brandId", goods.getBrandId());
+        model.addAttribute("categoryId", goods.getCategoryId());
         model.addAttribute("brandList", digitalMallBrandService.getBrandList());
         model.addAttribute("categoryList", digitalMallCategoryService.getCategoryList());
         return "goods-list";
     }
 
     @RequestMapping("/toAddGoodsView")
-    public String toAddGoodsView(Model model, String queryName, String queryBrandId, String queryCategoryId){
-        model.addAttribute("queryName", queryName);
-        model.addAttribute("queryBrandId", queryBrandId);
-        model.addAttribute("queryCategoryId", queryCategoryId);
+    public String toAddGoodsView(Model model){
         model.addAttribute("categoryList", digitalMallCategoryService.getCategoryList());
         model.addAttribute("brandList", digitalMallBrandService.getBrandList());
         return "goods-add";
     }
 
     @RequestMapping("/addGoods")
-    public String addGoods(Model model, DigitalMallGoods goods, String otherCategory, String otherBrand, String queryName, String queryBrandId, String queryCategoryId){
+    public String addGoods(DigitalMallGoods goods, String otherCategory, String otherBrand){
         System.out.println("addGoods:" + goods.toString());
         if(otherCategory != null && !"".equals(otherCategory)){
             goods.setCategoryId(digitalMallCategoryService.insert(otherCategory));
@@ -85,9 +78,6 @@ public class DigitalMallGoodsController {
         if(digitalMallCategoryBrandService.insert(goods.getCategoryId(), goods.getBrandId()) != 1){
             log.error("CategoryBrand insert fail");
         }
-        model.addAttribute("queryName", queryName);
-        model.addAttribute("queryBrandId", queryBrandId);
-        model.addAttribute("queryCategoryId", queryCategoryId);
         return "redirect:getGoodsList";
     }
 

@@ -62,10 +62,10 @@ public class DigitalMallGoodsService {
     }
 
     @SuppressWarnings("unchecked")
-    public List<DigitalMallGoods> selectGoodsByCriteria(String name, String brandId, String categoryId){
+    public List<DigitalMallGoods> selectGoodsByCriteria(DigitalMallGoods goods){
         return restTemplate.getForObject("http://console-service/selectGoodsByCriteria" +
-                "?name=" + name +
-                "&categoryId=" + categoryId +
-                "&brandId=" + brandId, List.class);
+                "?name=" + goods.getName() +
+                "&categoryId=" + goods.getCategoryId() +
+                "&brandId=" + goods.getBrandId(), List.class);
     }
 }

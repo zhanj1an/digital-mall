@@ -54,7 +54,7 @@ public class DigitalMallGoodsController {
     }
 
     @RequestMapping("selectGoodsByCriteria")
-    public List<DigitalMallGoods> selectGoodsByCriteria(DigitalMallGoods goods){
-        return digitalMallGoodsService.selectGoodsByCriteria(goods);
+    public List<DigitalMallGoods> selectGoodsByCriteria(String name, String brandId, String categoryId){
+        return digitalMallGoodsService.selectGoodsByCriteria(name, brandId, categoryId);
     }
 }

@@ -35,16 +35,20 @@
     <div class="x-body">
       <div class="layui-row">
         <form class="layui-form layui-col-md12 x-so" action="/getGoodsList" method="post">
-          <select id="category" name="querCategoryId" class="valid">
-            <option value="">请选择商品分类</option>
-            <option name="queryCategoryId" th:each="category:${categoryList}" th:value="${category.id}" th:text="${category.name}" th:selected="${queryCategoryId == category.id}"></option>
-          </select>
-          <select id="brand" name="queryBrandId" class="valid">
-            <option value="">请选择商品品牌</option>
-            <option name="queryBrandId" th:each="brand:${brandList}" th:value="${brand.id}" th:text="${brand.name}" th:selected="${queryBrandId == brand.id}"></option>
-          </select>
-          <input type="text" name="queryName"  placeholder="请输入商品关键字" autocomplete="off" class="layui-input" th:text="${queryName}">
-          <button class="layui-btn" type="submit" lay-submit="" lay-filter="sreach" onclick=""><i class="layui-icon">&#xe615;</i></button>
+          <div class="layui-input-inline">
+            <select id="category" name="categoryId" class="valid" >
+              <option value="">请选择商品分类</option>
+              <option name="categoryId" th:each="category:${categoryList}" th:value="${category.id}" th:text="${category.name}" th:selected="${categoryId == category.id}"></option>
+            </select>
+          </div>
+          <div class="layui-input-inline">
+            <select id="brand" name="brandId" class="valid">
+              <option value="">请选择商品品牌</option>
+              <option name="brandId" th:each="brand:${brandList}" th:value="${brand.id}" th:text="${brand.name}" th:selected="${brandId == brand.id}"></option>
+            </select>
+          </div>
+            <input type="text" name="name"  placeholder="请输入商品关键字" autocomplete="off" class="layui-input" th:value="${name}">
+            <button class="layui-btn" type="submit" lay-submit="" lay-filter="sreach" onclick=""><i class="layui-icon">&#xe615;</i></button>
         </form>
       </div>
       <xblock>

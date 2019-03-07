@@ -20,5 +20,5 @@ public interface DigitalMallGoodsService {
 
     Integer hideGoods(int id);
 
-    List<DigitalMallGoods> selectGoodsByCriteria(DigitalMallGoods goods);
+    List<DigitalMallGoods> selectGoodsByCriteria(String name, String brandId, String categoryId);
 }
