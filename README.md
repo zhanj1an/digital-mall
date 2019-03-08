@@ -10,6 +10,6 @@ springBoot + springCloud + mybatis + mysql + druid + thymeleaf + redis
 
 ## 待完成
 
-1. 后端库存分页
+1. 后端库存模糊查询bug修改
 
 2. 前端
