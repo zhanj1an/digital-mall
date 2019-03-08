@@ -1,6 +1,5 @@
 package com.zhan.controller;
 
-import com.github.pagehelper.PageInfo;
 import com.zhan.model.DigitalMallGoods;
 import com.zhan.service.DigitalMallBrandService;
 import com.zhan.service.DigitalMallCategoryBrandService;
