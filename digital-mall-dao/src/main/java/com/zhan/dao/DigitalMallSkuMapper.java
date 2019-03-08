@@ -20,4 +20,6 @@ public interface DigitalMallSkuMapper {
     int updateByPrimaryKey(DigitalMallSku record);
 
     List<DigitalMallSku> selectAll();
+
+    List<DigitalMallSku> selectSkuByCriteria(DigitalMallSku sku);
 }

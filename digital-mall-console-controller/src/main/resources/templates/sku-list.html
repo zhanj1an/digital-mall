@@ -34,36 +34,15 @@
     </div>
     <div class="x-body">
       <div class="layui-row">
-        <form class="layui-form layui-col-md12 x-so">
-          <input class="layui-input" placeholder="开始日" name="start" id="start">
-          <input class="layui-input" placeholder="截止日" name="end" id="end">
+        <form class="layui-form layui-col-md12 x-so" action="/getSkuList" method="post">
           <div class="layui-input-inline">
-            <select name="contrller">
-              <option>支付状态</option>
-              <option>已支付</option>
-              <option>未支付</option>
+            <select name="isDelete">
+              <option value="">请选择库存状态</option>
+              <option value="1" th:selected="${isDelete == 1}">已删除</option>
+              <option value="0" th:selected="${isDelete == 0}">未删除</option>
             </select>
           </div>
-          <div class="layui-input-inline">
-            <select name="contrller">
-              <option>支付方式</option>
-              <option>支付宝</option>
-              <option>微信</option>
-              <option>货到付款</option>
-            </select>
-          </div>
-          <div class="layui-input-inline">
-            <select name="contrller">
-              <option value="">订单状态</option>
-              <option value="0">待确认</option>
-              <option value="1">已确认</option>
-              <option value="2">已收货</option>
-              <option value="3">已取消</option>
-              <option value="4">已完成</option>
-              <option value="5">已作废</option>
-            </select>
-          </div>
-          <input type="text" name="username"  placeholder="请输入订单号" autocomplete="off" class="layui-input">
+          <input type="text" name="goodsName"  placeholder="请输入商品名称" autocomplete="off" class="layui-input" th:value="${goodsName}">
           <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
         </form>
       </div>
@@ -87,7 +66,7 @@
             <th >操作</th>
             </tr>
         </thead>
-        <tbody th:each="sku:${skuList}">
+        <tbody th:each="sku:${pageInfo.list}">
           <tr>
             <td>
               <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
@@ -98,14 +77,15 @@
             <td th:text="${sku.price}"></td>
             <td th:text="${sku.stock}"></td>
             <td>
-              <span th:if="${sku.isDelete == 0}" class="layui-btn layui-btn-normal layui-btn-mini">已启用</span>
-              <span th:if="${sku.isDelete == 1}" class="layui-btn layui-btn-danger layui-btn-mini">已删除</span>
+              <button th:if="${sku.isDelete == 0}" th:name="${sku.id}" class="layui-btn layui-btn-normal layui-btn-mini" onclick="deleteSku(this.name)">已启用</button>
+              <button th:if="${sku.isDelete == 1}" class="layui-btn layui-btn-danger layui-btn-mini">已删除</button>
             </td>
             <td class="td-manage" th:if="${sku.isDelete == 0}">
               <a title="库存修改" th:name="${sku.id}" onclick="x_admin_show('库存修改','/toUpdateView?id=' + this.name)" href="javascript:;">
                 <i class="layui-icon">&#xe642;</i>
               </a>
             </td>
+            <td class="td-manage" th:if="${sku.isDelete == 1}"></td>
           </tr>
         </tbody>
       </table>
@@ -122,72 +102,33 @@
 
     </div>
     <script>
-      layui.use('laydate', function(){
-        var laydate = layui.laydate;
-        
-        //执行一个laydate实例
-        laydate.render({
-          elem: '#start' //指定元素
-        });
-
-        //执行一个laydate实例
-        laydate.render({
-          elem: '#end' //指定元素
-        });
-      });
-
-       /*用户-停用*/
-      function member_stop(obj,id){
-          layer.confirm('确认要停用吗？',function(index){
-
-              if($(obj).attr('title')=='启用'){
-
-                //发异步把用户状态进行更改
-                $(obj).attr('title','停用')
-                $(obj).find('i').html('&#xe62f;');
-
-                $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('已停用');
-                layer.msg('已停用!',{icon: 5,time:1000});
-
-              }else{
-                $(obj).attr('title','启用')
-                $(obj).find('i').html('&#xe601;');
-
-                $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('已启用');
-                layer.msg('已启用!',{icon: 5,time:1000});
+      function deleteSku(id) {
+        layer.alert('确定删除吗', {
+          skin: 'layui-layer-molv' //样式类名  自定义样式
+          ,closeBtn: 1    // 是否显示关闭按钮
+          ,anim: 1 //动画类型
+          ,btn: ['确定','取消'] //按钮
+          ,icon: 6    // icon
+          ,yes:function(){
+            return $.ajax({
+              url:'/deleteSku',
+              type:'post',
+              dataType:'json',
+              data:{id:id},
+              success:function(data){
+                if(data === 1){
+                  layer.alert('删除成功',function () {
+                    window.location.reload();
+                  });
+                }
               }
-              
-          });
-      }
-
-      /*用户-删除*/
-      function member_del(obj,id){
-          layer.confirm('确认要删除吗？',function(index){
-              //发异步删除数据
-              $(obj).parents("tr").remove();
-              layer.msg('已删除!',{icon:1,time:1000});
-          });
-      }
-
-
-
-      function delAll (argument) {
-
-        var data = tableCheck.getData();
-  
-        layer.confirm('确认要删除吗？'+data,function(index){
-            //捉到所有被选中的，发异步进行删除
-            layer.msg('删除成功', {icon: 1});
-            $(".layui-form-checked").not('.header').parents('tr').remove();
+            });
+          }
+          ,btn2:function(){
+            layer.msg('取消删除');
+          }
         });
       }
     </script>
-    <script>var _hmt = _hmt || []; (function() {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-      })();</script>
   </body>
-
 </html>

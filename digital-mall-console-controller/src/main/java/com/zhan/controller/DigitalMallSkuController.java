@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashSet;
 
@@ -66,8 +67,11 @@ public class DigitalMallSkuController {
     }
 
     @RequestMapping("/getSkuList")
-    public String getSkuList(Model model){
-        model.addAttribute("skuList", digitalMallSkuService.getSkuList());
+    public String getSkuList(Model model, DigitalMallSku sku){
+        System.out.println(sku.toString());
+        model.addAttribute("pageInfo", digitalMallSkuService.selectSkuByCriteria(sku));
+        model.addAttribute("isDelete", sku.getIsDelete());
+        model.addAttribute("goodsName", sku.getGoodsName());
         return "sku-list";
     }
 
@@ -79,9 +83,13 @@ public class DigitalMallSkuController {
 
     @RequestMapping("/updateSku")
     public String updateSku(String id, String stock){
-        System.out.println(id);
-        System.out.println(stock);
         digitalMallSkuService.updateSku(Integer.parseInt(id), Integer.parseInt(stock));
         return "redirect:getSkuList";
+    }
+
+    @ResponseBody
+    @RequestMapping("/deleteSku")
+    public int deleteSku(String id){
+        return digitalMallSkuService.deleteSku(Integer.parseInt(id));
     }
 }

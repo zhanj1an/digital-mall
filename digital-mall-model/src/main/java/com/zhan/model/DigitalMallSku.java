@@ -22,6 +22,10 @@ public class DigitalMallSku {
 
     private String updateTime;
 
+    private int pageNum = 1;
+
+    private int pageSize = 10;
+
     public DigitalMallSku(Integer goodsId, String goodsName, String attribute, Double price, Integer stock, Integer isDelete, String updateTime) {
         this.goodsId = goodsId;
         this.goodsName = goodsName;

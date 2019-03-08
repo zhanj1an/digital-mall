@@ -1,5 +1,6 @@
 package com.zhan.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.zhan.model.DigitalMallSku;
 import com.zhan.service.DigitalMallSkuServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +37,15 @@ public class DigitalMallSkuController {
     @RequestMapping("selectSkuById")
     public DigitalMallSku selectSkuById(int id){
         return digitalMallSkuService.selectSkuById(id);
+    }
+
+    @RequestMapping("/deleteSku")
+    public Integer deleteSku(int id){
+        return digitalMallSkuService.deleteSku(id);
+    }
+
+    @RequestMapping("/selectSkuByCriteria")
+    public PageInfo<DigitalMallSku> selectSkuByCriteria(String isDelete, String goodsName, int pageNum, int pageSize){
+        return digitalMallSkuService.selectSkuByCriteria(isDelete, goodsName, pageNum, pageSize);
     }
 }

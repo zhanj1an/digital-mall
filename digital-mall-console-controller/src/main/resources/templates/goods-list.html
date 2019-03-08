@@ -118,13 +118,15 @@
           <a th:if="${pageInfo.pageNum != 2}" th:href="@{/getGoodsList(pageNum = 2, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}">2</a>
           <span class="current" th:if="${pageInfo.pageNum == 2}" th:href="@{/getGoodsList(pageNum = 2, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}">2</span>
 
-          <a th:if="${pageInfo.pageNum != 3}" th:href="@{/getGoodsList(pageNum = 3, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}">3</a>
-          <span class="current" th:if="${pageInfo.pageNum == 3}" th:href="@{/getGoodsList(pageNum = 3, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}">3</span>
+          <a th:if="${pageInfo.pageNum > 3}">...</a>
+          <span class="current" th:if="${pageInfo.pageNum > 2 && pageInfo.pageNum < (pageInfo.pages - 1)}" th:text="${pageInfo.pageNum}"></span>
+          <a th:if="${pageInfo.pageNum < pageInfo.pages - 2}">...</a>
 
-          <span class="current" th:if="${pageInfo.pageNum > 3 && pageInfo.pageNum < pageInfo.pages}" th:text="${pageInfo.pageNum}"></span>
+          <a th:if="${pageInfo.pageNum != (pageInfo.pages - 1)}" th:href="@{/getGoodsList(pageNum = ${pageInfo.pages - 1}, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}" th:text="${pageInfo.pages - 1}"></a>
+          <span class="current" th:if="${pageInfo.pageNum == (pageInfo.pages - 1)}" th:href="@{/getGoodsList(pageNum = ${pageInfo.pages - 1}, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}" th:text="${pageInfo.pages - 1}"></span>
 
           <a th:if="${pageInfo.pageNum != pageInfo.pages}" th:href="@{/getGoodsList(pageNum = ${pageInfo.pages}, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}" th:text="${pageInfo.pages}"></a>
-          <span class="current" th:if="${pageInfo.pageNum == pageInfo.pages}" th:href="@{/getGoodsList(pageNum = pageInfo.pages, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}" th:text="${pageInfo.pages}"></span>
+          <span class="current" th:if="${pageInfo.pageNum == pageInfo.pages}" th:href="@{/getGoodsList(pageNum = ${pageInfo.pages}, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}" th:text="${pageInfo.pages}"></span>
 
           <a th:if="${pageInfo.isHasNextPage() == true}" th:href="@{/getGoodsList(pageNum = ${pageInfo.pageNum + 1}, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}">&gt;&gt;</a>
           <a th:if="${pageInfo.isHasNextPage() == false}" href="javascript:void(0);">&gt;&gt;</a>
@@ -133,20 +135,6 @@
 
     </div>
     <script>
-      // layui.use('laydate', function(){
-      //   var laydate = layui.laydate;
-      //
-      //   //执行一个laydate实例
-      //   laydate.render({
-      //     elem: '#start' //指定元素
-      //   });
-      //
-      //   //执行一个laydate实例
-      //   laydate.render({
-      //     elem: '#end' //指定元素
-      //   });
-      // });
-
 
       function viewBigImage(src){
         layui.use('layer', function() {
@@ -242,10 +230,6 @@
                   layer.msg('取消下架');
               }
           });
-      }
-      
-      function getGoodListByGoodsName() {
-
       }
     </script>
   </body>

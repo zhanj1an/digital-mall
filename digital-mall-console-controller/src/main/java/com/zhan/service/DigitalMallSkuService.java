@@ -1,5 +1,6 @@
 package com.zhan.service;
 
+import com.github.pagehelper.PageInfo;
 import com.zhan.model.DigitalMallSku;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,5 +39,18 @@ public class DigitalMallSkuService {
 
     public DigitalMallSku selectSkuById(int id){
         return restTemplate.getForObject("http://console-service/selectSkuById?id=" + id, DigitalMallSku.class);
+    }
+
+    public Integer deleteSku(int id){
+        return restTemplate.getForObject("http://console-service/deleteSku?id=" + id, Integer.class);
+    }
+
+    @SuppressWarnings("unchecked")
+    public PageInfo<DigitalMallSku> selectSkuByCriteria(DigitalMallSku sku){
+        return restTemplate.getForObject("http://console-service/selectSkuByCriteria" +
+                "?isDelete=" + sku.getIsDelete() +
+                "&goodsName=" + sku.getGoodsName() +
+                "&pageNum=" + sku.getPageNum() +
+                "&pageSize=" + sku.getPageSize(), PageInfo.class);
     }
 }
