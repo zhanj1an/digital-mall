@@ -10,6 +10,6 @@ springBoot + springCloud + mybatis + mysql + druid + thymeleaf + redis
 
 ## 待完成
 
-1. 后端分页
+1. 后端库存分页
 
 2. 前端
