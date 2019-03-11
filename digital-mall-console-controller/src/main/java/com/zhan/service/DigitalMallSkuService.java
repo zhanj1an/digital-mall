@@ -25,7 +25,8 @@ public class DigitalMallSkuService {
                 "&attribute=" + sku.getAttribute() +
                 "&price=" + sku.getPrice() +
                 "&stock=" + sku.getStock() +
-                "&updateTime=" + sku.getUpdateTime(), void.class);
+                "&updateTime=" + sku.getUpdateTime() +
+                "&isDelete=" + 0, void.class);
     }
 
     @SuppressWarnings("unchecked")

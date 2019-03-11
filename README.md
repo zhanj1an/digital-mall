@@ -10,4 +10,6 @@ springBoot + springCloud + mybatis + mysql + druid + thymeleaf + redis
 
 ## 待完成
 
-1. 前台
+1. 数据库唯一索引建立
+
+2. 前台
