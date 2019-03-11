@@ -68,7 +68,6 @@ public class DigitalMallSkuController {
 
     @RequestMapping("/getSkuList")
     public String getSkuList(Model model, DigitalMallSku sku){
-        System.out.println(sku.toString());
         model.addAttribute("pageInfo", digitalMallSkuService.selectSkuByCriteria(sku));
         model.addAttribute("isDelete", sku.getIsDelete());
         model.addAttribute("goodsName", sku.getGoodsName());

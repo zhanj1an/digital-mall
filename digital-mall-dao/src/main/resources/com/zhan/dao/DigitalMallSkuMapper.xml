@@ -30,7 +30,7 @@
     <include refid="Base_Column_List" />
     from digital_mall_sku
     <where>
-      <if test="isDelete != null and isDelete !=''">
+      <if test="isDelete != null">
         and is_delete = #{isDelete,jdbcType=INTEGER}
       </if>
       <if test="goodsName != null and goodsName !=''">
