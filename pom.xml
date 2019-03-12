@@ -21,6 +21,8 @@
         <module>digital-mall-console-controller</module>
         <module>digital-mall-console-service</module>
         <module>digital-mall-interface</module>
+        <module>digital-mall-portal-controller</module>
+        <module>digital-mall-portal-service</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>
