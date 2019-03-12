@@ -11,5 +11,9 @@ public class DigitalMallGoodsController {
         return "index";
     }
 
-
+    @RequestMapping("/toGoodsView")
+    public String toGoodsView(String id){
+        System.out.println(id);
+        return "product";
+    }
 }
