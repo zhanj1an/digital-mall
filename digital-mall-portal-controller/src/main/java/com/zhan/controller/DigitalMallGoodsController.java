@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Controller
@@ -27,9 +28,16 @@ public class DigitalMallGoodsController {
 
     @RequestMapping("/toGoodsView")
     public String toGoodsView(DigitalMallGoodsSynopsis goodsSynopsis, Model model){
-        System.out.println(digitalMallGoodsService.getGoodsAttribute(goodsSynopsis.getGoodsId()).toString());
         model.addAttribute("goodsInfo", new DigitalMallGoodsInfo(goodsSynopsis,
                 digitalMallGoodsService.getGoodsAttribute(goodsSynopsis.getGoodsId())));
         return "product";
+    }
+
+    @ResponseBody
+    @RequestMapping("/queryStock")
+    public int queryStock(String goodsId, String attr){
+        System.out.println(goodsId);
+        System.out.println(attr);
+        return 1;
     }
 }

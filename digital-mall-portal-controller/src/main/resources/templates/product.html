@@ -254,22 +254,19 @@
 								<span class="product-available">In Stock</span>
 							</div>
 							<p th:text="${goodsInfo.goodsSynopsis.goodsIntroduce}"></p>
-
 							<div class="product-options">
-								<span th:each="attribute:${goodsInfo.attributeList}">
-									<label th:text="${attribute.attributeName}">
-										<select class="input-select">
-											<option th:value="0"></option>
-											<option th:each="attributeValue:${attribute.attributeValues}" th:value="${attributeValue}"></option>
-											<!--<option name="attributeName" th:each="attributeValue:${goodsInfo.attributeList.attributeValues}" th:value="${attributeValue}"></option>-->
-										</select>
-									</label>
+								<span th:each="attribute:${goodsInfo.attributeList}" style="margin-right: 15px">
+									<label th:text="${attribute.attributeName}"></label>
+									<select class="input-select" name="attribute" th:onchange="'javascript:queryStock(' + ${goodsInfo.goodsSynopsis.goodsId} + ')'">
+										<option value="0"></option>
+										<option th:each="attributeValue:${attribute.attributeValues}" th:text="${attributeValue}" th:value="${attributeValue}"></option>
+									</select>
 								</span>
 							</div>
 
 							<div class="add-to-cart">
 								<div class="qty-label">
-									数量
+									<span style="margin-right: 15px"><label>数量</label></span>
 									<div class="input-number">
 										<input type="number">
 										<span class="qty-up">+</span>
@@ -801,5 +798,37 @@
 		<script src="js/jquery.zoom.min.js"></script>
 		<script src="js/main.js"></script>
 
+	<script>
+		function queryStock(goodsId) {
+			var attributeList = document.getElementsByName("attribute");
+			var temp = 0;
+			var str = "";
+			for (var i = 0; i < attributeList.length; i++) {
+				var index = attributeList[i].selectedIndex;
+				if(attributeList[i].options[index].value != 0){
+					temp += 1;
+					if(i == 0) {
+						str = str + attributeList[i].options[index].value;
+					}else{
+						str = str + "," + attributeList[i].options[index].value;
+					}
+				}
+				if(temp == attributeList.length){
+					$.ajax({
+						url:'/queryStock',
+						type:'post',
+						dataType:'json',
+						data:{
+							attr:str,
+							goodsId:goodsId
+						},
+						success:function(data){
+							console.log(data);
+						}
+					});
+				}
+			}
+		}
+	</script>
 	</body>
 </html>
