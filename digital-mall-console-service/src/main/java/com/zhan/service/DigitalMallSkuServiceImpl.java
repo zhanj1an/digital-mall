@@ -2,6 +2,7 @@ package com.zhan.service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.zhan.console.service.DigitalMallSkuService;
 import com.zhan.dao.DigitalMallSkuMapper;
 import com.zhan.model.DigitalMallSku;
 import org.springframework.beans.factory.annotation.Autowired;

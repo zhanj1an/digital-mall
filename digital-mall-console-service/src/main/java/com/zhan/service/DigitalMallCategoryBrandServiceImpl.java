@@ -1,5 +1,6 @@
 package com.zhan.service;
 
+import com.zhan.console.service.DigitalMallCategoryBrandService;
 import com.zhan.dao.DigitalMallCategoryBrandMapper;
 import com.zhan.model.DigitalMallCategoryBrand;
 import org.springframework.beans.factory.annotation.Autowired;

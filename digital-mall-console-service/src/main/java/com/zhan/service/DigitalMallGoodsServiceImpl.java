@@ -2,6 +2,7 @@ package com.zhan.service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.zhan.console.service.DigitalMallGoodsService;
 import com.zhan.dao.DigitalMallGoodsMapper;
 import com.zhan.model.DigitalMallGoods;
 import org.springframework.beans.factory.annotation.Autowired;

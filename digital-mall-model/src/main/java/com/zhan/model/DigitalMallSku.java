@@ -1,10 +1,14 @@
 package com.zhan.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class DigitalMallSku {
     private Integer id;
 
@@ -26,13 +30,4 @@ public class DigitalMallSku {
 
     private int pageSize = 10;
 
-    public DigitalMallSku(Integer goodsId, String goodsName, String attribute, Double price, Integer stock, Integer isDelete, String updateTime) {
-        this.goodsId = goodsId;
-        this.goodsName = goodsName;
-        this.attribute = attribute;
-        this.price = price;
-        this.stock = stock;
-        this.isDelete = isDelete;
-        this.updateTime = updateTime;
-    }
 }

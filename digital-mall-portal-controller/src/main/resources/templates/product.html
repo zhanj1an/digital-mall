@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
@@ -216,21 +217,9 @@
 				<div class="row">
 					<!-- Product main img -->
 					<div class="col-md-5 col-md-push-2">
-						<div id="product-main-img">
-							<div class="product-preview">
-								<img src="./img/product01.png" alt="">
-							</div>
-
-							<div class="product-preview">
-								<img src="./img/product03.png" alt="">
-							</div>
-
-							<div class="product-preview">
-								<img src="./img/product06.png" alt="">
-							</div>
-
-							<div class="product-preview">
-								<img src="./img/product08.png" alt="">
+						<div id="product-main-img" >
+							<div class="product-preview" th:each="imgUrl:${goodsInfo.goodsSynopsis.imgUrlList}">
+								<img th:src="${imgUrl}" alt="">
 							</div>
 						</div>
 					</div>
@@ -239,20 +228,8 @@
 					<!-- Product thumb imgs -->
 					<div class="col-md-2  col-md-pull-5">
 						<div id="product-imgs">
-							<div class="product-preview">
-								<img src="./img/product01.png" alt="">
-							</div>
-
-							<div class="product-preview">
-								<img src="./img/product03.png" alt="">
-							</div>
-
-							<div class="product-preview">
-								<img src="./img/product06.png" alt="">
-							</div>
-
-							<div class="product-preview">
-								<img src="./img/product08.png" alt="">
+							<div class="product-preview" th:each="imgUrl:${goodsInfo.goodsSynopsis.imgUrlList}">
+								<img th:src="${imgUrl}" alt="">
 							</div>
 						</div>
 					</div>
@@ -261,41 +238,38 @@
 					<!-- Product details -->
 					<div class="col-md-5">
 						<div class="product-details">
-							<h2 class="product-name">product name goes here</h2>
+							<h2 class="product-name" th:text="${goodsInfo.goodsSynopsis.goodsName}"></h2>
 							<div>
 								<div class="product-rating">
 									<i class="fa fa-star"></i>
 									<i class="fa fa-star"></i>
 									<i class="fa fa-star"></i>
 									<i class="fa fa-star"></i>
-									<i class="fa fa-star-o"></i>
+									<i class="fa fa-star"></i>
 								</div>
 								<a class="review-link" href="#">10 Review(s) | Add your review</a>
 							</div>
 							<div>
-								<h3 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h3>
+								<h3 class="product-price" th:text="${goodsInfo.goodsSynopsis.lowestPrice} + ' ~ ' + ${goodsInfo.goodsSynopsis.highestPrice}"></h3>
 								<span class="product-available">In Stock</span>
 							</div>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+							<p th:text="${goodsInfo.goodsSynopsis.goodsIntroduce}"></p>
 
 							<div class="product-options">
-								<label>
-									Size
-									<select class="input-select">
-										<option value="0">X</option>
-									</select>
-								</label>
-								<label>
-									Color
-									<select class="input-select">
-										<option value="0">Red</option>
-									</select>
-								</label>
+								<span th:each="attribute:${goodsInfo.attributeList}">
+									<label th:text="${attribute.attributeName}">
+										<select class="input-select">
+											<option th:value="0"></option>
+											<option th:each="attributeValue:${attribute.attributeValues}" th:value="${attributeValue}"></option>
+											<!--<option name="attributeName" th:each="attributeValue:${goodsInfo.attributeList.attributeValues}" th:value="${attributeValue}"></option>-->
+										</select>
+									</label>
+								</span>
 							</div>
 
 							<div class="add-to-cart">
 								<div class="qty-label">
-									Qty
+									数量
 									<div class="input-number">
 										<input type="number">
 										<span class="qty-up">+</span>
@@ -333,7 +307,7 @@
 						<div id="product-tab">
 							<!-- product tab nav -->
 							<ul class="tab-nav">
-								<li class="active"><a data-toggle="tab" href="#tab1">Description</a></li>
+								<li class="active"><a data-toggle="tab" href="#tab1">商品详情</a></li>
 								<li><a data-toggle="tab" href="#tab2">Details</a></li>
 								<li><a data-toggle="tab" href="#tab3">Reviews (3)</a></li>
 							</ul>
@@ -344,8 +318,8 @@
 								<!-- tab1  -->
 								<div id="tab1" class="tab-pane fade in active">
 									<div class="row">
-										<div class="col-md-12">
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+										<div class="col-md-12" th:each="desUrl:${goodsInfo.goodsSynopsis.desUrlList}" style="text-align: center">
+											<img th:src="${desUrl}" alt="">
 										</div>
 									</div>
 								</div>

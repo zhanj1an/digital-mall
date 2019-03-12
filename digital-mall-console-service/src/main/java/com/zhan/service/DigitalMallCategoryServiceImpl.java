@@ -1,5 +1,6 @@
 package com.zhan.service;
 
+import com.zhan.console.service.DigitalMallCategoryService;
 import com.zhan.dao.DigitalMallCategoryMapper;
 import com.zhan.model.DigitalMallCategory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service("categoryService")
-public class DigitalMallCategoryServiceImpl implements DigitalMallCategoryService{
+public class DigitalMallCategoryServiceImpl implements DigitalMallCategoryService {
 
     private DigitalMallCategoryMapper digitalMallCategoryMapper;
 

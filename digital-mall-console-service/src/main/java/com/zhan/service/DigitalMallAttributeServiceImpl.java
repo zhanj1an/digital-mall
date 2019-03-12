@@ -1,5 +1,6 @@
 package com.zhan.service;
 
+import com.zhan.console.service.DigitalMallAttributeService;
 import com.zhan.dao.DigitalMallAttributeMapper;
 import com.zhan.model.DigitalMallAttribute;
 import org.springframework.beans.factory.annotation.Autowired;

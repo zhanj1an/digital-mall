@@ -1,12 +1,13 @@
 package com.zhan.service;
 
+import com.zhan.console.service.DigitalMallAttributeValueService;
 import com.zhan.dao.DigitalMallAttributeValueMapper;
 import com.zhan.model.DigitalMallAttributeValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service("attributeValueService")
-public class DigitalMallAttributeValueServiceImpl implements DigitalMallAttributeValueService{
+public class DigitalMallAttributeValueServiceImpl implements DigitalMallAttributeValueService {
 
     private DigitalMallAttributeValueMapper digitalMallAttributeValueMapper;
 

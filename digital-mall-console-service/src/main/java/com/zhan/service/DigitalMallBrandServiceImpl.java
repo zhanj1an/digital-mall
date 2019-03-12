@@ -1,5 +1,6 @@
 package com.zhan.service;
 
+import com.zhan.console.service.DigitalMallBrandService;
 import com.zhan.dao.DigitalMallBrandMapper;
 import com.zhan.model.DigitalMallBrand;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service("brandService")
-public class DigitalMallBrandServiceImpl implements DigitalMallBrandService{
+public class DigitalMallBrandServiceImpl implements DigitalMallBrandService {
 
     private DigitalMallBrandMapper digitalMallBrandMapper;
 

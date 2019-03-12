@@ -1,4 +1,4 @@
-package com.zhan.service;
+package com.zhan.console.service;
 
 import com.zhan.model.DigitalMallAttributeValue;
 
