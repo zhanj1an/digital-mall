@@ -13,3 +13,5 @@ springBoot + springCloud + mybatis + mysql + druid + thymeleaf + redis
 1. 数据库唯一索引建立
 
 2. 前台
+
+3. 前端<select>不循环bug
