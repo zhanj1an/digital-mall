@@ -2,6 +2,7 @@ package com.zhan.service;
 
 import com.zhan.model.DigitalMallGoodsAttribute;
 import com.zhan.model.DigitalMallGoodsSynopsis;
+import com.zhan.model.DigitalMallSku;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -26,5 +27,11 @@ public class DigitalMallGoodsService {
     @SuppressWarnings("unchecked")
     public List<DigitalMallGoodsAttribute> getGoodsAttribute(int goodsId){
         return restTemplate.getForObject("http://portal-service/getGoodsAttribute?goodsId=" + goodsId, List.class);
+    }
+
+    public DigitalMallSku queryGoodsStock(int goodsId, String attribute){
+        return restTemplate.getForObject("http://portal-service/queryGoodsStock" +
+                "?goodsId=" + goodsId +
+                "&attribute=" + attribute, DigitalMallSku.class);
     }
 }

@@ -2,6 +2,7 @@ package com.zhan.controller;
 
 import com.zhan.model.DigitalMallGoodsAttribute;
 import com.zhan.model.DigitalMallGoodsSynopsis;
+import com.zhan.model.DigitalMallSku;
 import com.zhan.service.DigitalMallGoodsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,5 +28,10 @@ public class DigitalMallGoodsController {
     @RequestMapping("/getGoodsAttribute")
     public List<DigitalMallGoodsAttribute> getGoodsAttribute(int goodsId){
         return digitalMallGoodsService.getGoodsAttribute(goodsId);
+    }
+
+    @RequestMapping("/queryGoodsStock")
+    public DigitalMallSku queryGoodsStock(int goodsId, String attribute){
+        return digitalMallGoodsService.queryGoodsStock(goodsId, attribute);
     }
 }

@@ -43,8 +43,8 @@ public class DigitalMallSkuController {
 
         //遍历拼接sku信息
         for (int i = 0; i < attrValue.length; i++) {
-            DigitalMallSku sku = new DigitalMallSku(goodsId, name, attrValue[i], Double.parseDouble(price[i]),
-                    Integer.parseInt(stock[i]), 0, updateTime);
+            DigitalMallSku sku = DigitalMallSku.builder().goodsId(goodsId).goodsName(name).attribute(attrValue[i]).
+                    price(Double.parseDouble(price[i])).stock(Integer.parseInt(stock[i])).isDelete(0).updateTime(updateTime).build();
             digitalMallSkuService.insert(sku);
         }
 

@@ -33,8 +33,23 @@
 		<!--[if lt IE 9]>
 		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		  <script src="js/jquery.min.js"></script>
 		<![endif]-->
-
+		<style type="text/css">
+			.product-details .add-to-cart .add-to-cart-btn-stock-lack {
+				position: relative;
+				border: 2px solid transparent;
+				height: 40px;
+				padding: 0 30px;
+				background-color: #eeeeee;
+				color: #FFF;
+				text-transform: uppercase;
+				font-weight: 700;
+				border-radius: 40px;
+				-webkit-transition: 0.2s all;
+				transition: 0.2s all;
+			}
+		</style>
     </head>
 	<body>
 		<!-- HEADER -->
@@ -250,12 +265,12 @@
 								<a class="review-link" href="#">10 Review(s) | Add your review</a>
 							</div>
 							<div>
-								<h3 class="product-price" th:text="${goodsInfo.goodsSynopsis.lowestPrice} + ' ~ ' + ${goodsInfo.goodsSynopsis.highestPrice}"></h3>
-								<span class="product-available">In Stock</span>
+								<h3 id="goodsPrice" class="product-price" th:text="${goodsInfo.goodsSynopsis.lowestPrice} + ' ~ ' + ${goodsInfo.goodsSynopsis.highestPrice}"></h3>
+								<span id="goodsStock" class="product-available"></span>
 							</div>
 							<p th:text="${goodsInfo.goodsSynopsis.goodsIntroduce}"></p>
 							<div class="product-options">
-								<span th:each="attribute:${goodsInfo.attributeList}" style="margin-right: 15px">
+								<span th:each="attribute:${goodsInfo.attributeList}" style="margin-right: 80px">
 									<label th:text="${attribute.attributeName}"></label>
 									<select class="input-select" name="attribute" th:onchange="'javascript:queryStock(' + ${goodsInfo.goodsSynopsis.goodsId} + ')'">
 										<option value="0"></option>
@@ -268,27 +283,25 @@
 								<div class="qty-label">
 									<span style="margin-right: 15px"><label>数量</label></span>
 									<div class="input-number">
-										<input type="number">
-										<span class="qty-up">+</span>
-										<span class="qty-down">-</span>
+										<input id="number" type="number" name="number" value="0">
+										<span id="qty-up" class="qty-up" onclick="qtyUp()">+</span>
+										<span id="qty-down" class="qty-down" onclick="qtyDown()">-</span>
 									</div>
 								</div>
-								<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+								<button id="addToCart" onclick="addToCart(name)" class="add-to-cart-btn" disabled="disabled"><i class="fa fa-shopping-cart" id="cartIcon"></i> add to cart</button>
 							</div>
 
 							<ul class="product-btns">
-								<li><a href="#"><i class="fa fa-heart-o"></i> add to wishlist</a></li>
-								<li><a href="#"><i class="fa fa-exchange"></i> add to compare</a></li>
+								<li><a href="#"><i class="fa fa-heart-o"></i>添加到愿望单</a></li>
 							</ul>
 
 							<ul class="product-links">
-								<li>Category:</li>
-								<li><a href="#">Headphones</a></li>
-								<li><a href="#">Accessories</a></li>
+								<li>分类:</li>
+								<li><a href="#" th:value="${goodsInfo.goodsSynopsis.category}"></a></li>
 							</ul>
 
 							<ul class="product-links">
-								<li>Share:</li>
+								<li>分享:</li>
 								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
 								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
 								<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
@@ -823,11 +836,57 @@
 							goodsId:goodsId
 						},
 						success:function(data){
-							console.log(data);
+							document.getElementById("addToCart").setAttribute("name", data.skuId);
+							document.getElementById("goodsPrice").innerHTML = data.price;
+							document.getElementById("goodsStock").innerHTML = "库存:" + data.stock;
+							var btn = document.getElementById("addToCart");
+							if(data.stock == 0){
+								btn.className = "add-to-cart-btn-stock-lack";
+								btn.setAttribute("disabled", true);
+							}else{
+								btn.className = "add-to-cart-btn";
+								btn.removeAttribute("disabled");
+							}
 						}
 					});
 				}
 			}
+		}
+		
+		function qtyUp() {
+			var stock = document.getElementById("goodsStock").innerText;
+			var number = parseInt(document.getElementById("number").value);
+			var goodsStock = stock.split(":")[1];
+			if(goodsStock.valueOf() == number){
+				$("#number").val(number - 1);
+			}else{
+				$("#number").val(number);
+			}
+		}
+
+		function qtyDown() {
+			var number = parseInt(document.getElementById("number").value);
+			if(number > 0){
+				$("#number").val(number);
+			}else{
+				$("#number").val(number + 1);
+			}
+		}
+
+		function addToCart(skuId) {
+			var number = document.getElementById("number").value;
+			$.ajax({
+				url:'/addToCart',
+				type:'post',
+				dataType:'json',
+				data:{
+					number:number,
+					skuId:skuId
+				},
+				success:function(data){
+					console.log(data);
+				}
+			});
 		}
 	</script>
 	</body>

@@ -87,4 +87,15 @@ public class DigitalMallGoodsServiceImpl implements DigitalMallGoodsService {
         }
         return goodsAttributeList;
     }
+
+    @Override
+    public DigitalMallSku queryGoodsStock(int goodsId, String attribute) {
+        List<DigitalMallSku> skuList = digitalMallSkuMapper.selectSkuByCriteria(DigitalMallSku.builder().goodsId(goodsId).build());
+        for(DigitalMallSku sku : skuList) {
+            if (Arrays.asList(sku.getAttribute().split(",")).containsAll(Arrays.asList(attribute.split(",")))) {
+                return sku;
+            }
+        }
+        return null;
+    }
 }
