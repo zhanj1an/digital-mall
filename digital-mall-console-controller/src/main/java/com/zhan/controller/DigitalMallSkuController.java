@@ -6,7 +6,9 @@ import com.zhan.model.DigitalMallSku;
 import com.zhan.service.DigitalMallAttributeService;
 import com.zhan.service.DigitalMallAttributeValueService;
 import com.zhan.service.DigitalMallSkuService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashSet;
 
+@Slf4j
 @Controller
 public class DigitalMallSkuController {
 
@@ -59,7 +62,11 @@ public class DigitalMallSkuController {
                 String[] attrValues = value.split(",");
                 DigitalMallAttributeValue attributeValue = new DigitalMallAttributeValue(attrValues[i], attrId, goodsId, updateTime);
                 if(set.add(attributeValue)){
-                    digitalMallAttributeValueService.insert(attributeValue);
+                    try {
+                        digitalMallAttributeValueService.insert(attributeValue);
+                    }catch (DuplicateKeyException e){
+                       log.error("插入重复属性值{}" + attributeValue.toString());
+                    }
                 }
             }
         }
