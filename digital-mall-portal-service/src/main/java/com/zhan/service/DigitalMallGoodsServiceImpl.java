@@ -1,5 +1,7 @@
 package com.zhan.service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.zhan.dao.*;
 import com.zhan.model.*;
 import com.zhan.portal.service.DigitalMallGoodsService;
@@ -97,5 +99,56 @@ public class DigitalMallGoodsServiceImpl implements DigitalMallGoodsService {
             }
         }
         return null;
+    }
+
+    @Override
+    public PageInfo<DigitalMallGoods> selectGoodsByCriteria(String name, String brandId, String categoryId, int pageNum, int pageSize) {
+        DigitalMallGoods digitalMallGoods = new DigitalMallGoods();
+        if(name != null && !"".equals(name) && !"null".equals(name)){
+            digitalMallGoods.setName(name);
+        }
+        if(brandId != null && !"".equals(brandId) && !"null".equals(brandId)){
+            digitalMallGoods.setBrandId(Integer.parseInt(brandId));
+        }
+        if(categoryId != null && !"".equals(categoryId) && !"null".equals(categoryId)){
+            digitalMallGoods.setCategoryId(Integer.parseInt(categoryId));
+        }
+        pageSize = 9;
+        List<DigitalMallCategory> categoryList = digitalMallCategoryMapper.selectAll();
+        PageHelper.startPage(pageNum, pageSize);
+        List<DigitalMallGoods> goodsList = digitalMallGoodsMapper.selectGoodsByCriteria(digitalMallGoods);
+        PageInfo<DigitalMallGoods> pageInfo = new PageInfo<>(goodsList);
+        for (int i = 0; i < pageInfo.getList().size(); i++){
+            int goodsId = goodsList.get(i).getId();
+            String goodsName = goodsList.get(i).getName();
+            List<String> imgUrlList = Arrays.asList(goodsList.get(i).getImageUrl().split(","));
+            List<String> desUrlList = Arrays.asList(goodsList.get(i).getDesUrl().split(","));
+            String category = "";
+            String goodsIntroduce = goodsList.get(i).getIntroduce();
+            double lowestPrice = Double.MAX_VALUE;
+            double highestPrice = Double.MIN_VALUE;
+            for(DigitalMallCategory c : categoryList){
+                if(goodsList.get(i).getCategoryId().equals(c.getId())){
+                    category = c.getName();
+                }
+            }
+
+            List<DigitalMallSku> skuList = digitalMallSkuMapper.selectSkuByCriteria(DigitalMallSku.builder().goodsId(goodsId).build());
+
+            for(DigitalMallSku sku : skuList){
+                lowestPrice = sku.getPrice() < lowestPrice ? sku.getPrice() : lowestPrice;
+                highestPrice = sku.getPrice() > highestPrice ? sku.getPrice() : highestPrice;
+            }
+            pageInfo.getList().get(i).setGoodsSynopsis(new DigitalMallGoodsSynopsis(goodsId, goodsName, category, lowestPrice, highestPrice, goodsIntroduce, imgUrlList, desUrlList));
+        }
+
+        pageInfo.getList().forEach(goods ->{
+            goods.setImageUrlList(Arrays.asList(goods.getImageUrl().split(",")));
+            goods.setImageUrl(goods.getImageUrlList().get(0));
+
+            goods.setDesUrlList(Arrays.asList(goods.getDesUrl().split(",")));
+            goods.setDesUrl(goods.getDesUrlList().get(0));
+        });
+        return pageInfo;
     }
 }

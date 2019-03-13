@@ -1,8 +1,11 @@
 package com.zhan.controller;
 
+import com.zhan.model.DigitalMallGoods;
 import com.zhan.model.DigitalMallGoodsInfo;
 import com.zhan.model.DigitalMallGoodsSynopsis;
 import com.zhan.model.DigitalMallSku;
+import com.zhan.service.DigitalMallBrandService;
+import com.zhan.service.DigitalMallCategoryService;
 import com.zhan.service.DigitalMallGoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,15 +22,37 @@ public class DigitalMallGoodsController {
 
     private DigitalMallGoodsService digitalMallGoodsService;
 
+    private DigitalMallBrandService digitalMallBrandService;
+
+    private DigitalMallCategoryService digitalMallCategoryService;
+
     @Autowired
-    public DigitalMallGoodsController(DigitalMallGoodsService digitalMallGoodsService) {
+    public DigitalMallGoodsController(DigitalMallGoodsService digitalMallGoodsService,
+                                      DigitalMallBrandService digitalMallBrandService,
+                                      DigitalMallCategoryService digitalMallCategoryService) {
         this.digitalMallGoodsService = digitalMallGoodsService;
+        this.digitalMallBrandService = digitalMallBrandService;
+        this.digitalMallCategoryService = digitalMallCategoryService;
     }
 
     @RequestMapping("/index")
     public String index(Model model){
         model.addAttribute("goodsSynopsisList",digitalMallGoodsService.getRollGoodsSynopsis());
+        model.addAttribute("brandList", digitalMallBrandService.getBrandList());
+        model.addAttribute("categoryList", digitalMallCategoryService.getCategoryList());
         return "index";
+    }
+
+    @RequestMapping("/searchGoods")
+    public String searchGoods(Model model, DigitalMallGoods goods){
+        System.out.println(goods.toString());
+        model.addAttribute("pageInfo", digitalMallGoodsService.selectGoodsByCriteria(goods));
+        model.addAttribute("name", goods.getName());
+        model.addAttribute("brandId", goods.getBrandId());
+        model.addAttribute("categoryId", goods.getCategoryId());
+        model.addAttribute("brandList", digitalMallBrandService.getBrandList());
+        model.addAttribute("categoryList", digitalMallCategoryService.getCategoryList());
+        return "store";
     }
 
     @RequestMapping("/toGoodsView")
@@ -61,4 +86,6 @@ public class DigitalMallGoodsController {
         System.out.println(skuId);
         return 1;
     }
+
+
 }

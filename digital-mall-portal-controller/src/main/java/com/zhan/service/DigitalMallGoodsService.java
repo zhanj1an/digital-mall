@@ -1,5 +1,7 @@
 package com.zhan.service;
 
+import com.github.pagehelper.PageInfo;
+import com.zhan.model.DigitalMallGoods;
 import com.zhan.model.DigitalMallGoodsAttribute;
 import com.zhan.model.DigitalMallGoodsSynopsis;
 import com.zhan.model.DigitalMallSku;
@@ -33,5 +35,15 @@ public class DigitalMallGoodsService {
         return restTemplate.getForObject("http://portal-service/queryGoodsStock" +
                 "?goodsId=" + goodsId +
                 "&attribute=" + attribute, DigitalMallSku.class);
+    }
+
+    @SuppressWarnings("unchecked")
+    public PageInfo<DigitalMallGoods> selectGoodsByCriteria(DigitalMallGoods goods){
+        return restTemplate.getForObject("http://portal-service/selectGoodsByCriteria" +
+                "?name=" + goods.getName() +
+                "&categoryId=" + goods.getCategoryId() +
+                "&brandId=" + goods.getBrandId() +
+                "&pageNum=" + goods.getPageNum() +
+                "&pageSize=" + goods.getPageSize(), PageInfo.class);
     }
 }

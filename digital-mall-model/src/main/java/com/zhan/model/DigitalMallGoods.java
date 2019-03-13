@@ -36,6 +36,8 @@ public class DigitalMallGoods {
 
     private Integer pageSize = 10;
 
+    private DigitalMallGoodsSynopsis goodsSynopsis;
+
     public Integer getId() {
         return id;
     }

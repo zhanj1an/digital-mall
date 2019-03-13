@@ -1,5 +1,7 @@
 package com.zhan.controller;
 
+import com.github.pagehelper.PageInfo;
+import com.zhan.model.DigitalMallGoods;
 import com.zhan.model.DigitalMallGoodsAttribute;
 import com.zhan.model.DigitalMallGoodsSynopsis;
 import com.zhan.model.DigitalMallSku;
@@ -33,5 +35,10 @@ public class DigitalMallGoodsController {
     @RequestMapping("/queryGoodsStock")
     public DigitalMallSku queryGoodsStock(int goodsId, String attribute){
         return digitalMallGoodsService.queryGoodsStock(goodsId, attribute);
+    }
+
+    @RequestMapping("selectGoodsByCriteria")
+    public PageInfo<DigitalMallGoods> selectGoodsByCriteria(String name, String brandId, String categoryId, int pageNum, int pageSize){
+        return digitalMallGoodsService.selectGoodsByCriteria(name, brandId, categoryId, pageNum, pageSize);
     }
 }
