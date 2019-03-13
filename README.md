@@ -21,6 +21,3 @@ springBoot + springCloud + mybatis + mysql + druid + thymeleaf + redis
 5. 订单管理
 
 6. redis
-
-7. 商品搜索
-
