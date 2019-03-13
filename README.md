@@ -10,14 +10,12 @@ springBoot + springCloud + mybatis + mysql + druid + thymeleaf + redis
 
 ## 待完成
 
-1. 数据库唯一索引建立
+1. 添加购物车
 
-2. 添加购物车
+2. 登录
 
-3. 登录
+3. 下单
 
-4. 下单
+4. 订单管理
 
-5. 订单管理
-
-6. redis
+5. redis
