@@ -12,5 +12,15 @@ springBoot + springCloud + mybatis + mysql + druid + thymeleaf + redis
 
 1. 数据库唯一索引建立
 
-2. 前台
+2. 添加购物车
+
+3. 登录
+
+4. 下单
+
+5. 订单管理
+
+6. redis
+
+7. 商品搜索
 
