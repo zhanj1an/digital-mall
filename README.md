@@ -19,3 +19,5 @@ springBoot + springCloud + mybatis + mysql + druid + thymeleaf + redis
 4. 订单管理
 
 5. redis
+
+6. 商品是否推荐、是否打折字段添加
