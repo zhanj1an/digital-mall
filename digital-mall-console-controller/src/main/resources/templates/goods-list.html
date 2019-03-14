@@ -108,7 +108,7 @@
         </tbody>
       </table>
       <div class="page">
-        <div>
+        <div th:if="${pageInfo.pages > 5}">
           <a th:if="${pageInfo.isHasPreviousPage() == true}" th:href="@{/getGoodsList(pageNum = ${pageInfo.pageNum - 1}, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}">&lt;&lt;</a>
           <a th:if="${pageInfo.isHasPreviousPage() == false}" href="javascript:void(0);">&lt;&lt;</a>
 
@@ -127,6 +127,29 @@
 
           <a th:if="${pageInfo.pageNum != pageInfo.pages}" th:href="@{/getGoodsList(pageNum = ${pageInfo.pages}, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}" th:text="${pageInfo.pages}"></a>
           <span class="current" th:if="${pageInfo.pageNum == pageInfo.pages}" th:href="@{/getGoodsList(pageNum = ${pageInfo.pages}, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}" th:text="${pageInfo.pages}"></span>
+
+          <a th:if="${pageInfo.isHasNextPage() == true}" th:href="@{/getGoodsList(pageNum = ${pageInfo.pageNum + 1}, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}">&gt;&gt;</a>
+          <a th:if="${pageInfo.isHasNextPage() == false}" href="javascript:void(0);">&gt;&gt;</a>
+        </div>
+
+        <div th:if="${pageInfo.pages <= 5}">
+          <a th:if="${pageInfo.isHasPreviousPage() == true}" th:href="@{/getGoodsList(pageNum = ${pageInfo.pageNum - 1}, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}">&lt;&lt;</a>
+          <a th:if="${pageInfo.isHasPreviousPage() == false}" href="javascript:void(0);">&lt;&lt;</a>
+
+          <a th:if="${pageInfo.pageNum != 1}" th:href="@{/getGoodsList(pageNum = 1, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}">1</a>
+          <span class="current" th:if="${pageInfo.pageNum == 1}" th:href="@{/getGoodsList(pageNum = 1, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}">1</span>
+
+          <a th:if="${pageInfo.pageNum != 2 && pageInfo.pages >= 2}" th:href="@{/getGoodsList(pageNum = 2, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}">2</a>
+          <span class="current" th:if="${pageInfo.pageNum == 2 && pageInfo.pages >= 2}" th:href="@{/getGoodsList(pageNum = 2, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}">2</span>
+
+          <a th:if="${pageInfo.pageNum != 3 && pageInfo.pages >= 3}" th:href="@{/getGoodsList(pageNum = 3, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}">3</a>
+          <span class="current" th:if="${pageInfo.pageNum == 3 && pageInfo.pages >= 3}" th:href="@{/getGoodsList(pageNum = 3, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}">3</span>
+
+          <a th:if="${pageInfo.pageNum != 4 && pageInfo.pages >= 4}" th:href="@{/getGoodsList(pageNum = 4, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}">4</a>
+          <span class="current" th:if="${pageInfo.pageNum == 4 && pageInfo.pages >= 4}" th:href="@{/getGoodsList(pageNum = 4, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}">4</span>
+
+          <a th:if="${pageInfo.pageNum != 5 && pageInfo.pages >= 5}" th:href="@{/getGoodsList(pageNum = 5, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}">5</a>
+          <span class="current" th:if="${pageInfo.pageNum == 5 && pageInfo.pages >= 5}" th:href="@{/getGoodsList(pageNum = 5, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}">5</span>
 
           <a th:if="${pageInfo.isHasNextPage() == true}" th:href="@{/getGoodsList(pageNum = ${pageInfo.pageNum + 1}, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}">&gt;&gt;</a>
           <a th:if="${pageInfo.isHasNextPage() == false}" href="javascript:void(0);">&gt;&gt;</a>
