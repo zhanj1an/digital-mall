@@ -41,7 +41,7 @@ public class DigitalMallGoodsServiceImpl implements DigitalMallGoodsService {
     @Override
     public List<DigitalMallGoodsSynopsis> getRollGoodsSynopsis() {
         List<DigitalMallGoodsSynopsis> goodsSynopsisList = new ArrayList<>();
-        List<DigitalMallGoods> goodsList = digitalMallGoodsMapper.selectAll();
+        List<DigitalMallGoods> goodsList = digitalMallGoodsMapper.selectNewGoodsOrderByGoodsRank();
         List<DigitalMallCategory> categoryList = digitalMallCategoryMapper.selectAll();
         //获取五个滚动显示的商品简介信息
         for (int i = 0; i < 5; i++) {
@@ -113,10 +113,12 @@ public class DigitalMallGoodsServiceImpl implements DigitalMallGoodsService {
         if(categoryId != null && !"".equals(categoryId) && !"null".equals(categoryId)){
             digitalMallGoods.setCategoryId(Integer.parseInt(categoryId));
         }
+        digitalMallGoods.setIsShow(1);
+        digitalMallGoods.setIsDelete(0);
         pageSize = 9;
         List<DigitalMallCategory> categoryList = digitalMallCategoryMapper.selectAll();
         PageHelper.startPage(pageNum, pageSize);
-        List<DigitalMallGoods> goodsList = digitalMallGoodsMapper.selectGoodsByCriteria(digitalMallGoods);
+        List<DigitalMallGoods> goodsList = digitalMallGoodsMapper.selectGoodsOrderByGoodsRank(digitalMallGoods);
         PageInfo<DigitalMallGoods> pageInfo = new PageInfo<>(goodsList);
         for (int i = 0; i < pageInfo.getList().size(); i++){
             int goodsId = goodsList.get(i).getId();

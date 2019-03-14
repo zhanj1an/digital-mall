@@ -36,8 +36,30 @@
     <include refid="Base_Column_List" />
     from digital_mall_goods
     <where>
+      <if test="categoryId != null and categoryId != ''">
+        and category_id = #{categoryId,jdbcType=INTEGER}
+      </if>
+      <if test="brandId != null and brandId != ''">
+        and brand_id = #{brandId,jdbcType=INTEGER}
+      </if>
+      <if test="name != null and name != ''">
+        and name LIKE "%"#{name,jdbcType=VARCHAR}"%"
+      </if>
+    </where>
+  </select>
+  <select id="selectGoodsOrderByGoodsRank" resultMap="BaseResultMap" parameterType="com.zhan.model.DigitalMallGoods">
+    select
+    <include refid="Base_Column_List" />
+    from digital_mall_goods
+    <where>
       <if test="isNew != null and isNew != ''">
         and is_new = #{isNew,jdbcType=INTEGER}
+      </if>
+      <if test="isShow != null and isShow != ''">
+        and is_show = #{isShow,jdbcType=INTEGER}
+      </if>
+      <if test="isDelete != null and isDelete != ''">
+        and is_delete = #{isDelete,jdbcType=INTEGER}
       </if>
       <if test="categoryId != null and categoryId != ''">
         and category_id = #{categoryId,jdbcType=INTEGER}
@@ -49,6 +71,14 @@
         and name LIKE "%"#{name,jdbcType=VARCHAR}"%"
       </if>
     </where>
+    order by goods_rank desc
+  </select>
+  <select id="selectNewGoodsOrderByGoodsRank" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from digital_mall_goods
+    where is_new = 1 and is_delete = 0 and is_show = 1
+    order by goods_rank desc
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from digital_mall_goods

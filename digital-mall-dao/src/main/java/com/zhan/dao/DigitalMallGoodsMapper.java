@@ -22,4 +22,8 @@ public interface DigitalMallGoodsMapper {
     List<DigitalMallGoods> selectAll();
 
     List<DigitalMallGoods> selectGoodsByCriteria(DigitalMallGoods goods);
+
+    List<DigitalMallGoods> selectGoodsOrderByGoodsRank(DigitalMallGoods goods);
+
+    List<DigitalMallGoods> selectNewGoodsOrderByGoodsRank();
 }
