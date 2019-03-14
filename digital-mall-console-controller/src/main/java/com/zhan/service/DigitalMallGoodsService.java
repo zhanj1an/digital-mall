@@ -42,6 +42,14 @@ public class DigitalMallGoodsService {
         return restTemplate.getForObject("http://console-service/hideGoods?id=" + id, Integer.class);
     }
 
+    public Integer setGoodsIsNew(int id){
+        return  restTemplate.getForObject("http://console-service/setGoodsIsNew?id=" + id, Integer.class);
+    }
+
+    public Integer setGoodsIsOld(int id){
+        return  restTemplate.getForObject("http://console-service/setGoodsIsOld?id=" + id, Integer.class);
+    }
+
     public DigitalMallGoods getGoodsById(int id){
         return restTemplate.getForObject("http://console-service/getGoodsById?id=" + id, DigitalMallGoods.class);
     }

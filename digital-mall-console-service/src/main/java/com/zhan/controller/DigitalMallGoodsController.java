@@ -54,8 +54,18 @@ public class DigitalMallGoodsController {
         return digitalMallGoodsService.hideGoods(id);
     }
 
-    @RequestMapping("selectGoodsByCriteria")
+    @RequestMapping("/selectGoodsByCriteria")
     public PageInfo<DigitalMallGoods> selectGoodsByCriteria(String name, String brandId, String categoryId, int pageNum, int pageSize){
         return digitalMallGoodsService.selectGoodsByCriteria(name, brandId, categoryId, pageNum, pageSize);
+    }
+
+    @RequestMapping("/setGoodsIsNew")
+    public Integer setGoodsIsNew(int id){
+        return digitalMallGoodsService.setGoodsIsNew(id);
+    }
+
+    @RequestMapping("/setGoodsIsOld")
+    public Integer setGoodsIsOld(int id){
+        return digitalMallGoodsService.setGoodsIsOld(id);
     }
 }

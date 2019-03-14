@@ -21,5 +21,9 @@ public interface DigitalMallGoodsService {
 
     Integer hideGoods(int id);
 
+    Integer setGoodsIsNew(int id);
+
+    Integer setGoodsIsOld(int id);
+
     PageInfo<DigitalMallGoods> selectGoodsByCriteria(String name, String brandId, String categoryId, int pageNum, int pageSize);
 }

@@ -153,4 +153,16 @@ public class DigitalMallGoodsController {
     public int hideGoods(String id){
         return digitalMallGoodsService.hideGoods(Integer.parseInt(id));
     }
+
+    @ResponseBody
+    @RequestMapping("/setGoodsIsNew")
+    public int setGoodsIsNew(String id){
+        return digitalMallGoodsService.setGoodsIsNew(Integer.parseInt(id));
+    }
+
+    @ResponseBody
+    @RequestMapping("/setGoodsIsOld")
+    public int setGoodsIsOld(String id){
+        return digitalMallGoodsService.setGoodsIsOld(Integer.parseInt(id));
+    }
 }

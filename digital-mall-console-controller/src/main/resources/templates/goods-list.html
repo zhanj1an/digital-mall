@@ -91,14 +91,14 @@
             <td th:text="${goods.saleNum}"></td>
 
             <td th:if="${goods.isDelete == 0}">
-              <button th:if="${goods.isShow == 1}" class="layui-btn layui-btn-normal layui-btn-mini" title="商品下架" th:name="${goods.name}" th:id="${goods.id}" onclick="hideGoods(this.id, this.name)" href="javascript:void(0);">已上架</button>
-              <button th:if="${goods.isShow == 0}" class="layui-btn layui-btn-danger layui-btn-mini" title="商品上架" th:name="${goods.name}" th:id="${goods.id}" onclick="showGoods(this.id, this.name)" href="javascript:void(0);">已下架</button>
+              <button th:if="${goods.isShow == 1}" class="layui-btn layui-btn-normal layui-btn-mini" title="商品下架" th:name="${goods.name}" th:id="${goods.id}" onclick="hideGoods(this.id, this.name)">已上架</button>
+              <button th:if="${goods.isShow == 0}" class="layui-btn layui-btn-danger layui-btn-mini" title="商品上架" th:name="${goods.name}" th:id="${goods.id}" onclick="showGoods(this.id, this.name)">已下架</button>
             </td>
             <td th:if="${goods.isDelete == 1}">商品已删除</td>
 
             <td th:if="${goods.isDelete == 0}">
-              <button th:if="${goods.isNew == 1}" class="layui-btn layui-btn-normal layui-btn-mini" title="新品推荐" th:name="${goods.id}" onclick="deleteGoods(this.name)" href="javascript:void(0);">新品推荐</button>
-              <button th:if="${goods.isNew == 0}" class="layui-btn layui-btn-danger layui-btn-mini" disabled="disabled">非新品</button>
+              <button th:if="${goods.isNew == 1}" class="layui-btn layui-btn-normal layui-btn-mini" th:name="${goods.id}" th:id="${goods.name}" onclick="setGoodsIsOld(this.name, this.id)" >新品推荐</button>
+              <button th:if="${goods.isNew == 0}" class="layui-btn layui-btn-danger layui-btn-mini" th:name="${goods.id}" th:id="${goods.name}" onclick="setGoodsIsNew(this.name, this.id)" >非新品</button>
             </td>
             <td th:if="${goods.isDelete == 1}">商品已删除</td>
 
@@ -211,8 +211,8 @@
         });
       }
 
-      function setGoodsIsNew(id) {
-        layer.alert('确定删除吗', {
+      function setGoodsIsNew(id, name) {
+        layer.alert('确定将' + name + '设置为新品吗', {
           skin: 'layui-layer-molv' //样式类名  自定义样式
           ,closeBtn: 1    // 是否显示关闭按钮
           ,anim: 1 //动画类型
@@ -220,13 +220,13 @@
           ,icon: 6    // icon
           ,yes:function(){
             return $.ajax({
-              url:'/deleteGoods',
+              url:'/setGoodsIsNew',
               type:'post',
               dataType:'json',
               data:{id:id},
               success:function(data){
                 if(data === 1){
-                  layer.alert('删除成功',function () {
+                  layer.alert('设置成功',function () {
                     window.location.reload();
                   });
                 }
@@ -234,7 +234,35 @@
             });
           }
           ,btn2:function(){
-            layer.msg('取消删除');
+            layer.msg('取消设置');
+          }
+        });
+      }
+
+      function setGoodsIsOld(id, name) {
+        layer.alert('确定将' + name + '设置为非新品吗', {
+          skin: 'layui-layer-molv' //样式类名  自定义样式
+          ,closeBtn: 1    // 是否显示关闭按钮
+          ,anim: 1 //动画类型
+          ,btn: ['确定','取消'] //按钮
+          ,icon: 6    // icon
+          ,yes:function(){
+            return $.ajax({
+              url:'/setGoodsIsOld',
+              type:'post',
+              dataType:'json',
+              data:{id:id},
+              success:function(data){
+                if(data === 1){
+                  layer.alert('设置成功',function () {
+                    window.location.reload();
+                  });
+                }
+              }
+            });
+          }
+          ,btn2:function(){
+            layer.msg('取消设置');
           }
         });
       }

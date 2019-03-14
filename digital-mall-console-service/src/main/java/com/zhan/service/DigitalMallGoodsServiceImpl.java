@@ -76,6 +76,20 @@ public class DigitalMallGoodsServiceImpl implements DigitalMallGoodsService {
     }
 
     @Override
+    public Integer setGoodsIsNew(int id) {
+        DigitalMallGoods goods = digitalMallGoodsMapper.selectByPrimaryKey(id);
+        goods.setIsNew(1);
+        return digitalMallGoodsMapper.updateByPrimaryKey(goods);
+    }
+
+    @Override
+    public Integer setGoodsIsOld(int id) {
+        DigitalMallGoods goods = digitalMallGoodsMapper.selectByPrimaryKey(id);
+        goods.setIsNew(0);
+        return digitalMallGoodsMapper.updateByPrimaryKey(goods);
+    }
+
+    @Override
     public PageInfo<DigitalMallGoods> selectGoodsByCriteria(String name, String brandId, String categoryId, int pageNum, int pageSize) {
         DigitalMallGoods digitalMallGoods = new DigitalMallGoods();
         if(name != null && !"".equals(name) && !"null".equals(name)){
