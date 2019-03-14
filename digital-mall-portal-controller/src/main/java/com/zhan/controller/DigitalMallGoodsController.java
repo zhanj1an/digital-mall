@@ -69,11 +69,11 @@ public class DigitalMallGoodsController {
         Map<String, String> map = new HashMap<>();
         if(sku != null) {
             map.put("price", sku.getPrice() + "");
-            map.put("stock", sku.getStock() + "");
+            map.put("stock", "库存:" + sku.getStock());
             map.put("skuId", sku.getId() + "");
         }else{
-            map.put("price", 0 + "");
-            map.put("stock", 0 + "");
+            map.put("price", "商品已下架");
+            map.put("stock", "");
             map.put("skuId", 0 + "");
         }
         return map;

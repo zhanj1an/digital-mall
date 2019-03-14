@@ -838,7 +838,7 @@
 						success:function(data){
 							document.getElementById("addToCart").setAttribute("name", data.skuId);
 							document.getElementById("goodsPrice").innerHTML = data.price;
-							document.getElementById("goodsStock").innerHTML = "库存:" + data.stock;
+							document.getElementById("goodsStock").innerHTML = data.stock;
 							var btn = document.getElementById("addToCart");
 							if(data.stock == 0){
 								btn.className = "add-to-cart-btn-stock-lack";
