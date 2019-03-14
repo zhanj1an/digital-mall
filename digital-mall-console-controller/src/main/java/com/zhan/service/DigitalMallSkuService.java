@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.List;
-
 @Service("skuService")
 public class DigitalMallSkuService {
 
@@ -29,13 +27,13 @@ public class DigitalMallSkuService {
                 "&isDelete=" + 0, void.class);
     }
 
-    @SuppressWarnings("unchecked")
-    public List<DigitalMallSku> getSkuList(){
-        return restTemplate.getForObject("http://console-service/getSkuList", List.class);
-    }
+//    @SuppressWarnings("unchecked")
+//    public List<DigitalMallSku> getSkuList(){
+//        return restTemplate.getForObject("http://console-service/getSkuList", List.class);
+//    }
 
-    public void updateSku(int id, int stock){
-        restTemplate.getForObject("http://console-service/updateSku?id=" + id + "&stock=" + stock, void.class);
+    public void updateSku(int id, int stock, double price){
+        restTemplate.getForObject("http://console-service/updateSku?id=" + id + "&stock=" + stock + "&price=" + price, void.class);
     }
 
     public DigitalMallSku selectSkuById(int id){

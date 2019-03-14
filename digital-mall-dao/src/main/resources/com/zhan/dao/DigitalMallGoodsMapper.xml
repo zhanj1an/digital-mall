@@ -1,24 +1,26 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zhan.dao.DigitalMallGoodsMapper">
-  <resultMap id="BaseResultMap" type="com.zhan.model.DigitalMallGoods">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="category_id" jdbcType="INTEGER" property="categoryId" />
-    <result column="brand_id" jdbcType="INTEGER" property="brandId" />
-    <result column="image_url" jdbcType="VARCHAR" property="imageUrl" />
-    <result column="introduce" jdbcType="VARCHAR" property="introduce" />
-    <result column="des_url" jdbcType="VARCHAR" property="desUrl" />
-    <result column="sale_num" jdbcType="INTEGER" property="saleNum" />
-    <result column="is_show" jdbcType="INTEGER" property="isShow" />
-    <result column="is_delete" jdbcType="INTEGER" property="isDelete" />
-    <result column="update_time" jdbcType="VARCHAR" property="updateTime" />
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhan.dao.DigitalMallGoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.zhan.model.DigitalMallGoods" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="category_id" property="categoryId" jdbcType="INTEGER" />
+    <result column="brand_id" property="brandId" jdbcType="INTEGER" />
+    <result column="image_url" property="imageUrl" jdbcType="VARCHAR" />
+    <result column="introduce" property="introduce" jdbcType="VARCHAR" />
+    <result column="des_url" property="desUrl" jdbcType="VARCHAR" />
+    <result column="sale_num" property="saleNum" jdbcType="INTEGER" />
+    <result column="is_show" property="isShow" jdbcType="INTEGER" />
+    <result column="is_new" property="isNew" jdbcType="INTEGER" />
+    <result column="goods_rank" property="goodsRank" jdbcType="INTEGER" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="VARCHAR" />
   </resultMap>
-  <sql id="Base_Column_List">
+  <sql id="Base_Column_List" >
     id, name, category_id, brand_id, image_url, introduce, des_url, sale_num, is_show, 
-    is_delete, update_time
+    is_new, goods_rank, is_delete, update_time
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from digital_mall_goods
@@ -34,6 +36,9 @@
     <include refid="Base_Column_List" />
     from digital_mall_goods
     <where>
+      <if test="isNew != null and isNew != ''">
+        and is_new = #{isNew,jdbcType=INTEGER}
+      </if>
       <if test="categoryId != null and categoryId != ''">
         and category_id = #{categoryId,jdbcType=INTEGER}
       </if>
@@ -45,130 +50,150 @@
       </if>
     </where>
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from digital_mall_goods
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.zhan.model.DigitalMallGoods">
+  <insert id="insert" parameterType="com.zhan.model.DigitalMallGoods" >
     insert into digital_mall_goods (id, name, category_id, 
       brand_id, image_url, introduce, 
       des_url, sale_num, is_show, 
-      is_delete, update_time)
+      is_new, goods_rank, is_delete, 
+      update_time)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{categoryId,jdbcType=INTEGER}, 
       #{brandId,jdbcType=INTEGER}, #{imageUrl,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR}, 
       #{desUrl,jdbcType=VARCHAR}, #{saleNum,jdbcType=INTEGER}, #{isShow,jdbcType=INTEGER}, 
-      #{isDelete,jdbcType=INTEGER}, #{updateTime,jdbcType=VARCHAR})
+      #{isNew,jdbcType=INTEGER}, #{goodsRank,jdbcType=INTEGER}, #{isDelete,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.zhan.model.DigitalMallGoods">
+  <insert id="insertSelective" parameterType="com.zhan.model.DigitalMallGoods" >
     insert into digital_mall_goods
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
         id,
       </if>
-      <if test="name != null">
+      <if test="name != null" >
         name,
       </if>
-      <if test="categoryId != null">
+      <if test="categoryId != null" >
         category_id,
       </if>
-      <if test="brandId != null">
+      <if test="brandId != null" >
         brand_id,
       </if>
-      <if test="imageUrl != null">
+      <if test="imageUrl != null" >
         image_url,
       </if>
-      <if test="introduce != null">
+      <if test="introduce != null" >
         introduce,
       </if>
-      <if test="desUrl != null">
+      <if test="desUrl != null" >
         des_url,
       </if>
-      <if test="saleNum != null">
+      <if test="saleNum != null" >
         sale_num,
       </if>
-      <if test="isShow != null">
+      <if test="isShow != null" >
         is_show,
       </if>
-      <if test="isDelete != null">
+      <if test="isNew != null" >
+        is_new,
+      </if>
+      <if test="goodsRank != null" >
+        goods_rank,
+      </if>
+      <if test="isDelete != null" >
         is_delete,
       </if>
-      <if test="updateTime != null">
+      <if test="updateTime != null" >
         update_time,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="name != null">
+      <if test="name != null" >
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="categoryId != null">
+      <if test="categoryId != null" >
         #{categoryId,jdbcType=INTEGER},
       </if>
-      <if test="brandId != null">
+      <if test="brandId != null" >
         #{brandId,jdbcType=INTEGER},
       </if>
-      <if test="imageUrl != null">
+      <if test="imageUrl != null" >
         #{imageUrl,jdbcType=VARCHAR},
       </if>
-      <if test="introduce != null">
+      <if test="introduce != null" >
         #{introduce,jdbcType=VARCHAR},
       </if>
-      <if test="desUrl != null">
+      <if test="desUrl != null" >
         #{desUrl,jdbcType=VARCHAR},
       </if>
-      <if test="saleNum != null">
+      <if test="saleNum != null" >
         #{saleNum,jdbcType=INTEGER},
       </if>
-      <if test="isShow != null">
+      <if test="isShow != null" >
         #{isShow,jdbcType=INTEGER},
       </if>
-      <if test="isDelete != null">
+      <if test="isNew != null" >
+        #{isNew,jdbcType=INTEGER},
+      </if>
+      <if test="goodsRank != null" >
+        #{goodsRank,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
         #{isDelete,jdbcType=INTEGER},
       </if>
-      <if test="updateTime != null">
+      <if test="updateTime != null" >
         #{updateTime,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zhan.model.DigitalMallGoods">
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhan.model.DigitalMallGoods" >
     update digital_mall_goods
-    <set>
-      <if test="name != null">
+    <set >
+      <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="categoryId != null">
+      <if test="categoryId != null" >
         category_id = #{categoryId,jdbcType=INTEGER},
       </if>
-      <if test="brandId != null">
+      <if test="brandId != null" >
         brand_id = #{brandId,jdbcType=INTEGER},
       </if>
-      <if test="imageUrl != null">
+      <if test="imageUrl != null" >
         image_url = #{imageUrl,jdbcType=VARCHAR},
       </if>
-      <if test="introduce != null">
+      <if test="introduce != null" >
         introduce = #{introduce,jdbcType=VARCHAR},
       </if>
-      <if test="desUrl != null">
+      <if test="desUrl != null" >
         des_url = #{desUrl,jdbcType=VARCHAR},
       </if>
-      <if test="saleNum != null">
+      <if test="saleNum != null" >
         sale_num = #{saleNum,jdbcType=INTEGER},
       </if>
-      <if test="isShow != null">
+      <if test="isShow != null" >
         is_show = #{isShow,jdbcType=INTEGER},
       </if>
-      <if test="isDelete != null">
+      <if test="isNew != null" >
+        is_new = #{isNew,jdbcType=INTEGER},
+      </if>
+      <if test="goodsRank != null" >
+        goods_rank = #{goodsRank,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
         is_delete = #{isDelete,jdbcType=INTEGER},
       </if>
-      <if test="updateTime != null">
+      <if test="updateTime != null" >
         update_time = #{updateTime,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zhan.model.DigitalMallGoods">
+  <update id="updateByPrimaryKey" parameterType="com.zhan.model.DigitalMallGoods" >
     update digital_mall_goods
     set name = #{name,jdbcType=VARCHAR},
       category_id = #{categoryId,jdbcType=INTEGER},
@@ -178,6 +203,8 @@
       des_url = #{desUrl,jdbcType=VARCHAR},
       sale_num = #{saleNum,jdbcType=INTEGER},
       is_show = #{isShow,jdbcType=INTEGER},
+      is_new = #{isNew,jdbcType=INTEGER},
+      goods_rank = #{goodsRank,jdbcType=INTEGER},
       is_delete = #{isDelete,jdbcType=INTEGER},
       update_time = #{updateTime,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}

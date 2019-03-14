@@ -88,8 +88,8 @@ public class DigitalMallSkuController {
     }
 
     @RequestMapping("/updateSku")
-    public String updateSku(String id, String stock){
-        digitalMallSkuService.updateSku(Integer.parseInt(id), Integer.parseInt(stock));
+    public String updateSku(String id, String stock, String price){
+        digitalMallSkuService.updateSku(Integer.parseInt(id), Integer.parseInt(stock), Double.parseDouble(price));
         return "redirect:getSkuList";
     }
 

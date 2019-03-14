@@ -11,7 +11,7 @@ public interface DigitalMallSkuService {
 
     List<DigitalMallSku> selectAll();
 
-    void updateSku(int id, int stock);
+    void updateSku(int id, int stock, double price);
 
     DigitalMallSku selectSkuById(int id);
 

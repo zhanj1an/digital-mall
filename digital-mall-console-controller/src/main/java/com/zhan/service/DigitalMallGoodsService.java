@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.List;
-
 @Service("goodsService")
 public class DigitalMallGoodsService {
 
@@ -18,10 +16,10 @@ public class DigitalMallGoodsService {
         this.restTemplate = restTemplate;
     }
 
-    @SuppressWarnings("unchecked")
-    public List<DigitalMallGoods> getGoodsList(){
-        return restTemplate.getForObject("http://console-service/getGoodsList", List.class);
-    }
+//    @SuppressWarnings("unchecked")
+//    public List<DigitalMallGoods> getGoodsList(){
+//        return restTemplate.getForObject("http://console-service/getGoodsList", List.class);
+//    }
 
     public void addGoods(DigitalMallGoods digitalMallGoods){
         restTemplate.getForObject("http://console-service/addGoods?name=" + digitalMallGoods.getName() +
@@ -59,6 +57,8 @@ public class DigitalMallGoodsService {
                 "&desUrl=" + goods.getDesUrl() +
                 "&saleNum=" + goods.getSaleNum() +
                 "&isShow=" + goods.getIsShow() +
+                "&isNew=" + goods.getIsNew() +
+                "&goodsRank=" + goods.getGoodsRank() +
                 "&isDelete=" + goods.getIsDelete() , void.class);
     }
 

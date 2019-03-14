@@ -6,13 +6,14 @@
     <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
     <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
     <result column="attribute" jdbcType="VARCHAR" property="attribute" />
+    <result column="old_price" jdbcType="DOUBLE" property="oldPrice" />
     <result column="price" jdbcType="DOUBLE" property="price" />
     <result column="stock" jdbcType="INTEGER" property="stock" />
     <result column="is_delete" jdbcType="INTEGER" property="isDelete" />
     <result column="update_time" jdbcType="VARCHAR" property="updateTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, goods_id, goods_name, attribute, price, stock, is_delete, update_time
+    id, goods_id, goods_name, attribute, old_price, price, stock, is_delete, update_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -47,11 +48,13 @@
   </delete>
   <insert id="insert" parameterType="com.zhan.model.DigitalMallSku">
     insert into digital_mall_sku (id, goods_id, goods_name, 
-      attribute, price, stock, 
-      is_delete, update_time)
+      attribute, old_price, price, 
+      stock, is_delete, update_time
+      )
     values (#{id,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR}, 
-      #{attribute,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, #{stock,jdbcType=INTEGER}, 
-      #{isDelete,jdbcType=INTEGER}, #{updateTime,jdbcType=VARCHAR})
+      #{attribute,jdbcType=VARCHAR}, #{oldPrice,jdbcType=DOUBLE}, #{price,jdbcType=DOUBLE}, 
+      #{stock,jdbcType=INTEGER}, #{isDelete,jdbcType=INTEGER}, #{updateTime,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.zhan.model.DigitalMallSku">
     insert into digital_mall_sku
@@ -67,6 +70,9 @@
       </if>
       <if test="attribute != null">
         attribute,
+      </if>
+      <if test="oldPrice != null">
+        old_price,
       </if>
       <if test="price != null">
         price,
@@ -94,6 +100,9 @@
       <if test="attribute != null">
         #{attribute,jdbcType=VARCHAR},
       </if>
+      <if test="oldPrice != null">
+        #{oldPrice,jdbcType=DOUBLE},
+      </if>
       <if test="price != null">
         #{price,jdbcType=DOUBLE},
       </if>
@@ -120,6 +129,9 @@
       <if test="attribute != null">
         attribute = #{attribute,jdbcType=VARCHAR},
       </if>
+      <if test="oldPrice != null">
+        old_price = #{oldPrice,jdbcType=DOUBLE},
+      </if>
       <if test="price != null">
         price = #{price,jdbcType=DOUBLE},
       </if>
@@ -140,6 +152,7 @@
     set goods_id = #{goodsId,jdbcType=INTEGER},
       goods_name = #{goodsName,jdbcType=VARCHAR},
       attribute = #{attribute,jdbcType=VARCHAR},
+      old_price = #{oldPrice,jdbcType=DOUBLE},
       price = #{price,jdbcType=DOUBLE},
       stock = #{stock,jdbcType=INTEGER},
       is_delete = #{isDelete,jdbcType=INTEGER},

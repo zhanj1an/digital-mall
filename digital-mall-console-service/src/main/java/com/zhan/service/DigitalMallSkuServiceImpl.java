@@ -31,8 +31,12 @@ public class DigitalMallSkuServiceImpl implements DigitalMallSkuService {
     }
 
     @Override
-    public void updateSku(int id, int stock) {
+    public void updateSku(int id, int stock, double price) {
         DigitalMallSku sku = digitalMallSkuMapper.selectByPrimaryKey(id);
+        if(sku.getPrice() != price) {
+            sku.setOldPrice(sku.getPrice());
+            sku.setPrice(price);
+        }
         sku.setStock(stock);
         digitalMallSkuMapper.updateByPrimaryKey(sku);
     }

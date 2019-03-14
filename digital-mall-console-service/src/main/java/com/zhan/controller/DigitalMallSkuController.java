@@ -30,8 +30,8 @@ public class DigitalMallSkuController {
     }
 
     @RequestMapping("updateSku")
-    public void updateSku(int id, int stock){
-        digitalMallSkuService.updateSku(id, stock);
+    public void updateSku(int id, int stock, double price){
+        digitalMallSkuService.updateSku(id, stock, price);
     }
 
     @RequestMapping("selectSkuById")

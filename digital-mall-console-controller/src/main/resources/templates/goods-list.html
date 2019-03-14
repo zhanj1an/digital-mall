@@ -71,7 +71,8 @@
             <th>详情图片</th>
             <th>销售额</th>
             <th>上架状态</th>
-            <th>删除状态</th>
+            <th>是否新品</th>
+            <th>排序系数</th>
             <th>操作</th>
           </tr>
         </thead>
@@ -88,22 +89,33 @@
             <td th:text="${goods.introduce}"></td>
             <td><img title="商品详情图片" width="100px" height="100px" th:src="${goods.desUrl}" onclick="viewBigImage(this.src)"></td>
             <td th:text="${goods.saleNum}"></td>
-            <td>
+
+            <td th:if="${goods.isDelete == 0}">
               <button th:if="${goods.isShow == 1}" class="layui-btn layui-btn-normal layui-btn-mini" title="商品下架" th:name="${goods.name}" th:id="${goods.id}" onclick="hideGoods(this.id, this.name)" href="javascript:void(0);">已上架</button>
               <button th:if="${goods.isShow == 0}" class="layui-btn layui-btn-danger layui-btn-mini" title="商品上架" th:name="${goods.name}" th:id="${goods.id}" onclick="showGoods(this.id, this.name)" href="javascript:void(0);">已下架</button>
             </td>
-            <td>
-              <button th:if="${goods.isDelete == 0}" class="layui-btn layui-btn-normal layui-btn-mini" title="商品删除" th:name="${goods.id}" onclick="deleteGoods(this.name)" href="javascript:void(0);">已启用</button>
-              <button th:if="${goods.isDelete == 1}" class="layui-btn layui-btn-danger layui-btn-mini" disabled="disabled">已删除</button>
+            <td th:if="${goods.isDelete == 1}">商品已删除</td>
+
+            <td th:if="${goods.isDelete == 0}">
+              <button th:if="${goods.isNew == 1}" class="layui-btn layui-btn-normal layui-btn-mini" title="新品推荐" th:name="${goods.id}" onclick="deleteGoods(this.name)" href="javascript:void(0);">新品推荐</button>
+              <button th:if="${goods.isNew == 0}" class="layui-btn layui-btn-danger layui-btn-mini" disabled="disabled">非新品</button>
             </td>
-            <td class="td-manage">
+            <td th:if="${goods.isDelete == 1}">商品已删除</td>
+
+            <td th:text="${goods.goodsRank}"></td>
+            <td class="td-manage" th:if="${goods.isDelete == 0}">
               <a title="编辑" th:name="${goods.id}" onclick="x_admin_show('编辑商品','./toUpdateGoodsView?id=' + this.name,900,600)" href="javascript:void(0);">
                 <i class="layui-icon">&#xe642;</i>
               </a>
               <a title="库存添加" th:name="${goods.id}" onclick="x_admin_show('添加库存','./toAddGoodsSkuView?id=' + this.name,900,600)" href="javascript:void(0);">
                 <i class="layui-icon">&#xe63c;</i>
               </a>
+              <a title="删除" th:name="${goods.id}"  onclick="deleteGoods(this.name)" href="javascript:void(0);">
+                <i class="layui-icon">&#xe640;</i>
+              </a>
             </td>
+
+            <td class="td-manage" th:if="${goods.isDelete == 1}"></td>
           </tr>
         </tbody>
       </table>
@@ -172,6 +184,34 @@
       }
 
       function deleteGoods(id) {
+        layer.alert('确定删除吗', {
+          skin: 'layui-layer-molv' //样式类名  自定义样式
+          ,closeBtn: 1    // 是否显示关闭按钮
+          ,anim: 1 //动画类型
+          ,btn: ['确定','取消'] //按钮
+          ,icon: 6    // icon
+          ,yes:function(){
+            return $.ajax({
+              url:'/deleteGoods',
+              type:'post',
+              dataType:'json',
+              data:{id:id},
+              success:function(data){
+                if(data === 1){
+                  layer.alert('删除成功',function () {
+                    window.location.reload();
+                  });
+                }
+              }
+            });
+          }
+          ,btn2:function(){
+            layer.msg('取消删除');
+          }
+        });
+      }
+
+      function setGoodsIsNew(id) {
         layer.alert('确定删除吗', {
           skin: 'layui-layer-molv' //样式类名  自定义样式
           ,closeBtn: 1    // 是否显示关闭按钮

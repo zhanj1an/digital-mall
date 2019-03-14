@@ -6,9 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class DigitalMallSku {
     private Integer id;
 
@@ -18,6 +18,8 @@ public class DigitalMallSku {
 
     private String attribute;
 
+    private Double oldPrice;
+
     private Double price;
 
     private Integer stock;
@@ -26,8 +28,8 @@ public class DigitalMallSku {
 
     private String updateTime;
 
-    private int pageNum = 1;
+    private Integer pageNum = 1;
 
-    private int pageSize = 10;
+    private Integer pageSize = 10;
 
 }
