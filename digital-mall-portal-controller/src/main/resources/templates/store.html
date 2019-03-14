@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-		<title>Electro - HTML Ecommerce Template</title>
+		<title>商品检索</title>
 
  		<!-- Google font -->
  		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -74,7 +74,7 @@
 						<!-- SEARCH BAR -->
 						<div class="col-md-6">
 							<div class="header-search">
-								<form>
+								<form action="searchGoods" method="post">
 									<select class="input-select" name="categoryId">
 										<option value="">商品分类</option>
 										<option name="categoryId" th:each="category:${categoryList}" th:value="${category.id}" th:text="${category.name}" th:selected="${categoryId == category.id}"></option>
@@ -467,11 +467,27 @@
 						<div class="store-filter clearfix">
 							<span class="store-qty">Showing 20-100 products</span>
 							<ul class="store-pagination">
-								<li class="active">1</li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+								<li th:if="${pageInfo.hasPreviousPage == true}"><a th:href="@{/searchGoods(pageNum = ${pageInfo.pageNum - 1}, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}"><i class="fa fa-angle-left"></i></a></li>
+								<li th:if="${pageInfo.hasPreviousPage == false}"><i class="fa fa-angle-left"></i></li>
+
+								<li th:if="${pageInfo.pageNum == 1}" class="active">1</li>
+								<li th:if="${pageInfo.pageNum != 1}"><a th:href="@{/searchGoods(pageNum = 1, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}">1</a></li>
+
+								<li th:if="${pageInfo.pageNum == 2}" class="active">2</li>
+								<li th:if="${pageInfo.pageNum != 2}"><a th:href="@{/searchGoods(pageNum = 2, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}">2</a></li>
+
+								<li th:if="${pageInfo.pageNum > 3}">...</li>
+								<li th:if="${pageInfo.pageNum > 2 && pageInfo.pageNum < pageInfo.pageSize - 1}" class="active" th:text="${pageInfo.pageNum}"></li>
+								<li th:if="${pageInfo.pageNum < pageInfo.pageSize - 2}">...</li>
+
+								<li th:if="${pageInfo.pageNum == pageInfo.pageSize - 1}" class="active" th:text="${pageInfo.pageSize - 1}"></li>
+								<li th:if="${pageInfo.pageNum != pageInfo.pageSize - 1}"><a th:href="@{/searchGoods(pageNum = ${pageInfo.pageSize - 1}, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}" th:text="${pageInfo.pageSize - 1}"></a></li>
+
+								<li th:if="${pageInfo.pageNum == pageInfo.pageSize}" class="active" th:text="${pageInfo.pageSize}"></li>
+								<li th:if="${pageInfo.pageNum != pageInfo.pageSize}"><a th:href="@{/searchGoods(pageNum = ${pageInfo.pageSize}, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}" th:text="${pageInfo.pageSize}"></a></li>
+
+								<li th:if="${pageInfo.hasNextPage == true}"><a th:href="@{/searchGoods(pageNum = ${pageInfo.pageNum + 1}, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}"><i class="fa fa-angle-right"></i></a></li>
+								<li th:if="${pageInfo.hasNextPage == false}">><i class="fa fa-angle-right"></i></li>
 							</ul>
 						</div>
 						<!-- /store bottom filter -->
