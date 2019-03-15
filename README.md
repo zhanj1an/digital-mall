@@ -20,4 +20,4 @@ springBoot + springCloud + mybatis + mysql + druid + thymeleaf + redis
 
 5. redis
 
-6. 商品是否推荐、是否打折字段添加
+6. 打折没想好怎么弄

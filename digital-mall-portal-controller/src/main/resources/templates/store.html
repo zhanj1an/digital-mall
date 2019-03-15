@@ -434,7 +434,7 @@
 										<img th:src="${goods.goodsSynopsis.imgUrlList.get(0)}" alt="" style="height: 160px">
 										<div class="product-label">
 											<span class="sale">-30%</span>
-											<span class="new">NEW</span>
+											<span class="new" th:if="${goods.isNew == 1}">NEW</span>
 										</div>
 									</div>
 									<div class="product-body">
