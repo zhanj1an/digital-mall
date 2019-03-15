@@ -1,8 +1,14 @@
 package com.zhan.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class DigitalMallAttribute {
     private Integer id;
 
@@ -11,45 +17,4 @@ public class DigitalMallAttribute {
     private Integer goodsId;
 
     private String updateTime;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
-
-    public Integer getGoodsId() {
-        return goodsId;
-    }
-
-    public void setGoodsId(Integer goodsId) {
-        this.goodsId = goodsId;
-    }
-
-    public String getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(String updateTime) {
-        this.updateTime = updateTime == null ? null : updateTime.trim();
-    }
-
-    public DigitalMallAttribute(String name, Integer goodsId, String updateTime) {
-        this.name = name;
-        this.goodsId = goodsId;
-        this.updateTime = updateTime;
-    }
-
-    public DigitalMallAttribute() {
-    }
 }

@@ -54,13 +54,14 @@ public class DigitalMallSkuController {
         String[] attrNames = attrName.split(",");
         //遍历生成商品属性信息
         for (int i = 0; i < attrNames.length; i++) {
-            DigitalMallAttribute attr = new DigitalMallAttribute(attrNames[i], goodsId, updateTime);
+            DigitalMallAttribute attr = DigitalMallAttribute.builder().name(attrNames[i]).goodsId(goodsId).updateTime(updateTime).build();
             int attrId = digitalMallAttributeService.insert(attr);
 
             //属性值添加
             for (String value : attrValue) {
                 String[] attrValues = value.split(",");
-                DigitalMallAttributeValue attributeValue = new DigitalMallAttributeValue(attrValues[i], attrId, goodsId, updateTime);
+                DigitalMallAttributeValue attributeValue = DigitalMallAttributeValue.builder().attrValue(attrValues[i]).
+                        attrId(attrId).goodsId(goodsId).updateTime(updateTime).build();
                 if(set.add(attributeValue)){
                     try {
                         digitalMallAttributeValueService.insert(attributeValue);
