@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!-- 数据库驱动包位置 -->
+    <classPathEntry location="/Users/oker/file/mybatis-generator/mysql-connector-java-8.0.14.jar" /> <!-- 1 -->
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+        <!-- 数据库链接URL、用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/digitalmall?characterEncoding=utf8" userId="root" password="root">  <!-- 2 -->
+        </jdbcConnection>
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+        <!-- 生成模型的包名和位置 --> <!-- 3 -->
+        <javaModelGenerator targetPackage="com.zhan.model" targetProject="/Users/oker/source/digital-mall/digital-mall-model/src/main/java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+        <!-- 生成的映射文件包名和位置 --> <!-- 4 -->
+        <sqlMapGenerator targetPackage="com.zhan.dao" targetProject="/Users/oker/source/digital-mall/digital-mall-dao/src/main/resources">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+        <!-- 生成DAO的包名和位置 --> <!-- 5 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.zhan.dao" targetProject="/Users/oker/source/digital-mall/digital-mall-dao/src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+        <!-- 要生成那些表(更改tableName和domainObjectName就可以) --><!-- 6 -->
+<!--         <table tableName="digital_mall_attribute" domainObjectName="DigitalMallAttribute"
+        enableCountByExample="false" enableUpdateByExample="false"
+        enableDeleteByExample="false" enableSelectByExample="false"
+        selectByExampleQueryId="false">  
+        </table> 
+         
+        <table tableName="digital_mall_attribute_value" domainObjectName="DigitalMallAttributeValue"
+        enableCountByExample="false" enableUpdateByExample="false"
+        enableDeleteByExample="false" enableSelectByExample="false"
+        selectByExampleQueryId="false">  
+        </table> 
+        <table tableName="digital_mall_brand" domainObjectName="DigitalMallBrand"
+        enableCountByExample="false" enableUpdateByExample="false"
+        enableDeleteByExample="false" enableSelectByExample="false"
+        selectByExampleQueryId="false">  
+        </table> 
+        <table tableName="digital_mall_category" domainObjectName="DigitalMallCategory"
+        enableCountByExample="false" enableUpdateByExample="false"
+        enableDeleteByExample="false" enableSelectByExample="false"
+        selectByExampleQueryId="false">  
+        </table> 
+        <table tableName="digital_mall_category_brand" domainObjectName="DigitalMallCategoryBrand"
+        enableCountByExample="false" enableUpdateByExample="false"
+        enableDeleteByExample="false" enableSelectByExample="false"
+        selectByExampleQueryId="false">  
+        </table>  -->
+        <!-- <table tableName="digital_mall_sku" domainObjectName="DigitalMallSku"
+        enableCountByExample="false" enableUpdateByExample="false"
+        enableDeleteByExample="false" enableSelectByExample="false"
+        selectByExampleQueryId="false">  
+        </table> -->
+        <table tableName="digital_mall_goods" domainObjectName="DigitalMallGoods"
+        enableCountByExample="false" enableUpdateByExample="false"
+        enableDeleteByExample="false" enableSelectByExample="false"
+        selectByExampleQueryId="false">  
+        </table>  
+    </context>
+</generatorConfiguration>
