@@ -66,7 +66,6 @@ public class DigitalMallGoodsController {
 
     @RequestMapping("/addGoods")
     public String addGoods(DigitalMallGoods goods, String otherCategory, String otherBrand){
-        System.out.println("addGoods:" + goods.toString());
         if(otherCategory != null && !"".equals(otherCategory)){
             goods.setCategoryId(digitalMallCategoryService.insert(otherCategory));
         }

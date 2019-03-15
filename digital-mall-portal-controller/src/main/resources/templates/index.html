@@ -279,14 +279,16 @@
 											<div class="product-img">
 												<img th:src="${goods.imgUrlList.get(0)}" alt="" style="height: 200px">
 												<div class="product-label">
-													<span class="sale">-30%</span>
+													<!--<span class="sale">-30%</span>-->
 													<span class="new">NEW</span>
 												</div>
 											</div>
 											<div class="product-body">
 												<p class="product-category" th:text="${goods.category}"></p>
 												<h3 class="product-name"><a th:href="@{/toGoodsView(goodsId = ${goods.goodsId}, goodsName = ${goods.goodsName}, lowestPrice = ${goods.lowestPrice}, highestPrice = ${goods.highestPrice}, goodsIntroduce = ${goods.goodsIntroduce}, imgUrlList = ${goods.imgUrlList}, desUrlList = ${goods.desUrlList})}" th:text="${goods.goodsName}"></a></h3>
-												<h4 class="product-price" th:text="${goods.lowestPrice}"><del class="product-old-price" th:text="${goods.lowestPrice + 100}"></del></h4>
+												<h4 class="product-price" th:text="${goods.lowestPrice}">
+													<!--<del class="product-old-price" th:text="${goods.lowestPrice + 100}"></del>-->
+												</h4>
 												<div class="product-rating">
 													<i class="fa fa-star"></i>
 													<i class="fa fa-star"></i>
