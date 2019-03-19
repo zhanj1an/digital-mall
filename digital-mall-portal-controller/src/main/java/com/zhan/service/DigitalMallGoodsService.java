@@ -1,11 +1,13 @@
 package com.zhan.service;
 
-import com.github.pagehelper.PageInfo;
-import com.zhan.model.DigitalMallGoods;
-import com.zhan.model.DigitalMallGoodsAttribute;
-import com.zhan.model.DigitalMallGoodsSynopsis;
-import com.zhan.model.DigitalMallSku;
+import com.zhan.model.*;
+import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -16,9 +18,13 @@ public class DigitalMallGoodsService {
 
     private RestTemplate restTemplate;
 
+    private GoodsRepository goodsRepository;
+
     @Autowired
-    public DigitalMallGoodsService(RestTemplate restTemplate) {
+    public DigitalMallGoodsService(RestTemplate restTemplate,
+                                   GoodsRepository goodsRepository) {
         this.restTemplate = restTemplate;
+        this.goodsRepository = goodsRepository;
     }
 
     @SuppressWarnings("unchecked")
@@ -37,13 +43,26 @@ public class DigitalMallGoodsService {
                 "&attribute=" + attribute, DigitalMallSku.class);
     }
 
-    @SuppressWarnings("unchecked")
-    public PageInfo<DigitalMallGoods> selectGoodsByCriteria(DigitalMallGoods goods){
-        return restTemplate.getForObject("http://portal-service/selectGoodsByCriteria" +
-                "?name=" + goods.getName() +
-                "&categoryId=" + goods.getCategoryId() +
-                "&brandId=" + goods.getBrandId() +
-                "&pageNum=" + goods.getPageNum() +
-                "&pageSize=" + goods.getPageSize(), PageInfo.class);
+
+    public Page<EsGoodsInfo> selectGoodsByCriteria(DigitalMallGoods goods){
+        BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery();
+
+        if(goods.getName() != null && !"".equals(goods.getName()) && !"null".equals(goods.getName())){
+            queryBuilder.must(QueryBuilders.termQuery("goodsName", goods.getName()));
+            System.out.println("goods.getName() != null");
+        }
+        if(goods.getBrandId() != null){
+            queryBuilder.must(QueryBuilders.termQuery("brandId", goods.getBrandId()));
+            System.out.println("goods.getBrandId() != null");
+        }
+        if(goods.getCategoryId() != null){
+            queryBuilder.must(QueryBuilders.termQuery("categoryId", goods.getCategoryId()));
+            System.out.println("goods.getCategoryId() != null");
+        }
+
+        Pageable pageable = PageRequest.of(goods.getPageNum(), 9, new Sort(Sort.Direction.DESC, "goodsRank"));
+        System.out.println("pageNum=" + goods.getPageNum());
+
+        return goodsRepository.search(queryBuilder, pageable);
     }
 }

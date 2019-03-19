@@ -41,7 +41,7 @@ public class DigitalMallGoods {
 
     private String updateTime;
 
-    private Integer pageNum = 1;
+    private Integer pageNum = 0;
 
     private Integer pageSize = 10;
 

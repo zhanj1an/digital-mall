@@ -1,13 +1,12 @@
 package com.zhan.controller;
 
-import com.zhan.model.DigitalMallGoods;
-import com.zhan.model.DigitalMallGoodsInfo;
-import com.zhan.model.DigitalMallGoodsSynopsis;
-import com.zhan.model.DigitalMallSku;
+import com.alibaba.fastjson.JSON;
+import com.zhan.model.*;
 import com.zhan.service.DigitalMallBrandService;
 import com.zhan.service.DigitalMallCategoryService;
 import com.zhan.service.DigitalMallGoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,8 +44,11 @@ public class DigitalMallGoodsController {
 
     @RequestMapping("/searchGoods")
     public String searchGoods(Model model, DigitalMallGoods goods){
-        System.out.println(goods.toString());
-        model.addAttribute("pageInfo", digitalMallGoodsService.selectGoodsByCriteria(goods));
+        Page<EsGoodsInfo> page = digitalMallGoodsService.selectGoodsByCriteria(goods);
+        page.getContent().forEach(g->
+                System.out.println(JSON.toJSONString(g)));
+        System.out.println(page.getContent().size());
+        model.addAttribute("page", page);
         model.addAttribute("name", goods.getName());
         model.addAttribute("brandId", goods.getBrandId());
         model.addAttribute("categoryId", goods.getCategoryId());
