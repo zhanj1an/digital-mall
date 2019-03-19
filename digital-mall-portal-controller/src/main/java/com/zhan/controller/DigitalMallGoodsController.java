@@ -44,11 +44,7 @@ public class DigitalMallGoodsController {
 
     @RequestMapping("/searchGoods")
     public String searchGoods(Model model, DigitalMallGoods goods){
-        Page<EsGoodsInfo> page = digitalMallGoodsService.selectGoodsByCriteria(goods);
-        page.getContent().forEach(g->
-                System.out.println(JSON.toJSONString(g)));
-        System.out.println(page.getContent().size());
-        model.addAttribute("page", page);
+        model.addAttribute("page", digitalMallGoodsService.selectGoodsByCriteria(goods));
         model.addAttribute("name", goods.getName());
         model.addAttribute("brandId", goods.getBrandId());
         model.addAttribute("categoryId", goods.getCategoryId());

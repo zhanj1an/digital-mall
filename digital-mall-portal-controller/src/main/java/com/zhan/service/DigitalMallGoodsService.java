@@ -49,19 +49,15 @@ public class DigitalMallGoodsService {
 
         if(goods.getName() != null && !"".equals(goods.getName()) && !"null".equals(goods.getName())){
             queryBuilder.must(QueryBuilders.termQuery("goodsName", goods.getName()));
-            System.out.println("goods.getName() != null");
         }
         if(goods.getBrandId() != null){
             queryBuilder.must(QueryBuilders.termQuery("brandId", goods.getBrandId()));
-            System.out.println("goods.getBrandId() != null");
         }
         if(goods.getCategoryId() != null){
             queryBuilder.must(QueryBuilders.termQuery("categoryId", goods.getCategoryId()));
-            System.out.println("goods.getCategoryId() != null");
         }
 
         Pageable pageable = PageRequest.of(goods.getPageNum(), 9, new Sort(Sort.Direction.DESC, "goodsRank"));
-        System.out.println("pageNum=" + goods.getPageNum());
 
         return goodsRepository.search(queryBuilder, pageable);
     }

@@ -466,54 +466,54 @@
 						<!-- /store products -->
 
 						<!-- store bottom filter -->
-						<!--<div class="store-filter clearfix">-->
-							<!--<span class="store-qty" th:text="${'显示第 ' + ((pageInfo.pageNum - 1) * pageInfo.pageSize) + ' ~ ' + ((pageInfo.pageNum - 1) * pageInfo.pageSize + pageInfo.size) + ' 件商品'}"></span>-->
-							<!--<ul class="store-pagination" th:if="${pageInfo.pages > 5}">-->
-								<!--<li th:if="${pageInfo.hasPreviousPage == true}"><a th:href="@{/searchGoods(pageNum = ${pageInfo.pageNum - 1}, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}"><i class="fa fa-angle-left"></i></a></li>-->
-								<!--<li th:if="${pageInfo.hasPreviousPage == false}"><i class="fa fa-angle-left"></i></li>-->
+						<div class="store-filter clearfix">
+							<!--<span class="store-qty" th:text="${'显示第 ' + ((page.number + 1 - 1) * page.totalPagesize) + ' ~ ' + ((page.number + 1 - 1) * page.totalPagesize + pageInfo.size) + ' 件商品'}"></span>-->
+							<ul class="store-pagination" th:if="${page.totalPages > 5}">
+								<li th:if="${page.hasPrevious() == true}"><a th:href="@{/searchGoods(pageNum = ${page.number - 1}, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}"><i class="fa fa-angle-left"></i></a></li>
+								<li th:if="${page.hasPrevious() == false}"><i class="fa fa-angle-left"></i></li>
 
-								<!--<li th:if="${pageInfo.pageNum == 1}" class="active">1</li>-->
-								<!--<li th:if="${pageInfo.pageNum != 1}"><a th:href="@{/searchGoods(pageNum = 1, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}">1</a></li>-->
+								<li th:if="${page.number + 1 == 1}" class="active">1</li>
+								<li th:if="${page.number + 1 != 1}"><a th:href="@{/searchGoods(pageNum = 0, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}">1</a></li>
 
-								<!--<li th:if="${pageInfo.pageNum == 2}" class="active">2</li>-->
-								<!--<li th:if="${pageInfo.pageNum != 2}"><a th:href="@{/searchGoods(pageNum = 2, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}">2</a></li>-->
+								<li th:if="${page.number + 1 == 2}" class="active">2</li>
+								<li th:if="${page.number + 1 != 2}"><a th:href="@{/searchGoods(pageNum = 1, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}">2</a></li>
 
-								<!--<li th:if="${pageInfo.pageNum > 3}">...</li>-->
-								<!--<li th:if="${pageInfo.pageNum > 2 && pageInfo.pageNum < pageInfo.pages - 1}" class="active" th:text="${pageInfo.pageNum}"></li>-->
-								<!--<li th:if="${pageInfo.pageNum < pageInfo.pages - 2}">...</li>-->
+								<li th:if="${page.number + 1 > 3}">...</li>
+								<li th:if="${page.number + 1 > 2 && page.number + 1 < page.totalPages - 1}" class="active" th:text="${page.number + 1}"></li>
+								<li th:if="${page.number + 1 < page.totalPages - 2}">...</li>
 
-								<!--<li th:if="${pageInfo.pageNum == pageInfo.pages - 1}" class="active" th:text="${pageInfo.pages - 1}"></li>-->
-								<!--<li th:if="${pageInfo.pageNum != pageInfo.pages - 1}"><a th:href="@{/searchGoods(pageNum = ${pageInfo.pages - 1}, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}" th:text="${pageInfo.pages - 1}"></a></li>-->
+								<li th:if="${page.number + 1 == page.totalPages - 1}" class="active" th:text="${page.totalPages - 1}"></li>
+								<li th:if="${page.number + 1 != page.totalPages - 1}"><a th:href="@{/searchGoods(pageNum = ${page.totalPages - 1}, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}" th:text="${page.totalPages - 1}"></a></li>
 
-								<!--<li th:if="${pageInfo.pageNum == pageInfo.pages}" class="active" th:text="${pageInfo.pages}"></li>-->
-								<!--<li th:if="${pageInfo.pageNum != pageInfo.pages}"><a th:href="@{/searchGoods(pageNum = ${pageInfo.pages}, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}" th:text="${pageInfo.pages}"></a></li>-->
+								<li th:if="${page.number + 1 == page.totalPages}" class="active" th:text="${page.totalPages}"></li>
+								<li th:if="${page.number + 1 != page.totalPages}"><a th:href="@{/searchGoods(pageNum = ${page.totalPages}, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}" th:text="${page.totalPages}"></a></li>
 
-								<!--<li th:if="${pageInfo.hasNextPage == true}"><a th:href="@{/searchGoods(pageNum = ${pageInfo.pageNum + 1}, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}"><i class="fa fa-angle-right"></i></a></li>-->
-								<!--<li th:if="${pageInfo.hasNextPage == false}"><i class="fa fa-angle-right"></i></li>-->
-							<!--</ul>-->
-							<!--<ul class="store-pagination" th:if="${pageInfo.pages <= 5}">-->
-								<!--<li th:if="${pageInfo.hasPreviousPage == true}"><a th:href="@{/searchGoods(pageNum = ${pageInfo.pageNum - 1}, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}"><i class="fa fa-angle-left"></i></a></li>-->
-								<!--<li th:if="${pageInfo.hasPreviousPage == false}"><i class="fa fa-angle-left"></i></li>-->
+								<li th:if="${page.hasPrevious()  == true}"><a th:href="@{/searchGoods(pageNum = ${page.number + 1}, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}"><i class="fa fa-angle-right"></i></a></li>
+								<li th:if="${page.hasPrevious()  == false}"><i class="fa fa-angle-right"></i></li>
+							</ul>
+							<ul class="store-pagination" th:if="${page.totalPages <= 5}">
+								<li th:if="${page.hasPrevious() == true}"><a th:href="@{/searchGoods(pageNum = ${page.number - 1}, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}"><i class="fa fa-angle-left"></i></a></li>
+								<li th:if="${page.hasPrevious() == false}"><i class="fa fa-angle-left"></i></li>
 
-								<!--<li th:if="${pageInfo.pageNum == 1}" class="active">1</li>-->
-								<!--<li th:if="${pageInfo.pageNum != 1}"><a th:href="@{/searchGoods(pageNum = 1, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}">1</a></li>-->
+								<li th:if="${page.number + 1 == 1}" class="active">1</li>
+								<li th:if="${page.number + 1 != 1}"><a th:href="@{/searchGoods(pageNum = 0, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}">1</a></li>
 
-								<!--<li th:if="${pageInfo.pageNum == 2 && pageInfo.pages >= 2}" class="active">2</li>-->
-								<!--<li th:if="${pageInfo.pageNum != 2 && pageInfo.pages >= 2}"><a th:href="@{/searchGoods(pageNum = 2, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}">2</a></li>-->
+								<li th:if="${page.number + 1 == 2 && page.totalPages >= 2}" class="active">2</li>
+								<li th:if="${page.number + 1 != 2 && page.totalPages >= 2}"><a th:href="@{/searchGoods(pageNum = 1, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}">2</a></li>
 
-								<!--<li th:if="${pageInfo.pageNum == 3 && pageInfo.pages >= 3}" class="active">3</li>-->
-								<!--<li th:if="${pageInfo.pageNum != 3 && pageInfo.pages >= 3}"><a th:href="@{/searchGoods(pageNum = 3, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}">3</a></li>-->
+								<li th:if="${page.number + 1 == 3 && page.totalPages >= 3}" class="active">3</li>
+								<li th:if="${page.number + 1 != 3 && page.totalPages >= 3}"><a th:href="@{/searchGoods(pageNum = 2, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}">3</a></li>
 
-								<!--<li th:if="${pageInfo.pageNum == 4 && pageInfo.pages >= 4}" class="active">4</li>-->
-								<!--<li th:if="${pageInfo.pageNum != 4 && pageInfo.pages >= 4}"><a th:href="@{/searchGoods(pageNum = 4, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}">4</a></li>-->
+								<li th:if="${page.number + 1 == 4 && page.totalPages >= 4}" class="active">4</li>
+								<li th:if="${page.number + 1 != 4 && page.totalPages >= 4}"><a th:href="@{/searchGoods(pageNum = 3, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}">4</a></li>
 
-								<!--<li th:if="${pageInfo.pageNum == 5 && pageInfo.pages == 5}" class="active">5</li>-->
-								<!--<li th:if="${pageInfo.pageNum != 5 && pageInfo.pages == 5}"><a th:href="@{/searchGoods(pageNum = 5, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}">5</a></li>-->
+								<li th:if="${page.number + 1 == 5 && page.totalPages == 5}" class="active">5</li>
+								<li th:if="${page.number + 1 != 5 && page.totalPages == 5}"><a th:href="@{/searchGoods(pageNum = 4, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}">5</a></li>
 
-								<!--<li th:if="${pageInfo.hasNextPage == true}"><a th:href="@{/searchGoods(pageNum = ${pageInfo.pageNum + 1}, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}"><i class="fa fa-angle-right"></i></a></li>-->
-								<!--<li th:if="${pageInfo.hasNextPage == false}"><i class="fa fa-angle-right"></i></li>-->
-							<!--</ul>-->
-						<!--</div>-->
+								<li th:if="${page.hasNext() == true}"><a th:href="@{/searchGoods(pageNum = ${page.number + 1}, name = ${name}, brandId = ${brandId}, categoryId = ${categoryId})}"><i class="fa fa-angle-right"></i></a></li>
+								<li th:if="${page.hasNext()   == false}"><i class="fa fa-angle-right"></i></li>
+							</ul>
+						</div>
 						<!-- /store bottom filter -->
 					</div>
 					<!-- /STORE -->
