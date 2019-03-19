@@ -43,7 +43,6 @@ public class DigitalMallGoodsService {
                 "&attribute=" + attribute, DigitalMallSku.class);
     }
 
-
     public Page<EsGoodsInfo> selectGoodsByCriteria(DigitalMallGoods goods){
         BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery();
 
