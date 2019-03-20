@@ -10,14 +10,13 @@ springBoot + springCloud + mybatis + mysql + druid + thymeleaf + redis
 
 ## 待完成
 
-1. 添加购物车
+1. 前后台单点登录
 
-2. 登录
+2. 添加购物车，存redis，持久化到es
 
-3. 下单
+3. 下单，模拟支付过程
 
-4. 订单管理
+4. 后台订单管理，模拟发货
 
-5. redis
+5. 前台检索订单，退款，查看订单信息等
 
-6. 打折没想好怎么弄
