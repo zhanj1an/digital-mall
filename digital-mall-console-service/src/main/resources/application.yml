@@ -1,9 +1,9 @@
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8888/eureka/
+      defaultZone: http://localhost:10000/eureka/
 server:
-  port: 8762
+  port: 10011
 spring:
   application:
     name: console-service

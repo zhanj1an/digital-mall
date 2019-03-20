@@ -1,9 +1,9 @@
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8888/eureka/
+      defaultZone: http://localhost:10000/eureka/
 server:
-  port: 8765
+  port: 10020
 spring:
   application:
     name: portal-controller
