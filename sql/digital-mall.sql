@@ -11,7 +11,7 @@
  Target Server Version : 80013
  File Encoding         : 65001
 
- Date: 14/03/2019 19:20:22
+ Date: 20/03/2019 15:00:41
 */
 
 SET NAMES utf8mb4;
@@ -170,31 +170,31 @@ CREATE TABLE `digital_mall_goods` (
 BEGIN;
 INSERT INTO `digital_mall_goods` VALUES (24, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg,\\upload\\iphonex-4.png', 'iphonex 64G 256G 深空灰 黑色 白色 5.8英寸全面屏', '\\upload\\iphonex-des.jpg', 0, 1, 1, 100, 0, '1552550065328');
 INSERT INTO `digital_mall_goods` VALUES (30, 'mac book pro', 1, 1, '\\upload\\macpro-1.png,\\upload\\macpro-2.png', 'Apple MacBook Pro 13.3英寸笔记本电脑 深空灰色 2018新款（四核八代i5 8G 256G固态硬盘 MR9Q2CH/A）', '\\upload\\macpro-des-1.jpg,\\upload\\macpro-des-2.jpg,\\upload\\macpro-des-3.jpg,\\upload\\macpro-des-4.jpg', 0, 1, 1, 99, 0, '1550042450864');
-INSERT INTO `digital_mall_goods` VALUES (32, 'iphonex-2', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 0, 0, 98, 1, '1552012215229');
-INSERT INTO `digital_mall_goods` VALUES (33, 'iphonex-3', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 1, 1, 4, 0, '1552012215346');
-INSERT INTO `digital_mall_goods` VALUES (34, 'iphonex-4', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 1, 1, 10, 0, '1552012215360');
-INSERT INTO `digital_mall_goods` VALUES (35, 'iphonex-5', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 1, 1, 6, 0, '1552012215373');
-INSERT INTO `digital_mall_goods` VALUES (36, 'iphonex-6', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 1, 1, 2, 0, '1552012215385');
-INSERT INTO `digital_mall_goods` VALUES (37, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 1, 1, 0, 0, '1552012215395');
-INSERT INTO `digital_mall_goods` VALUES (38, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 1, 1, 0, 0, '1552012215408');
-INSERT INTO `digital_mall_goods` VALUES (39, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 1, 0, 0, 0, '1552012215419');
-INSERT INTO `digital_mall_goods` VALUES (40, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 1, 0, 0, 0, '1552012215434');
-INSERT INTO `digital_mall_goods` VALUES (41, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 1, 0, 0, 0, '1552012215447');
-INSERT INTO `digital_mall_goods` VALUES (42, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 1, 0, 0, 0, '1552012215462');
-INSERT INTO `digital_mall_goods` VALUES (43, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 1, 0, 0, 0, '1552012215474');
-INSERT INTO `digital_mall_goods` VALUES (44, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 1, 0, 0, 0, '1552012215487');
-INSERT INTO `digital_mall_goods` VALUES (45, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 1, 0, 0, 0, '1552012215499');
-INSERT INTO `digital_mall_goods` VALUES (46, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 1, 0, 0, 0, '1552012215511');
-INSERT INTO `digital_mall_goods` VALUES (47, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 1, 0, 0, 0, '1552012215535');
-INSERT INTO `digital_mall_goods` VALUES (48, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 1, 0, 0, 0, '1552012215549');
-INSERT INTO `digital_mall_goods` VALUES (49, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 1, 0, 0, 0, '1552012215563');
-INSERT INTO `digital_mall_goods` VALUES (50, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 1, 0, 0, 0, '1552012215574');
-INSERT INTO `digital_mall_goods` VALUES (51, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 1, 0, 0, 0, '1552012215585');
-INSERT INTO `digital_mall_goods` VALUES (52, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 1, 0, 0, 0, '1552012215598');
-INSERT INTO `digital_mall_goods` VALUES (53, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 1, 0, 0, 0, '1552012215609');
-INSERT INTO `digital_mall_goods` VALUES (54, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 1, 0, 0, 0, '1552012215620');
-INSERT INTO `digital_mall_goods` VALUES (55, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 1, 0, 0, 0, '1552012215630');
-INSERT INTO `digital_mall_goods` VALUES (56, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 1, 0, 0, 0, '1552012215639');
+INSERT INTO `digital_mall_goods` VALUES (32, 'iphonex-2', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 1, 0, 98, 0, '1552012215229');
+INSERT INTO `digital_mall_goods` VALUES (33, 'iphonex-3', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 0, 1, 4, 0, '1552012215346');
+INSERT INTO `digital_mall_goods` VALUES (34, 'iphonex-4', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 0, 1, 10, 0, '1552012215360');
+INSERT INTO `digital_mall_goods` VALUES (35, 'iphonex-5', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 0, 1, 6, 0, '1552012215373');
+INSERT INTO `digital_mall_goods` VALUES (36, 'iphonex-6', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 0, 1, 2, 0, '1552012215385');
+INSERT INTO `digital_mall_goods` VALUES (37, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 0, 1, 0, 0, '1552012215395');
+INSERT INTO `digital_mall_goods` VALUES (38, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 0, 1, 0, 0, '1552012215408');
+INSERT INTO `digital_mall_goods` VALUES (39, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 0, 0, 0, 0, '1552012215419');
+INSERT INTO `digital_mall_goods` VALUES (40, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 0, 0, 0, 0, '1552012215434');
+INSERT INTO `digital_mall_goods` VALUES (41, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 0, 0, 0, 0, '1552012215447');
+INSERT INTO `digital_mall_goods` VALUES (42, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 0, 0, 0, 0, '1552012215462');
+INSERT INTO `digital_mall_goods` VALUES (43, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 0, 0, 0, 0, '1552012215474');
+INSERT INTO `digital_mall_goods` VALUES (44, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 0, 0, 0, 0, '1552012215487');
+INSERT INTO `digital_mall_goods` VALUES (45, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 0, 0, 0, 0, '1552012215499');
+INSERT INTO `digital_mall_goods` VALUES (46, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 0, 0, 0, 0, '1552012215511');
+INSERT INTO `digital_mall_goods` VALUES (47, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 0, 0, 0, 0, '1552012215535');
+INSERT INTO `digital_mall_goods` VALUES (48, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 0, 0, 0, 0, '1552012215549');
+INSERT INTO `digital_mall_goods` VALUES (49, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 0, 0, 0, 0, '1552012215563');
+INSERT INTO `digital_mall_goods` VALUES (50, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 0, 0, 0, 0, '1552012215574');
+INSERT INTO `digital_mall_goods` VALUES (51, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 0, 0, 0, 0, '1552012215585');
+INSERT INTO `digital_mall_goods` VALUES (52, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 0, 0, 0, 0, '1552012215598');
+INSERT INTO `digital_mall_goods` VALUES (53, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 0, 0, 0, 0, '1552012215609');
+INSERT INTO `digital_mall_goods` VALUES (54, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 0, 0, 0, 0, '1552012215620');
+INSERT INTO `digital_mall_goods` VALUES (55, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 0, 0, 0, 0, '1552012215630');
+INSERT INTO `digital_mall_goods` VALUES (56, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 0, 0, 0, 0, '1552012215639');
 INSERT INTO `digital_mall_goods` VALUES (57, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 1, 0, 0, 0, '1552012215649');
 INSERT INTO `digital_mall_goods` VALUES (58, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 1, 0, 0, 0, '1552012215661');
 INSERT INTO `digital_mall_goods` VALUES (59, 'iphonex', 2, 1, '\\upload\\iphonex-1.jpg,\\upload\\iphonex-2.jpg,\\upload\\iphonex-3.jpg', 'iphonex 64G 256G 深空灰 黑色 白色', '\\upload\\iphonex-des.jpg', 0, 1, 0, 0, 0, '1552012215673');
