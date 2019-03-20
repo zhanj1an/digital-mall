@@ -7,10 +7,10 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 @EnableEurekaServer
 @SpringBootApplication(exclude= {DataSourceAutoConfiguration.class})
-public class DigitalMallServerApplication {
+public class DigitalMallEurekaServerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DigitalMallServerApplication.class, args);
+		SpringApplication.run(DigitalMallEurekaServerApplication.class, args);
 	}
 
 }

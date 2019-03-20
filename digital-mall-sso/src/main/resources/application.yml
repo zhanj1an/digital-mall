@@ -1,0 +1,9 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:10000/eureka/
+server:
+  port: 10030
+spring:
+  application:
+    name: sso

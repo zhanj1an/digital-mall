@@ -17,13 +17,14 @@
     <modules>
         <module>digital-mall-model</module>
         <module>digital-mall-dao</module>
-        <module>digital-mall-server</module>
+        <module>digital-mall-eureka-server</module>
         <module>digital-mall-console-controller</module>
         <module>digital-mall-console-service</module>
         <module>digital-mall-interface</module>
         <module>digital-mall-portal-controller</module>
         <module>digital-mall-portal-service</module>
         <module>digital-mall-es</module>
+        <module>digital-mall-sso</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>
