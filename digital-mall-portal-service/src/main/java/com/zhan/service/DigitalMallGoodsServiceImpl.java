@@ -36,12 +36,11 @@ public class DigitalMallGoodsServiceImpl implements DigitalMallGoodsService {
         List<DigitalMallGoodsSynopsis> goodsSynopsisList = new ArrayList<>();
 
         //获取五个滚动显示的商品简介信息
-        for (int i = 0; i < 5; i++) {
-            EsGoodsInfo goodsInfo = goodsInfos.get(i);
+        for (EsGoodsInfo goodsInfo : goodsInfos) {
             goodsSynopsisList.add(new DigitalMallGoodsSynopsis(goodsInfo.getGoodsId(), goodsInfo.getGoodsName(), goodsInfo.getCategoryName(),
-                    goodsInfo.getLowestPrice(), goodsInfo.getHighestPrice(), goodsInfo.getGoodsIntroduce(), goodsInfo.getImgUrlList(), goodsInfo.getDesUrlList()));
+                    goodsInfo.getLowestPrice(), goodsInfo.getHighestPrice(), goodsInfo.getGoodsIntroduce(),
+                    goodsInfo.getImgUrlList(), goodsInfo.getDesUrlList()));
         }
-
         return goodsSynopsisList;
     }
 
