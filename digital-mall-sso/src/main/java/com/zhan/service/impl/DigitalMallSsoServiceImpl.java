@@ -18,6 +18,8 @@ public class DigitalMallSsoServiceImpl implements DigitalMallSsoService {
 
     private static final String COOKIE_NAME = "DIGITAL_MALL_TOKEN";
 
+    private static final String STATIC_URL = "http://localhost:10010/images";
+
     private RedisTemplate redisTemplate;
 
     @Autowired
@@ -33,22 +35,25 @@ public class DigitalMallSsoServiceImpl implements DigitalMallSsoService {
         String token;
         String userName = null;
 
-        if(cookies != null && cookies.length > 0){
-            for (Cookie cookie : cookies) {
-                if(COOKIE_NAME.equals(cookie.getName())){
-                    token = cookie.getValue();
-
-                    if(redisTemplate.opsForValue().get(token) != null){
-                        userName = redisTemplate.opsForValue().get(token).toString();
+        if(!request.getRequestURL().toString().contains(STATIC_URL)) {
+            if (cookies != null && cookies.length > 0) {
+                for (Cookie cookie : cookies) {
+                    if (COOKIE_NAME.equals(cookie.getName())) {
+                        token = cookie.getValue();
+                        if (redisTemplate.opsForValue().get(token) != null) {
+                            userName = (String)redisTemplate.opsForValue().get(token);
+                        }
                     }
                 }
             }
-        }
 
-        if(userName != null){
-            filterChain.doFilter(servletRequest, servletResponse);
+            if (userName != null) {
+                filterChain.doFilter(servletRequest, servletResponse);
+            } else {
+                servletRequest.getRequestDispatcher("/toLoginPage").forward(servletRequest, servletResponse);
+            }
         }else{
-            servletRequest.getRequestDispatcher("/toLoginPage").forward(servletRequest, servletResponse);
+            filterChain.doFilter(servletRequest, servletResponse);
         }
     }
 }
