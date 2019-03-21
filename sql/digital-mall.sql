@@ -11,7 +11,7 @@
  Target Server Version : 80013
  File Encoding         : 65001
 
- Date: 20/03/2019 15:00:41
+ Date: 21/03/2019 16:34:46
 */
 
 SET NAMES utf8mb4;
@@ -308,6 +308,25 @@ INSERT INTO `digital_mall_sku` VALUES (75, 77, '测试', '测试', 0.00, 6000.00
 INSERT INTO `digital_mall_sku` VALUES (76, 78, '测试', '测试', 0.00, 6000.00, 0, 0, '1552300972813');
 INSERT INTO `digital_mall_sku` VALUES (77, 79, '测试', '测试', 0.00, 6000.00, 0, 0, '1552300972827');
 INSERT INTO `digital_mall_sku` VALUES (78, 80, '测试', '测试', 0.00, 6000.00, 0, 0, '1552300972839');
+COMMIT;
+
+-- ----------------------------
+-- Table structure for digital_mall_user
+-- ----------------------------
+DROP TABLE IF EXISTS `digital_mall_user`;
+CREATE TABLE `digital_mall_user` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `username` varchar(20) NOT NULL,
+  `password` varchar(20) NOT NULL,
+  `user_type` int(10) NOT NULL COMMENT '1.管理员，2.买家',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of digital_mall_user
+-- ----------------------------
+BEGIN;
+INSERT INTO `digital_mall_user` VALUES (1, 'admin', 'admin', 1);
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
