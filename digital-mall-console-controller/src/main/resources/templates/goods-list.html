@@ -64,15 +64,13 @@
             </th>
             <th>商品ID</th>
             <th>商品名</th>
-            <th>分类</th>
-            <th>品牌</th>
             <th>图片</th>
-            <th>简介</th>
+            <th style="width: 200px">简介</th>
             <th>详情图片</th>
             <th>销售额</th>
+            <th>排序系数</th>
             <th>上架状态</th>
             <th>是否新品</th>
-            <th>排序系数</th>
             <th>操作</th>
           </tr>
         </thead>
@@ -83,13 +81,13 @@
             </td>
             <td th:text="${goods.id}"></td>
             <td th:text="${goods.name}"></td>
-            <td th:each="category:${categoryList}" th:if="${goods.categoryId == category.id}" th:text="${category.name}"></td>
-            <td th:each="brand:${brandList}" th:if="${goods.brandId == brand.id}" th:text="${brand.name}"></td>
+            <!--<td th:each="category:${categoryList}" th:if="${goods.categoryId == category.id}" th:text="${category.name}"></td>-->
+            <!--<td th:each="brand:${brandList}" th:if="${goods.brandId == brand.id}" th:text="${brand.name}"></td>-->
             <td><img title="商品图片" width="100px" height="100px" th:src="${goods.imageUrl}" onclick="viewBigImage(this.src)"></td>
             <td th:text="${goods.introduce}"></td>
             <td><img title="商品详情图片" width="100px" height="100px" th:src="${goods.desUrl}" onclick="viewBigImage(this.src)"></td>
             <td th:text="${goods.saleNum}"></td>
-
+            <td th:text="${goods.goodsRank}"></td>
             <td th:if="${goods.isDelete == 0}">
               <button th:if="${goods.isShow == 1}" class="layui-btn layui-btn-normal layui-btn-mini" title="商品下架" th:name="${goods.name}" th:id="${goods.id}" onclick="hideGoods(this.id, this.name)">已上架</button>
               <button th:if="${goods.isShow == 0}" class="layui-btn layui-btn-danger layui-btn-mini" title="商品上架" th:name="${goods.name}" th:id="${goods.id}" onclick="showGoods(this.id, this.name)">已下架</button>
@@ -97,12 +95,11 @@
             <td th:if="${goods.isDelete == 1}">商品已删除</td>
 
             <td th:if="${goods.isDelete == 0}">
-              <button th:if="${goods.isNew == 1}" class="layui-btn layui-btn-normal layui-btn-mini" th:name="${goods.id}" th:id="${goods.name}" onclick="setGoodsIsOld(this.name, this.id)" >新品推荐</button>
-              <button th:if="${goods.isNew == 0}" class="layui-btn layui-btn-danger layui-btn-mini" th:name="${goods.id}" th:id="${goods.name}" onclick="setGoodsIsNew(this.name, this.id)" >非新品</button>
+              <button style="width: 90px" th:if="${goods.isNew == 1}" class="layui-btn layui-btn-normal layui-btn-mini" th:name="${goods.id}" th:id="${goods.name}" onclick="setGoodsIsOld(this.name, this.id)" >新品推荐</button>
+              <button style="width: 90px" th:if="${goods.isNew == 0}" class="layui-btn layui-btn-danger layui-btn-mini" th:name="${goods.id}" th:id="${goods.name}" onclick="setGoodsIsNew(this.name, this.id)" >非新品</button>
             </td>
             <td th:if="${goods.isDelete == 1}">商品已删除</td>
 
-            <td th:text="${goods.goodsRank}"></td>
             <td class="td-manage" th:if="${goods.isDelete == 0}">
               <a title="编辑" th:name="${goods.id}" onclick="x_admin_show('编辑商品','./toUpdateGoodsView?id=' + this.name,900,600)" href="javascript:void(0);">
                 <i class="layui-icon">&#xe642;</i>

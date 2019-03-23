@@ -79,11 +79,11 @@
 										<option value="">商品分类</option>
 										<option name="categoryId" th:each="category:${categoryList}" th:value="${category.id}" th:text="${category.name}" th:selected="${categoryId == category.id}"></option>
 									</select>
-									<select class="input-select" name="brandId">
+									<select class="input-select" style="border-radius: 0px;" name="brandId">
 										<option value="">商品品牌</option>
 										<option name="brandId" th:each="brand:${brandList}" th:value="${brand.id}" th:text="${brand.name}" th:selected="${brandId == brand.id}"></option>
 									</select>
-									<input style="width: 200px" th:value="${name}" name="name" class="input" placeholder="请输入商品名称">
+									<input style="width: 150px" th:value="${name}" name="name" class="input" placeholder="请输入商品名称">
 									<button class="search-btn" type="submit">查找</button>
 								</form>
 							</div>
@@ -125,7 +125,7 @@
 
 											<div class="product-widget">
 												<div class="product-img">
-													<img src="./img/product02.png" alt="">
+													<img src="./img/product02.png" alt="" style="width: 160px; height: 160px">
 												</div>
 												<div class="product-body">
 													<h3 class="product-name"><a href="#">product name goes here</a></h3>

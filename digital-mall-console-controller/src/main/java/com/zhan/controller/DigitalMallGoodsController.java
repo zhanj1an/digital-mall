@@ -84,7 +84,7 @@ public class DigitalMallGoodsController {
     @RequestMapping("/upload")
     public List<String> upload(MultipartFile[] goodsFile){
         List<String> imageList = new ArrayList<>();
-        String path = "/Users/oker/project/digital-mall/digital-mall-console-controller/src/main/resources/static/upload";
+        String path = "C:\\project\\digital-mall\\digital-mall-console-controller\\src\\main\\resources\\static\\upload";
         for(MultipartFile file : goodsFile) {
             try {
                 file.transferTo(new File(path + File.separator+ file.getOriginalFilename()));
@@ -100,7 +100,7 @@ public class DigitalMallGoodsController {
     @RequestMapping("/desUpload")
     public List<String> desUpload(MultipartFile[] desFile){
         List<String> desImageList = new ArrayList<>();
-        String path = "/Users/oker/project/digital-mall/digital-mall-console-controller/src/main/resources/static/upload";
+        String path = "C:\\project\\digital-mall\\digital-mall-console-controller\\src\\main\\resources\\static\\upload";
         for(MultipartFile f : desFile) {
             try {
                 f.transferTo(new File(path + File.separator+ f.getOriginalFilename()));

@@ -22,6 +22,7 @@ public class DigitalMallSkuServiceImpl implements DigitalMallSkuService {
 
     @Override
     public void insert(DigitalMallSku sku) {
+        sku.setOldPrice(0.0);
         digitalMallSkuMapper.insert(sku);
     }
 

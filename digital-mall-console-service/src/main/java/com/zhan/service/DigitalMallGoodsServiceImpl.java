@@ -64,6 +64,8 @@ public class DigitalMallGoodsServiceImpl implements DigitalMallGoodsService {
         digitalMallGoods.setIsDelete(0);
         digitalMallGoods.setIsShow(0);
         digitalMallGoods.setSaleNum(0);
+        digitalMallGoods.setIsNew(0);
+        digitalMallGoods.setGoodsRank(0);
         digitalMallGoods.setUpdateTime(System.currentTimeMillis() + "");
         digitalMallGoodsMapper.insert(digitalMallGoods);
     }
@@ -83,6 +85,11 @@ public class DigitalMallGoodsServiceImpl implements DigitalMallGoodsService {
     @Override
     public void updateGoods(DigitalMallGoods goods) {
         goods.setUpdateTime(System.currentTimeMillis() + "");
+        EsGoodsInfo goodsInfo = goodsRepository.findById(goods.getId()).orElse(null);
+        if(goodsInfo != null){
+            goodsInfo.setGoodsRank(goods.getGoodsRank());
+            goodsRepository.save(goodsInfo);
+        }
         digitalMallGoodsMapper.updateByPrimaryKey(goods);
     }
 
@@ -146,6 +153,11 @@ public class DigitalMallGoodsServiceImpl implements DigitalMallGoodsService {
     public Integer setGoodsIsNew(int id) {
         DigitalMallGoods goods = digitalMallGoodsMapper.selectByPrimaryKey(id);
         goods.setIsNew(1);
+        EsGoodsInfo goodsInfo = goodsRepository.findById(id).orElse(null);
+        if(goodsInfo != null) {
+            goodsInfo.setIsNew(1);
+            goodsRepository.save(goodsInfo);
+        }
         return digitalMallGoodsMapper.updateByPrimaryKey(goods);
     }
 
