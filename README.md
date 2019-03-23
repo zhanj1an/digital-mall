@@ -20,3 +20,7 @@ springBoot + springCloud + mybatis + mysql + druid + thymeleaf + redis
 
 5. 前台检索订单，退款，查看订单信息等
 
+6. 修改商品信息同步到es
+
+7. 图片存储到图片服务器
+
