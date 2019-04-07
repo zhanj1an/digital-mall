@@ -17,8 +17,7 @@ public class DigitalMallSsoApplicationTests {
 	@SuppressWarnings("unchecked")
 	@Test
 	public void contextLoads() {
-		redisTemplate.opsForValue().set("test", "1234");
-		System.out.println(redisTemplate.opsForValue().get("test").toString());
+		System.out.println(redisTemplate.opsForValue().get("f6de9bf4-f5f7-4c86-8fe3-e0a614eef114").toString());
 	}
 
 }

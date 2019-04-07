@@ -1,12 +1,18 @@
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:10000/eureka/
+      defaultZone: http://localhost:20000/eureka/
 server:
   port: 10030
 spring:
   application:
     name: sso
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://47.93.10.163:3306/digital_mall?characterEncoding=UTF-8&serverTimezone=GMT
+    username: root
+    password: Zhanjian_123
   redis:
-    host: 127.0.0.1
+    host: 47.93.10.163
     port: 6379

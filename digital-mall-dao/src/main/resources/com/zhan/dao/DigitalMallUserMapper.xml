@@ -19,7 +19,7 @@
   <select id="selectAdminUser" resultMap="BaseResultMap" parameterType="com.zhan.model.DigitalMallUser">
     select
     <include refid="Base_Column_List" />
-    form digital_mall_user
+    from digital_mall_user
     where username = #{username,jdbcType=VARCHAR}
     and password = #{password,jdbcType=VARCHAR}
     and user_type = 1
@@ -27,7 +27,7 @@
   <select id="selectGeneralUser" resultMap="BaseResultMap" parameterType="com.zhan.model.DigitalMallUser">
     select
     <include refid="Base_Column_List" />
-    form digital_mall_user
+    from digital_mall_user
     where username = #{username,jdbcType=VARCHAR}
     and password = #{password,jdbcType=VARCHAR}
     and user_type = 2

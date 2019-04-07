@@ -1,0 +1,5 @@
+spring:
+  data:
+    elasticsearch:
+      cluster-name: aliyun-es
+      cluster-nodes: 47.93.10.163:9300
