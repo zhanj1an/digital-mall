@@ -1,17 +1,18 @@
 package com.zhan.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.zhan.model.*;
 import com.zhan.service.DigitalMallBrandService;
+import com.zhan.service.DigitalMallCartService;
 import com.zhan.service.DigitalMallCategoryService;
 import com.zhan.service.DigitalMallGoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,13 +26,17 @@ public class DigitalMallGoodsController {
 
     private DigitalMallCategoryService digitalMallCategoryService;
 
+    private DigitalMallCartService digitalMallCartService;
+
     @Autowired
     public DigitalMallGoodsController(DigitalMallGoodsService digitalMallGoodsService,
                                       DigitalMallBrandService digitalMallBrandService,
-                                      DigitalMallCategoryService digitalMallCategoryService) {
+                                      DigitalMallCategoryService digitalMallCategoryService,
+                                      DigitalMallCartService digitalMallCartService) {
         this.digitalMallGoodsService = digitalMallGoodsService;
         this.digitalMallBrandService = digitalMallBrandService;
         this.digitalMallCategoryService = digitalMallCategoryService;
+        this.digitalMallCartService = digitalMallCartService;
     }
 
     @RequestMapping("/index")
@@ -79,10 +84,8 @@ public class DigitalMallGoodsController {
 
     @ResponseBody
     @RequestMapping("/addToCart")
-    public int addToCart(String number, String skuId){
-        System.out.println(number);
-        System.out.println(skuId);
-        return 1;
+    public void addToCart(String number, String skuId, ServletRequest servletRequest, ServletResponse servletResponse){
+        digitalMallCartService.addToCart(number, skuId, servletRequest, servletResponse);
     }
 
 

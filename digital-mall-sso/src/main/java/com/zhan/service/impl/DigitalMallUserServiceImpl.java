@@ -16,7 +16,9 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class DigitalMallUserServiceImpl implements DigitalMallUserService {
 
-    private static final String COOKIE_NAME = "DIGITAL_MALL_TOKEN";
+    private static final String CONTROLLER_COOKIE_NAME = "CONTROLLER_TOKEN";
+
+//    private static final String PORTAL_COOKIE_NAME = "PORTAL_TOKEN";
 
     private DigitalMallUserMapper digitalMallUserMapper;
 
@@ -36,7 +38,7 @@ public class DigitalMallUserServiceImpl implements DigitalMallUserService {
             return 0;
         }
         String uuid = UUID.randomUUID().toString();
-        Cookie cookie = new Cookie(COOKIE_NAME, uuid);
+        Cookie cookie = new Cookie(CONTROLLER_COOKIE_NAME, uuid);
         cookie.setMaxAge(5 * 60);
         response.addCookie(cookie);
         redisTemplate.opsForValue().set(uuid, user.getId(), 5, TimeUnit.MINUTES);
