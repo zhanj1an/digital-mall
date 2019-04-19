@@ -1,5 +1,6 @@
 package com.zhan.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.zhan.model.*;
 import com.zhan.service.DigitalMallBrandService;
 import com.zhan.service.DigitalMallCartService;
@@ -40,7 +41,8 @@ public class DigitalMallGoodsController {
     }
 
     @RequestMapping("/index")
-    public String index(Model model){
+    public String index(Model model, ServletRequest servletRequest){
+        model.addAttribute("cartInfo", digitalMallCartService.getCartInfo(servletRequest));
         model.addAttribute("goodsSynopsisList",digitalMallGoodsService.getRollGoodsSynopsis());
         model.addAttribute("brandList", digitalMallBrandService.getBrandList());
         model.addAttribute("categoryList", digitalMallCategoryService.getCategoryList());
@@ -87,6 +89,5 @@ public class DigitalMallGoodsController {
     public void addToCart(String number, String skuId, ServletRequest servletRequest, ServletResponse servletResponse){
         digitalMallCartService.addToCart(number, skuId, servletRequest, servletResponse);
     }
-
 
 }
