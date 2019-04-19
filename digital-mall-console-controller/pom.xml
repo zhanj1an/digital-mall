@@ -6,7 +6,7 @@
         <groupId>com.zhan</groupId>
         <artifactId>digital-mall</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-<!--        <relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;-->
+        <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <artifactId>digital-mall-console-controller</artifactId>
     <version>0.0.1-SNAPSHOT</version>
