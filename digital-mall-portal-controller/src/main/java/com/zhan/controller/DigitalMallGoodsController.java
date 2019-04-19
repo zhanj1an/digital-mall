@@ -90,4 +90,9 @@ public class DigitalMallGoodsController {
         digitalMallCartService.addToCart(number, skuId, servletRequest, servletResponse);
     }
 
+    @RequestMapping("/login")
+    public String login(){
+        return "login";
+    }
+
 }
