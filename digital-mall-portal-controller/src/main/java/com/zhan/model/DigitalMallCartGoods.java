@@ -6,6 +6,7 @@ import lombok.Data;
 @Data
 @Builder
 public class DigitalMallCartGoods {
+    private int skuId;
     private String goodsName;
     private String goodsAttr;
     private String imgUrl;

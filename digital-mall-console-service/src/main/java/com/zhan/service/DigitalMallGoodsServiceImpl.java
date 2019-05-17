@@ -74,6 +74,7 @@ public class DigitalMallGoodsServiceImpl implements DigitalMallGoodsService {
     public Integer deleteGoods(int id) {
         DigitalMallGoods goods = digitalMallGoodsMapper.selectByPrimaryKey(id);
         goods.setIsDelete(1);
+        goodsRepository.deleteById(id);
         return digitalMallGoodsMapper.updateByPrimaryKey(goods);
     }
 
@@ -165,6 +166,11 @@ public class DigitalMallGoodsServiceImpl implements DigitalMallGoodsService {
     public Integer setGoodsIsOld(int id) {
         DigitalMallGoods goods = digitalMallGoodsMapper.selectByPrimaryKey(id);
         goods.setIsNew(0);
+        EsGoodsInfo goodsInfo = goodsRepository.findById(id).orElse(null);
+        if(goodsInfo != null) {
+            goodsInfo.setIsNew(0);
+            goodsRepository.save(goodsInfo);
+        }
         return digitalMallGoodsMapper.updateByPrimaryKey(goods);
     }
 

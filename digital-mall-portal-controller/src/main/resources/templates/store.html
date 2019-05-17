@@ -64,7 +64,7 @@
 						<!-- LOGO -->
 						<div class="col-md-3">
 							<div class="header-logo">
-								<a href="#" class="logo">
+								<a href="/index" class="logo">
 									<img src="./img/logo.png" alt="">
 								</a>
 							</div>
@@ -94,53 +94,45 @@
 						<div class="col-md-3 clearfix">
 							<div class="header-ctn">
 								<!-- Wishlist -->
-								<div>
-									<a href="#">
-										<i class="fa fa-heart-o"></i>
-										<span>Your Wishlist</span>
-										<div class="qty">2</div>
-									</a>
-								</div>
+<!--								<div>-->
+<!--									<a href="#">-->
+<!--										<i class="fa fa-heart-o"></i>-->
+<!--										<span>我的愿望单</span>-->
+<!--										<div class="qty">2</div>-->
+<!--									</a>-->
+<!--								</div>-->
 								<!-- /Wishlist -->
 
 								<!-- Cart -->
 								<div class="dropdown">
 									<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 										<i class="fa fa-shopping-cart"></i>
-										<span>Your Cart</span>
-										<div class="qty">3</div>
+										<span>我的购物车</span>
+										<div class="qty" th:text="${cartInfo.totalNum}"></div>
 									</a>
 									<div class="cart-dropdown">
-										<div class="cart-list">
-											<div class="product-widget">
-												<div class="product-img">
-													<img src="./img/product01.png" alt="">
-												</div>
-												<div class="product-body">
-													<h3 class="product-name"><a href="#">product name goes here</a></h3>
-													<h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
-												</div>
-												<button class="delete"><i class="fa fa-close"></i></button>
-											</div>
 
-											<div class="product-widget">
+										<div class="cart-list" >
+											<div class="product-widget" th:each="cartGoods:${cartInfo.goodsList}">
 												<div class="product-img">
-													<img src="./img/product02.png" alt="" style="width: 160px; height: 160px">
+													<img th:src="${cartGoods.imgUrl}" alt="">
 												</div>
 												<div class="product-body">
-													<h3 class="product-name"><a href="#">product name goes here</a></h3>
-													<h4 class="product-price"><span class="qty">3x</span>$980.00</h4>
+													<h3 class="product-name"><a href="#" th:text="${cartGoods.goodsName}"></a></h3>
+													<p class="product-category" th:text="${cartGoods.goodsAttr}"></p>
+													<span class="qty" th:text="${cartGoods.goodsNum} + 'x '"></span><h4 style="display: inline" class="product-price" th:text="${'￥' + cartGoods.price}"></h4>
 												</div>
 												<button class="delete"><i class="fa fa-close"></i></button>
 											</div>
 										</div>
+
 										<div class="cart-summary">
-											<small>3 Item(s) selected</small>
-											<h5>SUBTOTAL: $2940.00</h5>
+											<!--											<small>3 Item(s) selected</small>-->
+											<h5 th:text="'总价：' + ${cartInfo.totalPrice}"></h5>
 										</div>
 										<div class="cart-btns">
-											<a href="#">View Cart</a>
-											<a href="#">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
+											<a onclick="emptyCart()">清空购物车</a>
+											<a href="/toCheckoutPage">结算  <i class="fa fa-arrow-circle-right"></i></a>
 										</div>
 									</div>
 								</div>
@@ -174,13 +166,13 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
-						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#">Hot Deals</a></li>
-						<li><a href="#">Categories</a></li>
-						<li><a href="#">Laptops</a></li>
-						<li><a href="#">Smartphones</a></li>
-						<li><a href="#">Cameras</a></li>
-						<li><a href="#">Accessories</a></li>
+						<li class="active"><a href="#">首页</a></li>
+<!--						<li><a href="#">Hot Deals</a></li>-->
+<!--						<li><a href="#">Categories</a></li>-->
+<!--						<li><a href="#">Laptops</a></li>-->
+<!--						<li><a href="#">Smartphones</a></li>-->
+<!--						<li><a href="#">Cameras</a></li>-->
+<!--						<li><a href="#">Accessories</a></li>-->
 					</ul>
 					<!-- /NAV -->
 				</div>
@@ -198,10 +190,10 @@
 				<div class="row">
 					<div class="col-md-12">
 						<ul class="breadcrumb-tree">
-							<li><a href="#">Home</a></li>
-							<li><a href="#">All Categories</a></li>
-							<li><a href="#">Accessories</a></li>
-							<li class="active">Headphones (227,490 Results)</li>
+							<li><a href="#">首页</a></li>
+							<li><a href="#">所有分类</a></li>
+<!--							<li><a href="#">Accessories</a></li>-->
+<!--							<li class="active">Headphones (227,490 Results)</li>-->
 						</ul>
 					</div>
 				</div>
@@ -221,15 +213,15 @@
 					<div id="aside" class="col-md-3">
 						<!-- aside Widget -->
 						<div class="aside">
-							<h3 class="aside-title">Categories</h3>
+							<h3 class="aside-title">商品分类</h3>
 							<div class="checkbox-filter">
 
 								<div class="input-checkbox">
 									<input type="checkbox" id="category-1">
 									<label for="category-1">
 										<span></span>
-										Laptops
-										<small>(120)</small>
+										手机
+<!--										<small>(120)</small>-->
 									</label>
 								</div>
 
@@ -237,8 +229,8 @@
 									<input type="checkbox" id="category-2">
 									<label for="category-2">
 										<span></span>
-										Smartphones
-										<small>(740)</small>
+										笔记本电脑
+<!--										<small>(740)</small>-->
 									</label>
 								</div>
 
@@ -246,8 +238,8 @@
 									<input type="checkbox" id="category-3">
 									<label for="category-3">
 										<span></span>
-										Cameras
-										<small>(1450)</small>
+										数码相机
+<!--										<small>(1450)</small>-->
 									</label>
 								</div>
 
@@ -255,8 +247,8 @@
 									<input type="checkbox" id="category-4">
 									<label for="category-4">
 										<span></span>
-										Accessories
-										<small>(578)</small>
+										平板电脑
+<!--										<small>(578)</small>-->
 									</label>
 								</div>
 
@@ -264,26 +256,26 @@
 									<input type="checkbox" id="category-5">
 									<label for="category-5">
 										<span></span>
-										Laptops
-										<small>(120)</small>
+										耳机
+<!--										<small>(120)</small>-->
 									</label>
 								</div>
 
-								<div class="input-checkbox">
-									<input type="checkbox" id="category-6">
-									<label for="category-6">
-										<span></span>
-										Smartphones
-										<small>(740)</small>
-									</label>
-								</div>
+<!--								<div class="input-checkbox">-->
+<!--									<input type="checkbox" id="category-6">-->
+<!--									<label for="category-6">-->
+<!--										<span></span>-->
+<!--										Smartphones-->
+<!--										<small>(740)</small>-->
+<!--									</label>-->
+<!--								</div>-->
 							</div>
 						</div>
 						<!-- /aside Widget -->
 
 						<!-- aside Widget -->
 						<div class="aside">
-							<h3 class="aside-title">Price</h3>
+							<h3 class="aside-title">价格区间</h3>
 							<div class="price-filter">
 								<div id="price-slider"></div>
 								<div class="input-number price-min">
@@ -303,30 +295,30 @@
 
 						<!-- aside Widget -->
 						<div class="aside">
-							<h3 class="aside-title">Brand</h3>
+							<h3 class="aside-title">品牌</h3>
 							<div class="checkbox-filter">
 								<div class="input-checkbox">
 									<input type="checkbox" id="brand-1">
 									<label for="brand-1">
 										<span></span>
-										SAMSUNG
-										<small>(578)</small>
+										SAMSUNG(三星)
+<!--										<small>(578)</small>-->
 									</label>
 								</div>
 								<div class="input-checkbox">
 									<input type="checkbox" id="brand-2">
 									<label for="brand-2">
 										<span></span>
-										LG
-										<small>(125)</small>
+										Apple(苹果)
+<!--										<small>(125)</small>-->
 									</label>
 								</div>
 								<div class="input-checkbox">
 									<input type="checkbox" id="brand-3">
 									<label for="brand-3">
 										<span></span>
-										SONY
-										<small>(755)</small>
+										SONY(索尼)
+<!--										<small>(755)</small>-->
 									</label>
 								</div>
 								<div class="input-checkbox">
@@ -403,20 +395,20 @@
 						<div class="store-filter clearfix">
 							<div class="store-sort">
 								<label>
-									Sort By:
+									排序:
 									<select class="input-select">
-										<option value="0">Popular</option>
+										<option value="0">默认排序</option>
 										<option value="1">Position</option>
 									</select>
 								</label>
 
-								<label>
-									Show:
-									<select class="input-select">
-										<option value="0">20</option>
-										<option value="1">50</option>
-									</select>
-								</label>
+<!--								<label>-->
+<!--									显示数量:-->
+<!--									<select class="input-select">-->
+<!--										<option value="0">20</option>-->
+<!--										<option value="1">50</option>-->
+<!--									</select>-->
+<!--								</label>-->
 							</div>
 							<ul class="store-grid">
 								<li class="active"><i class="fa fa-th"></i></li>
@@ -663,6 +655,18 @@
 		<script src="js/nouislider.min.js"></script>
 		<script src="js/jquery.zoom.min.js"></script>
 		<script src="js/main.js"></script>
-
+		<script src="layer/2.4/layer.js"></script>
+		<script>
+			function emptyCart() {
+				$.ajax({
+					url:'/emptyCart',
+					type:'post',
+					dataType:'json',
+					async: false,
+				});
+				layer.msg('清空购物车成功!',{icon:1,time:1000});
+				window.location.reload();
+			}
+		</script>
 	</body>
 </html>

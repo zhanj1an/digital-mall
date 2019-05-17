@@ -64,7 +64,7 @@
 					</ul>
 					<ul class="header-links pull-right">
 						<li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>
-						<li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
+						<li><a href="#"><i class="fa fa-user-o"></i> 个人中心</a></li>
 					</ul>
 				</div>
 			</div>
@@ -79,7 +79,7 @@
 						<!-- LOGO -->
 						<div class="col-md-3">
 							<div class="header-logo">
-								<a href="#" class="logo">
+								<a href="/index" class="logo">
 									<img src="./img/logo.png" alt="">
 								</a>
 							</div>
@@ -89,14 +89,17 @@
 						<!-- SEARCH BAR -->
 						<div class="col-md-6">
 							<div class="header-search">
-								<form>
-									<select class="input-select">
-										<option value="0">All Categories</option>
-										<option value="1">Category 01</option>
-										<option value="1">Category 02</option>
+								<form action="searchGoods" method="post">
+									<select class="input-select" name="categoryId">
+										<option value="">商品分类</option>
+										<option name="categoryId" th:each="category:${categoryList}" th:value="${category.id}" th:text="${category.name}" th:selected="${categoryId == category.id}"></option>
 									</select>
-									<input class="input" placeholder="Search here">
-									<button class="search-btn">Search</button>
+									<select class="input-select" style="border-radius: 0px;" name="brandId">
+										<option value="">商品品牌</option>
+										<option name="brandId" th:each="brand:${brandList}" th:value="${brand.id}" th:text="${brand.name}" th:selected="${brandId == brand.id}"></option>
+									</select>
+									<input style="width: 150px" th:value="${name}" name="name" class="input" placeholder="请输入商品名称">
+									<button class="search-btn" type="submit">查找</button>
 								</form>
 							</div>
 						</div>
@@ -106,53 +109,45 @@
 						<div class="col-md-3 clearfix">
 							<div class="header-ctn">
 								<!-- Wishlist -->
-								<div>
-									<a href="#">
-										<i class="fa fa-heart-o"></i>
-										<span>Your Wishlist</span>
-										<div class="qty">2</div>
-									</a>
-								</div>
+<!--								<div>-->
+<!--									<a href="#">-->
+<!--										<i class="fa fa-heart-o"></i>-->
+<!--										<span>Your Wishlist</span>-->
+<!--										<div class="qty">2</div>-->
+<!--									</a>-->
+<!--								</div>-->
 								<!-- /Wishlist -->
 
 								<!-- Cart -->
 								<div class="dropdown">
 									<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 										<i class="fa fa-shopping-cart"></i>
-										<span>Your Cart</span>
-										<div class="qty">3</div>
+										<span>我的购物车</span>
+										<div class="qty" th:text="${cartInfo.totalNum}"></div>
 									</a>
 									<div class="cart-dropdown">
-										<div class="cart-list">
-											<div class="product-widget">
-												<div class="product-img">
-													<img src="./img/product01.png" alt="">
-												</div>
-												<div class="product-body">
-													<h3 class="product-name"><a href="#">product name goes here</a></h3>
-													<h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
-												</div>
-												<button class="delete"><i class="fa fa-close"></i></button>
-											</div>
 
-											<div class="product-widget">
+										<div class="cart-list" >
+											<div class="product-widget" th:each="cartGoods:${cartInfo.goodsList}">
 												<div class="product-img">
-													<img src="./img/product02.png" alt="">
+													<img th:src="${cartGoods.imgUrl}" alt="">
 												</div>
 												<div class="product-body">
-													<h3 class="product-name"><a href="#">product name goes here</a></h3>
-													<h4 class="product-price"><span class="qty">3x</span>$980.00</h4>
+													<h3 class="product-name"><a href="#" th:text="${cartGoods.goodsName}"></a></h3>
+													<p class="product-category" th:text="${cartGoods.goodsAttr}"></p>
+													<span class="qty" th:text="${cartGoods.goodsNum} + 'x '"></span><h4 style="display: inline" class="product-price" th:text="${'￥' + cartGoods.price}"></h4>
 												</div>
 												<button class="delete"><i class="fa fa-close"></i></button>
 											</div>
 										</div>
+
 										<div class="cart-summary">
-											<small>3 Item(s) selected</small>
-											<h5>SUBTOTAL: $2940.00</h5>
+											<!--											<small>3 Item(s) selected</small>-->
+											<h5 th:text="'总价：' + ${cartInfo.totalPrice}"></h5>
 										</div>
 										<div class="cart-btns">
-											<a href="#">View Cart</a>
-											<a href="#">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
+											<a onclick="emptyCart()">清空购物车</a>
+											<a href="/toCheckoutPage">结算  <i class="fa fa-arrow-circle-right"></i></a>
 										</div>
 									</div>
 								</div>
@@ -186,13 +181,7 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
-						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#">Hot Deals</a></li>
-						<li><a href="#">Categories</a></li>
-						<li><a href="#">Laptops</a></li>
-						<li><a href="#">Smartphones</a></li>
-						<li><a href="#">Cameras</a></li>
-						<li><a href="#">Accessories</a></li>
+						<li class="active"><a href="#">首页</a></li>
 					</ul>
 					<!-- /NAV -->
 				</div>
@@ -210,11 +199,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<ul class="breadcrumb-tree">
-							<li><a href="#">Home</a></li>
-							<li><a href="#">All Categories</a></li>
-							<li><a href="#">Accessories</a></li>
-							<li><a href="#">Headphones</a></li>
-							<li class="active">Product name goes here</li>
+							<li><a href="#">首页</a></li>
 						</ul>
 					</div>
 				</div>
@@ -262,7 +247,7 @@
 									<i class="fa fa-star"></i>
 									<i class="fa fa-star"></i>
 								</div>
-								<a class="review-link" href="#">10 Review(s) | Add your review</a>
+<!--								<a class="review-link" href="#">10 Review(s) | Add your review</a>-->
 							</div>
 							<div>
 								<h3 id="goodsPrice" class="product-price" th:text="${goodsInfo.goodsSynopsis.lowestPrice} + ' ~ ' + ${goodsInfo.goodsSynopsis.highestPrice}"></h3>
@@ -288,7 +273,7 @@
 										<span id="qty-down" class="qty-down" onclick="qtyDown()">-</span>
 									</div>
 								</div>
-								<button id="addToCart" onclick="addToCart(name)" class="add-to-cart-btn" disabled="disabled"><i class="fa fa-shopping-cart" id="cartIcon"></i> add to cart</button>
+								<button id="addToCart" onclick="addToCart(name)" class="add-to-cart-btn" disabled="disabled"><i class="fa fa-shopping-cart" id="cartIcon"></i>添加购物车</button>
 							</div>
 
 							<ul class="product-btns">
@@ -296,7 +281,7 @@
 							</ul>
 
 							<ul class="product-links">
-								<li>分类:</li>
+								<li>分类: 手机</li>
 								<li><a href="#" th:value="${goodsInfo.goodsSynopsis.category}"></a></li>
 							</ul>
 
@@ -810,6 +795,7 @@
 		<script src="js/nouislider.min.js"></script>
 		<script src="js/jquery.zoom.min.js"></script>
 		<script src="js/main.js"></script>
+		<script src="layer/2.4/layer.js"></script>
 
 	<script>
 		function queryStock(goodsId) {
@@ -879,14 +865,25 @@
 				url:'/addToCart',
 				type:'post',
 				dataType:'json',
+				async: false,
 				data:{
 					number:number,
 					skuId:skuId
 				},
-				// success:function(data){
-				// 	console.log(data);
-				// }
 			});
+			layer.msg('添加购物车成功!',{icon:6,time:1000});
+			window.location.reload();
+		}
+
+		function emptyCart() {
+			$.ajax({
+				url:'/emptyCart',
+				type:'post',
+				dataType:'json',
+				async: false,
+			});
+			layer.msg('清空购物车成功!',{icon:1,time:1000});
+			window.location.reload();
 		}
 	</script>
 	</body>

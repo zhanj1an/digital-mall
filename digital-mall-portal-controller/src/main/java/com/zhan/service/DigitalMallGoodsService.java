@@ -27,12 +27,15 @@ public class DigitalMallGoodsService {
         this.goodsRepository = goodsRepository;
     }
 
-    @SuppressWarnings("unchecked")
     public List<DigitalMallGoodsSynopsis> getRollGoodsSynopsis(){
         return restTemplate.getForObject("http://portal-service/getRollGoodsSynopsis", List.class);
     }
 
-    @SuppressWarnings("unchecked")
+    public List<DigitalMallGoodsSynopsis> getTopSaleRollGoodsSynopsis(){
+        return restTemplate.getForObject("http://portal-service/getTopSaleRollGoodsSynopsis", List.class);
+    }
+
+
     public List<DigitalMallGoodsAttribute> getGoodsAttribute(int goodsId){
         return restTemplate.getForObject("http://portal-service/getGoodsAttribute?goodsId=" + goodsId, List.class);
     }

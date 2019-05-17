@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhan.dao.DigitalMallOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.zhan.model.DigitalMallOrder" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="account" property="account" jdbcType="VARCHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="telephone" property="telephone" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="order_price" property="orderPrice" jdbcType="DOUBLE" />
+    <result column="goods_num" property="goodsNum" jdbcType="INTEGER" />
+    <result column="is_pay" property="isPay" jdbcType="INTEGER" />
+    <result column="is_send" property="isSend" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, account, username, telephone, address, remarks, order_price, goods_num, is_pay, 
+    is_send, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from digital_mall_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectOrderList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from digital_mall_order
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from digital_mall_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zhan.model.DigitalMallOrder" useGeneratedKeys="true" keyProperty="id" >
+    insert into digital_mall_order (account, username,
+      telephone, address, remarks,
+      order_price, goods_num, is_pay,
+      is_send, create_time)
+    values (#{account,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR},
+      #{telephone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR},
+      #{orderPrice,jdbcType=DOUBLE}, #{goodsNum,jdbcType=INTEGER}, #{isPay,jdbcType=INTEGER},
+      #{isSend,jdbcType=INTEGER}, #{createTime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhan.model.DigitalMallOrder" >
+    insert into digital_mall_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="account != null" >
+        account,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="telephone != null" >
+        telephone,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="orderPrice != null" >
+        order_price,
+      </if>
+      <if test="goodsNum != null" >
+        goods_num,
+      </if>
+      <if test="isPay != null" >
+        is_pay,
+      </if>
+      <if test="isSend != null" >
+        is_send,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="orderPrice != null" >
+        #{orderPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsNum != null" >
+        #{goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="isPay != null" >
+        #{isPay,jdbcType=INTEGER},
+      </if>
+      <if test="isSend != null" >
+        #{isSend,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhan.model.DigitalMallOrder" >
+    update digital_mall_order
+    <set >
+      <if test="account != null" >
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="orderPrice != null" >
+        order_price = #{orderPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsNum != null" >
+        goods_num = #{goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="isPay != null" >
+        is_pay = #{isPay,jdbcType=INTEGER},
+      </if>
+      <if test="isSend != null" >
+        is_send = #{isSend,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhan.model.DigitalMallOrder" >
+    update digital_mall_order
+    set account = #{account,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      order_price = #{orderPrice,jdbcType=DOUBLE},
+      goods_num = #{goodsNum,jdbcType=INTEGER},
+      is_pay = #{isPay,jdbcType=INTEGER},
+      is_send = #{isSend,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

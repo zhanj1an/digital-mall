@@ -72,7 +72,7 @@ public class DigitalMallGoodsController {
         if(otherBrand != null && !"".equals(otherBrand)){
             goods.setBrandId(digitalMallBrandService.insert(otherBrand));
         }
-        log.error("add goods info{}", goods.toString());
+        log.info("add goods info{}", goods.toString());
         digitalMallGoodsService.addGoods(goods);
         if(digitalMallCategoryBrandService.insert(goods.getCategoryId(), goods.getBrandId()) != 1){
             log.error("CategoryBrand insert fail");

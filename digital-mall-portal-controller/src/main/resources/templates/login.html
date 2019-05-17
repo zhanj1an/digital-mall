@@ -5,8 +5,9 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<title>Login</title>
 	<link rel="stylesheet" href="./css/auth.css">
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery.form.js"></script>
 </head>
-
 <body>
 	<div class="lowin">
 		<div class="lowin-brand">
@@ -15,20 +16,19 @@
 		<div class="lowin-wrapper">
 			<div class="lowin-box lowin-login">
 				<div class="lowin-box-inner">
-					<form>
+					<form action="portal-login" method="post" id="portal-login-form">
 						<p>Sign in to continue</p>
 						<div class="lowin-group">
 							<label>Email <a href="#" class="login-back-link">Sign in?</a></label>
-							<input type="email" autocomplete="email" name="email" class="lowin-input">
+							<input type="text" name="username" class="lowin-input">
 						</div>
 						<div class="lowin-group password-group">
 							<label>Password <a href="#" class="forgot-link">Forgot Password?</a></label>
 							<input type="password" name="password" autocomplete="current-password" class="lowin-input">
 						</div>
-						<button class="lowin-btn login-btn">
+						<button class="lowin-btn login-btn" type="button" onclick="login()">
 							Sign In
 						</button>
-
 						<div class="text-foot">
 							Don't have an account? <a href="" class="register-link">Register</a>
 						</div>
@@ -36,45 +36,55 @@
 				</div>
 			</div>
 
-			<div class="lowin-box lowin-register">
-				<div class="lowin-box-inner">
-					<form>
-						<p>Let's create your account</p>
-						<div class="lowin-group">
-							<label>Name</label>
-							<input type="text" name="name" autocomplete="name" class="lowin-input">
-						</div>
-						<div class="lowin-group">
-							<label>Email</label>
-							<input type="email" autocomplete="email" name="email" class="lowin-input">
-						</div>
-						<div class="lowin-group">
-							<label>Password</label>
-							<input type="password" name="password" autocomplete="current-password" class="lowin-input">
-						</div>
-						<button class="lowin-btn">
-							Sign Up
-						</button>
+<!--			<div class="lowin-box lowin-register">-->
+<!--				<div class="lowin-box-inner">-->
+<!--					<form>-->
+<!--						<p>Let's create your account</p>-->
+<!--						<div class="lowin-group">-->
+<!--							<label>Name</label>-->
+<!--							<input type="text" name="name" autocomplete="name" class="lowin-input">-->
+<!--						</div>-->
+<!--						<div class="lowin-group">-->
+<!--							<label>Email</label>-->
+<!--							<input type="email" autocomplete="email" name="email" class="lowin-input">-->
+<!--						</div>-->
+<!--						<div class="lowin-group">-->
+<!--							<label>Password</label>-->
+<!--							<input type="password" name="password" autocomplete="current-password" class="lowin-input">-->
+<!--						</div>-->
+<!--						<button class="lowin-btn">-->
+<!--							Sign Up-->
+<!--						</button>-->
 
-						<div class="text-foot">
-							Already have an account? <a href="" class="login-link">Login</a>
-						</div>
-					</form>
-				</div>
-			</div>
+<!--						<div class="text-foot">-->
+<!--							Already have an account? <a href="" class="login-link">Login</a>-->
+<!--						</div>-->
+<!--					</form>-->
+<!--				</div>-->
+<!--			</div>-->
 		</div>
-	
-		<footer class="lowin-footer">
-			Design By @itskodinger. More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
-		</footer>
+
 	</div>
 
 	<script src="./js/auth.js"></script>
 	<script>
-		Auth.init({
-			login_url: '#login',
-			forgot_url: '#forgot'
-		});
+		function login() {
+			$.ajax({
+				//几个参数需要注意一下
+				type: "POST",//方法类型
+				dataType: "json",//预期服务器返回的数据类型
+				url: "/portal-login" ,//url
+				data: $('#portal-login-form').serialize(),
+				success: function (result) {
+					console.log(result);
+					if (result === 200) {
+						window.location.href='index';
+					}else{
+						layer.msg("用户名或密码错误");
+					}
+				},
+			});
+		}
 	</script>
 </body>
 </html>

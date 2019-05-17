@@ -23,6 +23,11 @@ public class DigitalMallGoodsController {
         return digitalMallGoodsService.getRollGoodsSynopsis();
     }
 
+    @RequestMapping("/getTopSaleRollGoodsSynopsis")
+    public List<DigitalMallGoodsSynopsis> getTopSaleRollGoodsSynopsis(){
+        return digitalMallGoodsService.getTopSaleRollGoodsSynopsis();
+    }
+
     @RequestMapping("/getGoodsAttribute")
     public List<DigitalMallGoodsAttribute> getGoodsAttribute(int goodsId){
         return digitalMallGoodsService.getGoodsAttribute(goodsId);

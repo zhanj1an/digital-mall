@@ -1,11 +1,10 @@
 package com.zhan.controller;
 
-import com.alibaba.fastjson.JSON;
+import com.zhan.dao.DigitalMallUserMapper;
 import com.zhan.model.*;
-import com.zhan.service.DigitalMallBrandService;
-import com.zhan.service.DigitalMallCartService;
-import com.zhan.service.DigitalMallCategoryService;
-import com.zhan.service.DigitalMallGoodsService;
+import com.zhan.service.*;
+import com.zhan.service.impl.DigitalMallLoginServiceImpl;
+import com.zhan.service.impl.DigitalMallOrderServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,28 +28,42 @@ public class DigitalMallGoodsController {
 
     private DigitalMallCartService digitalMallCartService;
 
+    private DigitalMallLoginServiceImpl digitalMallLoginService;
+
+    private DigitalMallUserMapper digitalMallUserMapper;
+
+    private DigitalMallOrderServiceImpl digitalMallOrderService;
+
     @Autowired
     public DigitalMallGoodsController(DigitalMallGoodsService digitalMallGoodsService,
                                       DigitalMallBrandService digitalMallBrandService,
                                       DigitalMallCategoryService digitalMallCategoryService,
-                                      DigitalMallCartService digitalMallCartService) {
+                                      DigitalMallCartService digitalMallCartService,
+                                      DigitalMallLoginServiceImpl digitalMallLoginService,
+                                      DigitalMallUserMapper digitalMallUserMapper,
+                                      DigitalMallOrderServiceImpl digitalMallOrderService) {
         this.digitalMallGoodsService = digitalMallGoodsService;
         this.digitalMallBrandService = digitalMallBrandService;
         this.digitalMallCategoryService = digitalMallCategoryService;
         this.digitalMallCartService = digitalMallCartService;
+        this.digitalMallLoginService = digitalMallLoginService;
+        this.digitalMallUserMapper = digitalMallUserMapper;
+        this.digitalMallOrderService = digitalMallOrderService;
     }
 
     @RequestMapping("/index")
     public String index(Model model, ServletRequest servletRequest){
         model.addAttribute("cartInfo", digitalMallCartService.getCartInfo(servletRequest));
         model.addAttribute("goodsSynopsisList",digitalMallGoodsService.getRollGoodsSynopsis());
+        model.addAttribute("topSaleGoodsSynopsisList",digitalMallGoodsService.getTopSaleRollGoodsSynopsis());
         model.addAttribute("brandList", digitalMallBrandService.getBrandList());
         model.addAttribute("categoryList", digitalMallCategoryService.getCategoryList());
         return "index";
     }
 
     @RequestMapping("/searchGoods")
-    public String searchGoods(Model model, DigitalMallGoods goods){
+    public String searchGoods(Model model, DigitalMallGoods goods, ServletRequest servletRequest){
+        model.addAttribute("cartInfo", digitalMallCartService.getCartInfo(servletRequest));
         model.addAttribute("page", digitalMallGoodsService.selectGoodsByCriteria(goods));
         model.addAttribute("name", goods.getName());
         model.addAttribute("brandId", goods.getBrandId());
@@ -61,9 +74,15 @@ public class DigitalMallGoodsController {
     }
 
     @RequestMapping("/toGoodsView")
-    public String toGoodsView(DigitalMallGoodsSynopsis goodsSynopsis, Model model){
+    public String toGoodsView(DigitalMallGoodsSynopsis goodsSynopsis, Model model, DigitalMallGoods goods, ServletRequest servletRequest){
+        model.addAttribute("cartInfo", digitalMallCartService.getCartInfo(servletRequest));
         model.addAttribute("goodsInfo", new DigitalMallGoodsInfo(goodsSynopsis,
                 digitalMallGoodsService.getGoodsAttribute(goodsSynopsis.getGoodsId())));
+        model.addAttribute("name", goods.getName());
+        model.addAttribute("brandId", goods.getBrandId());
+        model.addAttribute("categoryId", goods.getCategoryId());
+        model.addAttribute("brandList", digitalMallBrandService.getBrandList());
+        model.addAttribute("categoryList", digitalMallCategoryService.getCategoryList());
         return "product";
     }
 
@@ -76,7 +95,13 @@ public class DigitalMallGoodsController {
             map.put("price", sku.getPrice() + "");
             map.put("stock", "库存:" + sku.getStock());
             map.put("skuId", sku.getId() + "");
-        }else{
+        }
+        if(sku != null && sku.getStock() == 0){
+            map.put("price", "库存不足");
+            map.put("stock", "");
+            map.put("skuId", 0 + "");
+        }
+        if(sku == null){
             map.put("price", "商品已下架");
             map.put("stock", "");
             map.put("skuId", 0 + "");
@@ -90,9 +115,39 @@ public class DigitalMallGoodsController {
         digitalMallCartService.addToCart(number, skuId, servletRequest, servletResponse);
     }
 
-    @RequestMapping("/login")
-    public String login(){
+    @ResponseBody
+    @RequestMapping("/portal-login")
+    public int login(ServletResponse servletResponse, String username, String password, ServletRequest servletRequest){
+        return Integer.parseInt(digitalMallLoginService.login(servletRequest, servletResponse, username, password));
+    }
+
+    @RequestMapping("/toLoginPage")
+    public String toLoginPage(){
         return "login";
     }
 
+    @RequestMapping("/toCheckoutPage")
+    public String checkout(ServletRequest servletRequest, Model model){
+        int userId = digitalMallLoginService.getLoginStatus(servletRequest);
+        if(userId == 0){
+            return "login";
+        }
+        model.addAttribute("account", digitalMallUserMapper.selectByPrimaryKey(userId).getUsername());
+        model.addAttribute("cartInfo", digitalMallCartService.getCartInfo(servletRequest));
+        model.addAttribute("brandList", digitalMallBrandService.getBrandList());
+        model.addAttribute("categoryList", digitalMallCategoryService.getCategoryList());
+        return "checkout";
+    }
+
+    @RequestMapping("/checkout")
+    public String checkout(DigitalMallOrder order, ServletRequest servletRequest, ServletResponse servletResponse){
+        digitalMallOrderService.insertOrder(order, digitalMallCartService.getCartInfo(servletRequest), servletRequest, servletResponse);
+        return "redirect:/index";
+    }
+
+    @ResponseBody
+    @RequestMapping("/emptyCart")
+    public void emptyCart(ServletRequest servletRequest, ServletResponse servletResponse){
+        digitalMallCartService.deleteCart(servletRequest, servletResponse);
+    }
 }

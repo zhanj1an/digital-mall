@@ -43,7 +43,7 @@ public class DigitalMallGoods {
 
     private Integer pageNum = 0;
 
-    private Integer pageSize = 10;
+    private Integer pageSize = 5;
 
     private DigitalMallGoodsSynopsis goodsSynopsis;
 }

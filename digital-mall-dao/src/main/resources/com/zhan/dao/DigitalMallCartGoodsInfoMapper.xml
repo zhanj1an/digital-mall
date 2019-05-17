@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhan.dao.DigitalMallCartGoodsInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.zhan.model.DigitalMallCartGoodsInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="sku_id" property="skuId" jdbcType="INTEGER" />
+    <result column="cart_id" property="cartId" jdbcType="INTEGER" />
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="goods_attr" property="goodsAttr" jdbcType="VARCHAR" />
+    <result column="img_url" property="imgUrl" jdbcType="VARCHAR" />
+    <result column="goods_num" property="goodsNum" jdbcType="INTEGER" />
+    <result column="goods_price" property="goodsPrice" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, sku_id, cart_id, goods_name, goods_attr, img_url, goods_num, goods_price
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from digital_mall_cart_goods_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectBySkuId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from digital_mall_cart_goods_info
+    where sku_id = #{skuId,jdbcType=INTEGER}
+  </select>
+  <select id="selectByCartId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from digital_mall_cart_goods_info
+    where cart_id = #{cartId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from digital_mall_cart_goods_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByCartId" parameterType="java.lang.Integer" >
+    delete from digital_mall_cart_goods_info
+    where cart_id = #{cartId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zhan.model.DigitalMallCartGoodsInfo" >
+    insert into digital_mall_cart_goods_info (id, sku_id, cart_id, 
+      goods_name, goods_attr, img_url, 
+      goods_num, goods_price)
+    values (#{id,jdbcType=INTEGER}, #{skuId,jdbcType=INTEGER}, #{cartId,jdbcType=INTEGER}, 
+      #{goodsName,jdbcType=VARCHAR}, #{goodsAttr,jdbcType=VARCHAR}, #{imgUrl,jdbcType=VARCHAR}, 
+      #{goodsNum,jdbcType=INTEGER}, #{goodsPrice,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhan.model.DigitalMallCartGoodsInfo" >
+    insert into digital_mall_cart_goods_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="skuId != null" >
+        sku_id,
+      </if>
+      <if test="cartId != null" >
+        cart_id,
+      </if>
+      <if test="goodsName != null" >
+        goods_name,
+      </if>
+      <if test="goodsAttr != null" >
+        goods_attr,
+      </if>
+      <if test="imgUrl != null" >
+        img_url,
+      </if>
+      <if test="goodsNum != null" >
+        goods_num,
+      </if>
+      <if test="goodsPrice != null" >
+        goods_price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="skuId != null" >
+        #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="cartId != null" >
+        #{cartId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null" >
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsAttr != null" >
+        #{goodsAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null" >
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsNum != null" >
+        #{goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="goodsPrice != null" >
+        #{goodsPrice,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhan.model.DigitalMallCartGoodsInfo" >
+    update digital_mall_cart_goods_info
+    <set >
+      <if test="skuId != null" >
+        sku_id = #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="cartId != null" >
+        cart_id = #{cartId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null" >
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsAttr != null" >
+        goods_attr = #{goodsAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null" >
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsNum != null" >
+        goods_num = #{goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="goodsPrice != null" >
+        goods_price = #{goodsPrice,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhan.model.DigitalMallCartGoodsInfo" >
+    update digital_mall_cart_goods_info
+    set sku_id = #{skuId,jdbcType=INTEGER},
+      cart_id = #{cartId,jdbcType=INTEGER},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      goods_attr = #{goodsAttr,jdbcType=VARCHAR},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      goods_num = #{goodsNum,jdbcType=INTEGER},
+      goods_price = #{goodsPrice,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class DigitalMallSsoServiceImpl implements DigitalMallSsoService {
 
-    private static final String COOKIE_NAME = "DIGITAL_MALL_TOKEN";
+    private static final String COOKIE_NAME = "DIGITAL_MALL_CONSOLE_TOKEN";
 
     private static final String STATIC_URL = "http://localhost:10010/images";
 
@@ -53,9 +53,9 @@ public class DigitalMallSsoServiceImpl implements DigitalMallSsoService {
 
             if (userId != null) {
                 Cookie cookie = new Cookie(COOKIE_NAME, token);
-                cookie.setMaxAge(5 * 60);
+                cookie.setMaxAge(10 * 60);
                 response.addCookie(cookie);
-                redisTemplate.opsForValue().set(token, userId, 5, TimeUnit.MINUTES);
+                redisTemplate.opsForValue().set(token, userId, 10, TimeUnit.MINUTES);
                 filterChain.doFilter(servletRequest, servletResponse);
             } else {
                 servletRequest.getRequestDispatcher("/toLoginPage").forward(servletRequest, servletResponse);

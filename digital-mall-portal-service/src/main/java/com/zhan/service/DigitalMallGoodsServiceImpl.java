@@ -60,4 +60,20 @@ public class DigitalMallGoodsServiceImpl implements DigitalMallGoodsService {
         }
         return null;
     }
+
+    @Override
+    public List<DigitalMallGoodsSynopsis> getTopSaleRollGoodsSynopsis() {
+
+        Pageable pageable = PageRequest.of(0, 5, new Sort(Sort.Direction.DESC, "saleNum"));
+        List<EsGoodsInfo> goodsInfos = goodsRepository.search(null, pageable).getContent();
+        List<DigitalMallGoodsSynopsis> goodsSynopsisList = new ArrayList<>();
+
+        //获取五个滚动显示的商品简介信息
+        for (EsGoodsInfo goodsInfo : goodsInfos) {
+            goodsSynopsisList.add(new DigitalMallGoodsSynopsis(goodsInfo.getGoodsId(), goodsInfo.getGoodsName(), goodsInfo.getCategoryName(),
+                    goodsInfo.getLowestPrice(), goodsInfo.getHighestPrice(), goodsInfo.getGoodsIntroduce(),
+                    goodsInfo.getImgUrlList(), goodsInfo.getDesUrlList()));
+        }
+        return goodsSynopsisList;
+    }
 }

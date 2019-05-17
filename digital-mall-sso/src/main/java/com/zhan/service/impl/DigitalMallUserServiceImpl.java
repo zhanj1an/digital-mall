@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class DigitalMallUserServiceImpl implements DigitalMallUserService {
 
-    private static final String CONTROLLER_COOKIE_NAME = "CONTROLLER_TOKEN";
+    private static final String CONTROLLER_COOKIE_NAME = "DIGITAL_MALL_CONSOLE_TOKEN";
 
 //    private static final String PORTAL_COOKIE_NAME = "PORTAL_TOKEN";
 

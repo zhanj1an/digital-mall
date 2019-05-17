@@ -11,4 +11,6 @@ public interface DigitalMallGoodsService {
     List<DigitalMallGoodsAttribute> getGoodsAttribute(int goodsId);
 
     DigitalMallSku queryGoodsStock(int goodsId, String attribute);
+
+    List<DigitalMallGoodsSynopsis> getTopSaleRollGoodsSynopsis();
 }
